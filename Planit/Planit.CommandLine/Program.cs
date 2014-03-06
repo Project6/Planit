@@ -17,10 +17,10 @@ namespace Planit.CommandLine
 
             foreach(Project project in projectList)
             {
-                for(int i = 0; project.Depth < i; i++ )
-                    Console.WriteLine("-");
+                for(int i = 0; project.Depth > i; i++ )
+                    Console.Write("-");
                 
-                Console.WriteLine(project);
+                Console.WriteLine(project.Description);
             }
 
         }

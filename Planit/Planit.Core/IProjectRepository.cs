@@ -2,7 +2,7 @@
 
 namespace Planit.Core
 {
-    interface IProjectRepository
+    public interface IProjectRepository
     {
         List<Project> GetProjects();
     }
