@@ -23,6 +23,8 @@ namespace Planit.Core
             public DateTime DueDate { get; set; }
 
             public DateTime StartDate { get; set; }
+
+            public List<Project> Children { get; private set; }
         
         #endregion 
 
@@ -42,8 +44,39 @@ namespace Planit.Core
                 this.Description = Description;
                 this.DueDate = DueDate;
                 this.StartDate = StartDate;
+                Children = new List<Project>();
             }
-        #endregion 
+
+            public Project(int ID, string UserID, string ParentID, string Description, DateTime  DueDate, DateTime StartDate, Project parent)
+            {
+                this.ID = ID;
+                this.UserID = UserID;
+                this.Depth = parent.Depth + 1;
+                this.ParentID = ParentID;
+                this.Description = Description;
+                this.DueDate = DueDate;
+                this.StartDate = StartDate;
+                Children = new List<Project>();
+            }
+
+            public Project(Project child, Project parent)
+            {
+                this.ID = child.ID;
+                this.UserID = child.UserID;
+                this.Depth = parent.Depth + 1;
+                this.ParentID = child.ParentID;
+                this.Description = child.Description;
+                this.DueDate = child.DueDate;
+                this.StartDate = child.StartDate;
+                Children = new List<Project>();
+            }
+
+        #endregion
+
+            public void addChild(Project child)
+            {
+                Children.Add(new Project(child, this));
+            }
 
     }
 }

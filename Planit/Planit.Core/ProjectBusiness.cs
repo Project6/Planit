@@ -20,5 +20,22 @@ namespace Planit.Core
         {
             return _repository.GetProjects();
         }
+
+        public IEnumerable<Project> dfs(Project parent)
+        {
+            foreach (var child in parent.Children)
+            {
+                yield return child;
+                foreach (var grandchild in dfs(child))
+                {
+                    yield return grandchild;
+                }
+            }
+        }
+
+        public void addChild(Project child, Project parent)
+        {
+            parent.Children.Add(child);
+        }
     }
 }
