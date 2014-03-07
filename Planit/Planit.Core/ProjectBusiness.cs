@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace Planit.Core
 {
-    public class ProjectBusiness
+    public class ProjectBusinessLayer
     {
 
-        public IProjectData _repository {get; private set;}
+        public IProjectDataLayer _DAL {get; private set;}
 
-        public ProjectBusiness(IProjectData repository)
+        public ProjectBusinessLayer(IProjectDataLayer DAL)
         {
-            _repository = repository;
+            _DAL = DAL;
         }
 
         public IEnumerable<Project> DFS()
         {
-            return DFS(_repository.Root);
+            return DFS(_DAL.Root);
         }
 
         public IEnumerable<Project> DFS(Project parent)

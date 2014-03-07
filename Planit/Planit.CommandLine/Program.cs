@@ -11,7 +11,7 @@ namespace Planit.CommandLine
     {
         static void Main(string[] args)
         {
-            ProjectBusiness BAL = new ProjectBusiness(new TestProjectData());
+            ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
 
             foreach (Project project in BAL.DFS())
             {

@@ -2,7 +2,7 @@
 
 namespace Planit.Core
 {
-    public interface IProjectData
+    public interface IProjectDataLayer
     {
         Project Root { get; }
 
