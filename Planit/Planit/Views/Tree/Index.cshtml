@@ -1,4 +1,5 @@
-﻿@model Planit.Core.Node<Planit.Models.Project>
+﻿@model Planit.Core.Project
+
 
 @{
     ViewBag.Title = "Index";
@@ -13,12 +14,12 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.data.Description)
+            @Html.DisplayNameFor(model => model.Description)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model.dfs(Model)) {
+@foreach (var item in Model) {
     <tr>
         <td>
             @for (int i = 0; i < item.Depth; i++)
