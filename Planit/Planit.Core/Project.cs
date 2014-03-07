@@ -23,6 +23,8 @@ namespace Planit.Core
             public DateTime DueDate { get; set; }
 
             public DateTime StartDate { get; set; }
+
+            public List<Project> Children { get; set; }
         
         #endregion 
 

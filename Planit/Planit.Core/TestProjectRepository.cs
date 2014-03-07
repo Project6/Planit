@@ -33,5 +33,10 @@ namespace Planit.Core
             return projectList;
 
         }
+
+        public void AddProject(Project child, Project parent)
+        {
+            parent.Children.Add(child);
+        }
     }
 }
