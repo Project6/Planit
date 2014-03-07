@@ -1,7 +1,8 @@
-﻿@model IEnumerable<Planit.Models.Project>
+﻿@model IEnumerable<Planit.Core.Project>
 
 @{
     ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
@@ -33,6 +34,7 @@
             }
 
             @Html.DisplayFor(modelItem => item.Description)
+
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DueDate)
