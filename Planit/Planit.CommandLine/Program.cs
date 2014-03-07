@@ -11,11 +11,9 @@ namespace Planit.CommandLine
     {
         static void Main(string[] args)
         {
-            ProjectBusiness DAO = new ProjectBusiness(new TestProjectRepository());
+            ProjectBusiness BAL = new ProjectBusiness(new TestProjectData());
 
-            List<Project> projectList = DAO.GetProjects();
-
-            foreach(Project project in projectList)
+            foreach (Project project in BAL.DFS())
             {
                 for(int i = 0; project.Depth > i; i++ )
                     Console.Write("-");

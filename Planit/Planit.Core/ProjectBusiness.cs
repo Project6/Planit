@@ -9,33 +9,49 @@ namespace Planit.Core
     public class ProjectBusiness
     {
 
-        IProjectRepository _repository;
+        public IProjectData _repository {get; private set;}
 
-        public ProjectBusiness(IProjectRepository repository)
+        public ProjectBusiness(IProjectData repository)
         {
             _repository = repository;
         }
 
-        public List<Project> GetProjects()
+        public IEnumerable<Project> DFS()
         {
-            return _repository.GetProjects();
+            return DFS(_repository.Root);
         }
 
-        public IEnumerable<Project> dfs(Project parent)
+        public IEnumerable<Project> DFS(Project parent)
         {
             foreach (var child in parent.Children)
             {
                 yield return child;
-                foreach (var grandchild in dfs(child))
+                foreach (var grandchild in DFS(child))
                 {
                     yield return grandchild;
                 }
             }
         }
 
-        public void addChild(Project child, Project parent)
-        {
-            parent.Children.Add(child);
-        }
+
+        //public List<Project> GetProjects()
+        //{
+        //    return _repository.GetProjects();
+        //}
+        //
+        //public void AddChild(Project child, Project parent)
+        //{
+        //    parent.Children.Add(child);
+        //}
+
+        //public void Remove(Project project)
+        //{ 
+        //    // remove
+        //} 
+
+        //public void Find(Project project)
+        //{ 
+            
+        //}
     }
 }

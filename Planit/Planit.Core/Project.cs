@@ -16,7 +16,7 @@ namespace Planit.Core
 
             public int Depth { get; set; }
         
-            public string ParentID { get; set; }
+            //public string ParentID { get; set; } // commenting out until we need it
 
             public string Description { get; set; }
 
@@ -32,27 +32,25 @@ namespace Planit.Core
 
             public Project()
             {
-
+                Children = new List<Project>();
             }
 
-            public Project(int ID, string UserID, int Depth, string ParentID, string Description, DateTime  DueDate, DateTime StartDate)
+            public Project(int ID, string UserID, int Depth, string Description, DateTime  DueDate, DateTime StartDate)
             {
                 this.ID = ID;
                 this.UserID = UserID;
                 this.Depth = Depth;
-                this.ParentID = ParentID;
                 this.Description = Description;
                 this.DueDate = DueDate;
                 this.StartDate = StartDate;
                 Children = new List<Project>();
             }
 
-            public Project(int ID, string UserID, string ParentID, string Description, DateTime  DueDate, DateTime StartDate, Project parent)
+            public Project(int ID, string UserID, string Description, DateTime  DueDate, DateTime StartDate, Project parent)
             {
                 this.ID = ID;
                 this.UserID = UserID;
                 this.Depth = parent.Depth + 1;
-                this.ParentID = ParentID;
                 this.Description = Description;
                 this.DueDate = DueDate;
                 this.StartDate = StartDate;
@@ -64,7 +62,6 @@ namespace Planit.Core
                 this.ID = child.ID;
                 this.UserID = child.UserID;
                 this.Depth = parent.Depth + 1;
-                this.ParentID = child.ParentID;
                 this.Description = child.Description;
                 this.DueDate = child.DueDate;
                 this.StartDate = child.StartDate;
@@ -73,9 +70,11 @@ namespace Planit.Core
 
         #endregion
 
-            public void addChild(Project child)
+            // add's Project argument to the children list and then returns a reference to the child
+            public Project addChild(Project child)
             {
                 Children.Add(new Project(child, this));
+                return Children.Last();
             }
 
     }
