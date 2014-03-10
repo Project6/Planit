@@ -21,6 +21,8 @@ namespace Planit
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
+
+                      // media fill in case a broswer does not natively have css3 features ab
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
