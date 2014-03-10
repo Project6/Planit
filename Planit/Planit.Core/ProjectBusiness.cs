@@ -6,19 +6,52 @@ using System.Threading.Tasks;
 
 namespace Planit.Core
 {
-    public class ProjectBusiness
+    public class ProjectBusinessLayer
     {
 
-        IProjectRepository _repository;
+        public IProjectDataLayer _DAL {get; private set;}
 
-        public ProjectBusiness(IProjectRepository repository)
+        public ProjectBusinessLayer(IProjectDataLayer DAL)
         {
-            _repository = repository;
+            _DAL = DAL;
         }
 
-        public List<Project> GetProjects()
+        public IEnumerable<Project> DFS()
         {
-            return _repository.GetProjects();
+            return DFS(_DAL.Root);
         }
+
+        public IEnumerable<Project> DFS(Project parent)
+        {
+            foreach (var child in parent.Children)
+            {
+                yield return child;
+                foreach (var grandchild in DFS(child))
+                {
+                    yield return grandchild;
+                }
+            }
+        }
+
+
+        //public List<Project> GetProjects()
+        //{
+        //    return _repository.GetProjects();
+        //}
+        //
+        //public void AddChild(Project child, Project parent)
+        //{
+        //    parent.Children.Add(child);
+        //}
+
+        //public void Remove(Project project)
+        //{ 
+        //    // remove
+        //} 
+
+        //public void Find(Project project)
+        //{ 
+            
+        //}
     }
 }

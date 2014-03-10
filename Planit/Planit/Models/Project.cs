@@ -4,6 +4,8 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
+// REFERENCE Project from Planit.Core
+
 namespace Planit.Models
 {
     public class Project
