@@ -5,9 +5,10 @@
     //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Outline</h2>
 
-<div class="navbar navbar-inverse navbar">
+
+<div>
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -20,10 +21,12 @@
                 -->
         </div>
 
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+        <!--Not sure how to make the inner nav bar like the outer nav bar that goes across the outer nav bar length-->
+        <div>
+            <!--pagination makes the -->
+            <ul class="nav pagination navbar-nav " >
                 <li>@Html.ActionLink("Tree", "Index", "Home")</li>
-                <li>@Html.ActionLink("Outline", "About", "Home")</li>
+                <li class=" active">@Html.ActionLink("Outline", "About", "Home")</li>
                 <li>@Html.ActionLink("Task", "Contact", "Home")</li>
                 <!--Added these links to the nav bar-->
                 <li>@Html.ActionLink("Schedule", "Index", "Home")</li>
@@ -47,7 +50,7 @@
             <table class="table">
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.DueDate)
+                       @Html.DisplayNameFor(model => model.DueDate)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Description)
@@ -87,7 +90,9 @@
 
     <div class="col-md-8">
         <div class="jumbotron">
-            <h4>Outline</h4>
+            <!--it might be self evident that we are in the Outline View
+                <h4>Outline</h4>
+                -->
             <p>
                 @Html.ActionLink("Create New", "Create")
             </p>
