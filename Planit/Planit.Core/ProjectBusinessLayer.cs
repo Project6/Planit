@@ -40,13 +40,12 @@ namespace Planit.Core
 
         public IEnumerable<Project> TraverseByDueDate(Project parent)
         {
-            IEnumerable<Project> list = DFS(parent);
-            
-            
+            IEnumerable<Project> tree = DFS(parent);
 
-            //Func<Project, Project, int> comparison = (first, second) => first.DueDate < second.DueDate ? 1 : -1;
+            List<Project> list = tree.ToList<Project>();
 
-            list.ToList<Project>().Sort( (first, second) => first.DueDate < second.DueDate ? 1 : -1);
+            list.Sort( (first, second) => first.DueDate.CompareTo(second.DueDate) >= 0 ? 1 : -1);
+            
             return list;
         }
 
