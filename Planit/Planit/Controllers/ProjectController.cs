@@ -15,7 +15,7 @@ namespace Planit.Controllers
         //private ProjectDBContext db = new ProjectDBContext();
 
         // GET: /Project/
-        public ActionResult Index()
+        public ActionResult Index2()
         {
             ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
             IEnumerable<Project> tree = BAL.DFS();
