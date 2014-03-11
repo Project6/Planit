@@ -33,6 +33,18 @@ namespace Planit.Core
             }
         }
 
+        public IEnumerable<Project> TraverseByDueDate(Project parent)
+        {
+            List<Project> list = (List<Project>)DFS(parent);
+            
+            // get collection
+            // sort by due date
+            // iterate sorted list
+            // return values
+            
+            return list;
+
+        }
 
         //public List<Project> GetProjects()
         //{
