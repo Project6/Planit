@@ -45,7 +45,7 @@ namespace Planit.Core
             List<Project> list = tree.ToList<Project>();
 
             list.Sort( (first, second) => first.DueDate.CompareTo(second.DueDate) >= 0 ? 1 : -1);
-            
+          
             return list;
         }
 
