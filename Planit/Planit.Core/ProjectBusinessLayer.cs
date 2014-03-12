@@ -53,16 +53,14 @@ namespace Planit.Core
 
             public IEnumerable<Project> TraverseByDueDate(Project parent)
             {
-                
-
-                list.Sort( (first, second) => first.DueDate.CompareTo(second.DueDate) >= 0 ? 1 : -1);
-          
-                return list;
+                _List.Sort( (first, second) => first.DueDate.CompareTo(second.DueDate) >= 0 ? 1 : -1);
+                return _List;
             }
 
             public Project Find(int id)
             {
-                
+                var results = _Tree.Where<Project>(project => project.ID == id);
+                return results.First();
             }
 
             //public List<Project> GetProjects()

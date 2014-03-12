@@ -19,6 +19,7 @@ namespace Planit.Core
         {
             Project Chores = new Project
             {
+                ID = 10,
                 Description = "Chores_1",
                 Depth = 1,
                 DueDate = new DateTime(2014, 5, 15),
