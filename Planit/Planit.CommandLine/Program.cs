@@ -13,7 +13,7 @@ namespace Planit.CommandLine
         {
             ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
 
-            Console.WriteLine( BAL.Find(/* [insert id here] */).Description ); 
+            Console.WriteLine( BAL.Find(10).Description ); 
 
             //IEnumerable<Project> list = BAL.TraverseByDueDate();
 
