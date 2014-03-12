@@ -19,6 +19,9 @@ namespace Planit.Core
         {
             Project Chores = new Project
             {
+ 
+ 
+                ID = 10,
                 Description = "Chores_1",
                 Depth = 1,
                 DueDate = new DateTime(2014, 5, 15),
@@ -29,6 +32,9 @@ namespace Planit.Core
 
             Project Gardening = new Project
             {
+ 
+ 
+                ID = 11,
                 Description = "Gardening_2",
                 Depth = 2,
                 DueDate = new DateTime(2014, 5, 15),
@@ -38,6 +44,9 @@ namespace Planit.Core
 
             Project Prep = new Project
             {
+ 
+ 
+                ID = 12,
                 Description = "Prep_3",
                 Depth = 3,
                 DueDate = new DateTime(2014, 3, 15),
@@ -47,6 +56,9 @@ namespace Planit.Core
 
             Project Gathering = new Project
             {
+ 
+ 
+                ID = 13,
                 Description = "Gathering Supplies_3",
                 Depth = 3,
                 DueDate = new DateTime(2014, 3, 15),
@@ -56,6 +68,9 @@ namespace Planit.Core
 
             Project Planting = new Project
             {
+ 
+ 
+                ID = 14,
                 Description = "Planting_3",
                 Depth = 3,
                 DueDate = new DateTime(2014, 5, 15),
@@ -65,6 +80,9 @@ namespace Planit.Core
 
             Project Mulch = new Project
             {
+ 
+ 
+                ID = 15,
                 Description = "Mulch_3",
                 Depth = 3,
                 DueDate = new DateTime(2014, 5, 15),
@@ -74,6 +92,9 @@ namespace Planit.Core
 
             Project Bills = new Project
             {
+ 
+ 
+                ID = 16,
                 Description = "Bills_2",
                 Depth = 2,
                 DueDate = new DateTime(2014, 4, 15),
@@ -83,6 +104,9 @@ namespace Planit.Core
 
             Project Work = new Project
             {
+ 
+ 
+                ID = 17,
                 Description = "Work_1",
                 Depth = 1,
                 DueDate = new DateTime(2014, 4, 10),
@@ -92,6 +116,9 @@ namespace Planit.Core
 
             Project School = new Project
             {
+ 
+ 
+                ID = 18,
                 Description = "School_1",
                 Depth = 1,
                 DueDate = new DateTime(2014, 5, 1),
@@ -101,6 +128,9 @@ namespace Planit.Core
 
             Project CSC201j = new Project
             {
+ 
+ 
+                ID = 19,
                 Description = "CSC201j_2",
                 Depth = 2,
                 DueDate = new DateTime(2014, 5, 1),
@@ -110,6 +140,9 @@ namespace Planit.Core
 
             Project CSC202j = new Project
             {
+ 
+ 
+                ID = 20,
                 Description = "CSC202j_2",
                 Depth = 2,
                 DueDate = new DateTime(2014, 5, 1),
@@ -119,6 +152,9 @@ namespace Planit.Core
 
             Project Reading = new Project
             {
+ 
+ 
+                ID = 21,
                 Description = "Reading_3",
                 Depth = 3,
                 DueDate = new DateTime(2014, 3, 20),
@@ -126,6 +162,9 @@ namespace Planit.Core
             };
             Project Labs = new Project
             {
+ 
+ 
+                ID = 22,
                 Description = "Labs_3",
                 Depth = 3,
                 DueDate = new DateTime(2014, 5, 1),
