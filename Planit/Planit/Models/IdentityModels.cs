@@ -14,6 +14,5 @@ namespace Planit.Models
         {
         }
 
-        public System.Data.Entity.DbSet<Planit.Models.Project> Projects { get; set; }
-    }
+         }
 }
