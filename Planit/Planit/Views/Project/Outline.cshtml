@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<Planit.Core.Project>
 @{
-    ViewBag.Title = "Index2";
+    ViewBag.Title = "Outline";
 }
-
-<h2>Index2</h2>
-
+<!-- Helps AB know where he is.
+<h2>Outline</h2>
+-->
 <div>
     <div class="container">
         <div class="navbar-header navbar-fixed-top" >
@@ -22,9 +22,9 @@
         <div>
             <!--pagination makes the -->
             <ul class="navbar nav pagination ">
-                <li>@Html.ActionLink("Tree", "Index", "Home")</li>
-                <li class=" active">@Html.ActionLink("Outline", "About", "Home")</li>
-                <li>@Html.ActionLink("Task", "Contact", "Home")</li>
+                <li>@Html.ActionLink("Tree", "Outline", "Project")</li>
+                <li class=" active">@Html.ActionLink("Outline", "Outline", "Project")</li>
+                <li>@Html.ActionLink("Task", "Task", "Project")</li>
                 <!--Added these links to the nav bar-->
                 <li>@Html.ActionLink("Schedule", "Index", "Home")</li>
                 <li>@Html.ActionLink("Dashboard", "About", "Home")</li>
@@ -41,16 +41,12 @@
 <div class="row">
 
     <div class=" well col-md-3" >
-        <ul class="navbar nav pagination">
-            <li class=" active">@Html.ActionLink("Task", "About", "Home")</li>
-            <li>@Html.ActionLink("Outline", "Index", "Home")</li>
-            
-        </ul>
+        
         <div>
             <!--*************1/3 Task view goes here******************-->
-            <!--Task header is redundent when adding the mini toggle
-            <h4>Tasks</h4>
-                -->
+            <!--Task Outline Toggle is redundent with the Navbar-->
+            <h2>Tasks</h2>
+                
             <table class="table table-condensed">
                 <tr>
                     <th>

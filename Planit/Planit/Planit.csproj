@@ -226,7 +226,8 @@
     <Content Include="Views\Project\Details.cshtml" />
     <Content Include="Views\Project\Edit.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
-    <Content Include="Views\Project\Index2.cshtml" />
+    <Content Include="Views\Project\Outline.cshtml" />
+    <Content Include="Views\Project\Task.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
