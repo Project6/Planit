@@ -19,7 +19,8 @@ namespace Planit.CommandLine
             {
                 Console.WriteLine(item.Description + "\n\t\t" + item.DueDate);
             }
-            Console.ReadLine();
+            // commented out to use (fn & ctrl) + f5 to run and keep console open
+            //Console.ReadLine();
         }
     }
 }
