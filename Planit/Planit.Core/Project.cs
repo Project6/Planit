@@ -79,4 +79,9 @@ namespace Planit.Core
             }
 
     }
+
+    public class ProjectDbContext : DbContext
+    {
+        public DbSet<Project> Projects { get; set; }
+    }
 }
