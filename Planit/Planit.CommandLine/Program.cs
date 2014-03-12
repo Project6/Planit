@@ -19,7 +19,7 @@ namespace Planit.CommandLine
             {
                 Console.WriteLine(item.Description + "\n\t\t" + item.DueDate);
             }
-
+            Console.ReadLine();
         }
     }
 }

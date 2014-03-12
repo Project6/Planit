@@ -18,7 +18,7 @@ namespace Planit.Controllers
         public ActionResult Index2()
         {
             ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
-            IEnumerable<Project> tree = BAL.DFS();
+            IEnumerable<Project> tree = BAL.TraverseByDueDate();
 
             return View(tree);
             
