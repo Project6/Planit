@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<Planit.Core.Project>
-    @{
-    ViewBag.Title = "Task";
+@{
+    ViewBag.Title = "Schedule";
 }
-<!--
-<h2>Task</h2>
-    -->
+
+<h2>Schedule</h2>
+
 
 <div>
     <div class="container">
@@ -25,9 +25,9 @@
             <ul class="navbar nav pagination ">
                 <li>@Html.ActionLink("Tree", "Tree", "Project")</li>
                 <li>@Html.ActionLink("Outline", "Outline", "Project")</li>
-                <li class="active">@Html.ActionLink("Task", "Task, Project")</li>
+                <li>@Html.ActionLink("Task", "Task", "Project")</li>
                 <!--Added these links to the nav bar-->
-                <li>@Html.ActionLink("Schedule", "Schedule", "Project")</li>
+                <li class ="active">@Html.ActionLink("Schedule", "Project", "Project")</li>
                 <li>@Html.ActionLink("Dashboard", "About", "Home")</li>
                 <li>@Html.ActionLink("Analytics", "Contact", "Home")</li>
                 <li>@Html.ActionLink("Notifications", "Contact", "Home")</li>
@@ -44,12 +44,15 @@
     <div class=" well col-md-3">
 
         <div>
-            <!--*************1/3 Task view goes here******************-->
-            <!--Task Outline Toggle is redundent with the Navbar-->
-            <h2>Outline</h2>
+            <!--*************1/3  partial Task & Outline views goe here******************-->
+            <ul class="navbar nav pagination">
+                <li>@Html.ActionLink("Outline", "Outline", "Project")</li>
+                <li>@Html.ActionLink("Task", "Task", "Project")</li>
+                </ul>
+            
 
             <table class="table table-condensed">
-                
+
 
                 <tr>
                     <th>
@@ -58,7 +61,7 @@
                     <th>
                         @Html.DisplayNameFor(model => model.DueDate)
                     </th>
-                    
+
                     <th></th>
                 </tr>
 
@@ -78,8 +81,8 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.DueDate)
                         </td>
-                       
-                       
+
+
                     </tr>
                 }
 
@@ -99,7 +102,7 @@
                 @Html.ActionLink("Create New", "Create")
             </p>
             <table class="table">
-                
+
 
 
                 <tr>

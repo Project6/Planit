@@ -1,10 +1,9 @@
 ﻿@model IEnumerable<Planit.Core.Project>
-    @{
-    ViewBag.Title = "Task";
+@{
+    ViewBag.Title = "Tree";
 }
-<!--
-<h2>Task</h2>
-    -->
+
+<h2>Tree</h2>
 
 <div>
     <div class="container">
@@ -23,9 +22,9 @@
         <div>
             <!--pagination makes the -->
             <ul class="navbar nav pagination ">
-                <li>@Html.ActionLink("Tree", "Tree", "Project")</li>
+                <li class="active">@Html.ActionLink("Tree", "Tree", "Project")</li>
                 <li>@Html.ActionLink("Outline", "Outline", "Project")</li>
-                <li class="active">@Html.ActionLink("Task", "Task, Project")</li>
+                <li>@Html.ActionLink("Task", "Task", "Project")</li>
                 <!--Added these links to the nav bar-->
                 <li>@Html.ActionLink("Schedule", "Schedule", "Project")</li>
                 <li>@Html.ActionLink("Dashboard", "About", "Home")</li>
@@ -49,59 +48,6 @@
             <h2>Outline</h2>
 
             <table class="table table-condensed">
-                
-
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Description)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DueDate)
-                    </th>
-                    
-                    <th></th>
-                </tr>
-
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-
-                            @for (int i = 0; i < item.Depth * 3; i++) // item.Depth * 3 is to make the difference between parent child more drastic
-                            {
-                                <p style="display:inline;">-</p>
-                            }
-
-                            @Html.DisplayFor(modelItem => item.Description)
-
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DueDate)
-                        </td>
-                       
-                       
-                    </tr>
-                }
-
-            </table>
-
-        </div>
-    </div>
-
-
-
-    <div class="col-md-9">
-        <div class="well">
-            <!--it might be self evident that we are in the Outline View
-                <h4>Outline</h4>
-                -->
-            <p>
-                @Html.ActionLink("Create New", "Create")
-            </p>
-            <table class="table">
-                
-
-
                 <tr>
                     <th>
                         @Html.DisplayNameFor(model => model.DueDate)
@@ -132,6 +78,62 @@
 
 
 
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+    </div>
+
+
+
+    <div class="col-md-9">
+        <div class="well">
+            <!--it might be self evident that we are in the Outline View
+                <h4>Outline</h4>
+                -->
+            <p>Tree Node View Goes Here 
+                @Html.ActionLink("Create New", "Create")
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DueDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StartDate)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+
+                            @for (int i = 0; i < item.Depth * 3; i++) // item.Depth * 3 is to make the difference between parent child more drastic
+                            {
+                                <p style="display:inline;">-</p>
+                            }
+
+                            @Html.DisplayFor(modelItem => item.Description)
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DueDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartDate)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                        </td>
                     </tr>
                 }
 

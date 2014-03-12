@@ -228,6 +228,8 @@
     <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\Project\Outline.cshtml" />
     <Content Include="Views\Project\Task.cshtml" />
+    <Content Include="Views\Project\Tree.cshtml" />
+    <Content Include="Views\Project\Schedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
