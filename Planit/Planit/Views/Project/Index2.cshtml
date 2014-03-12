@@ -1,0 +1,148 @@
+﻿@model IEnumerable<Planit.Core.Project>
+@{
+    ViewBag.Title = "Index2";
+}
+
+<h2>Index2</h2>
+
+<div>
+    <div class="container">
+        <div class="navbar-header navbar-fixed-top" >
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!--Disabled
+            @Html.ActionLink("Tree", "Outline", "Task", null, new { @class = "navbar-brand" })
+                -->
+        </div>
+
+        <!--Not sure how to make the inner nav bar like the outer nav bar that goes across the outer nav bar length-->
+        <div>
+            <!--pagination makes the -->
+            <ul class="navbar nav pagination ">
+                <li>@Html.ActionLink("Tree", "Index", "Home")</li>
+                <li class=" active">@Html.ActionLink("Outline", "About", "Home")</li>
+                <li>@Html.ActionLink("Task", "Contact", "Home")</li>
+                <!--Added these links to the nav bar-->
+                <li>@Html.ActionLink("Schedule", "Index", "Home")</li>
+                <li>@Html.ActionLink("Dashboard", "About", "Home")</li>
+                <li>@Html.ActionLink("Analytics", "Contact", "Home")</li>
+                <li>@Html.ActionLink("Notifications", "Contact", "Home")</li>
+
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+
+    <div class=" well col-md-3" >
+        <ul class="navbar nav pagination">
+            <li class=" active">@Html.ActionLink("Task", "About", "Home")</li>
+            <li>@Html.ActionLink("Outline", "Index", "Home")</li>
+            
+        </ul>
+        <div>
+            <!--*************1/3 Task view goes here******************-->
+            <!--Task header is redundent when adding the mini toggle
+            <h4>Tasks</h4>
+                -->
+            <table class="table table-condensed">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DueDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartDate)
+                        </td>
+                        <td>
+
+                            @for (int i = 0; i < item.Depth * 3; i++) // item.Depth * 3 is to make the difference between parent child more drastic
+                            {
+                                <p style="display:inline;"></p>
+                            }
+
+                            @Html.DisplayFor(modelItem => item.Description)
+
+                        </td>
+
+
+
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+    </div>
+
+
+
+    <div class="col-md-9">
+        <div class="well">
+            <!--it might be self evident that we are in the Outline View
+                <h4>Outline</h4>
+                -->
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DueDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StartDate)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+
+                            @for (int i = 0; i < item.Depth * 3; i++) // item.Depth * 3 is to make the difference between parent child more drastic
+                            {
+                                <p style="display:inline;">-</p>
+                            }
+
+                            @Html.DisplayFor(modelItem => item.Description)
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DueDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartDate)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+
