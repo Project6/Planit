@@ -3,6 +3,22 @@
     ViewBag.Title = "Schedule";
 }
 
+<link rel='stylesheet' type='text/css' href='fullcalendar.css' />
+
+<head><title></title>
+    <script>
+        $(document).ready(function () {
+
+            // page is now ready, initialize the calendar...
+
+            $('#calendar').fullCalendar({
+                // put your options and callbacks here
+            })
+
+        });
+    </script>
+</head>
+
 <h2>Schedule</h2>
 
 
@@ -28,7 +44,7 @@
                 <li>@Html.ActionLink("Outline", "Outline", "Project")</li>
                 <li>@Html.ActionLink("Task", "Task", "Project")</li>
                 <!--Added these links to the nav bar-->
-                <li class ="active">@Html.ActionLink("Schedule", "Project", "Project")</li>
+                <li >@Html.ActionLink("Schedule", "Schedule", "Project")</li>
                 <li>@Html.ActionLink("Dashboard", "About", "Home")</li>
                 <li>@Html.ActionLink("Analytics", "Contact", "Home")</li>
                 <li>@Html.ActionLink("Notifications", "Contact", "Home")</li>
@@ -39,6 +55,8 @@
     </div>
 </div>
 
+<div id = 'calendar'>
+   </div>
 
 <div class="row">
 
