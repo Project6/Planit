@@ -19,9 +19,12 @@ namespace Planit.Core
         {
             Project Chores = new Project
             {
+<<<<<<< HEAD
  
  
                 ID = 10,
+=======
+>>>>>>> ViewsBootstrapExp
                 Description = "Chores_1",
                 Depth = 1,
                 DueDate = new DateTime(2014, 5, 15),
@@ -32,9 +35,12 @@ namespace Planit.Core
 
             Project Gardening = new Project
             {
+<<<<<<< HEAD
  
  
                 ID = 11,
+=======
+>>>>>>> ViewsBootstrapExp
                 Description = "Gardening_2",
                 Depth = 2,
                 DueDate = new DateTime(2014, 5, 15),
@@ -44,9 +50,12 @@ namespace Planit.Core
 
             Project Prep = new Project
             {
+<<<<<<< HEAD
  
  
                 ID = 12,
+=======
+>>>>>>> ViewsBootstrapExp
                 Description = "Prep_3",
                 Depth = 3,
                 DueDate = new DateTime(2014, 3, 15),
@@ -56,9 +65,12 @@ namespace Planit.Core
 
             Project Gathering = new Project
             {
+<<<<<<< HEAD
  
  
                 ID = 13,
+=======
+>>>>>>> ViewsBootstrapExp
                 Description = "Gathering Supplies_3",
                 Depth = 3,
                 DueDate = new DateTime(2014, 3, 15),
@@ -68,9 +80,12 @@ namespace Planit.Core
 
             Project Planting = new Project
             {
+<<<<<<< HEAD
  
  
                 ID = 14,
+=======
+>>>>>>> ViewsBootstrapExp
                 Description = "Planting_3",
                 Depth = 3,
                 DueDate = new DateTime(2014, 5, 15),
@@ -80,9 +95,12 @@ namespace Planit.Core
 
             Project Mulch = new Project
             {
+<<<<<<< HEAD
  
  
                 ID = 15,
+=======
+>>>>>>> ViewsBootstrapExp
                 Description = "Mulch_3",
                 Depth = 3,
                 DueDate = new DateTime(2014, 5, 15),
@@ -92,9 +110,12 @@ namespace Planit.Core
 
             Project Bills = new Project
             {
+<<<<<<< HEAD
  
  
                 ID = 16,
+=======
+>>>>>>> ViewsBootstrapExp
                 Description = "Bills_2",
                 Depth = 2,
                 DueDate = new DateTime(2014, 4, 15),
@@ -104,9 +125,12 @@ namespace Planit.Core
 
             Project Work = new Project
             {
+<<<<<<< HEAD
  
  
                 ID = 17,
+=======
+>>>>>>> ViewsBootstrapExp
                 Description = "Work_1",
                 Depth = 1,
                 DueDate = new DateTime(2014, 4, 10),
@@ -116,9 +140,12 @@ namespace Planit.Core
 
             Project School = new Project
             {
+<<<<<<< HEAD
  
  
                 ID = 18,
+=======
+>>>>>>> ViewsBootstrapExp
                 Description = "School_1",
                 Depth = 1,
                 DueDate = new DateTime(2014, 5, 1),
@@ -128,9 +155,12 @@ namespace Planit.Core
 
             Project CSC201j = new Project
             {
+<<<<<<< HEAD
  
  
                 ID = 19,
+=======
+>>>>>>> ViewsBootstrapExp
                 Description = "CSC201j_2",
                 Depth = 2,
                 DueDate = new DateTime(2014, 5, 1),
@@ -140,9 +170,12 @@ namespace Planit.Core
 
             Project CSC202j = new Project
             {
+<<<<<<< HEAD
  
  
                 ID = 20,
+=======
+>>>>>>> ViewsBootstrapExp
                 Description = "CSC202j_2",
                 Depth = 2,
                 DueDate = new DateTime(2014, 5, 1),
@@ -152,9 +185,12 @@ namespace Planit.Core
 
             Project Reading = new Project
             {
+<<<<<<< HEAD
  
  
                 ID = 21,
+=======
+>>>>>>> ViewsBootstrapExp
                 Description = "Reading_3",
                 Depth = 3,
                 DueDate = new DateTime(2014, 3, 20),
@@ -162,9 +198,12 @@ namespace Planit.Core
             };
             Project Labs = new Project
             {
+<<<<<<< HEAD
  
  
                 ID = 22,
+=======
+>>>>>>> ViewsBootstrapExp
                 Description = "Labs_3",
                 Depth = 3,
                 DueDate = new DateTime(2014, 5, 1),
@@ -184,31 +223,31 @@ namespace Planit.Core
         //{
         //    List<Project> projectList = new List<Project>();
 
-            
+
 
         //    return projectList;
 
         //}
 
-            //projectList.Add(new Project(001, "9999", 1, "Chores", new DateTime(),new DateTime(2014, 12, 31)));
-            //projectList.Add(new Project(002, "9999", 1, "School", new DateTime(),new DateTime(2014, 5, 10)));
-            //projectList.Add(new Project(003, "9999", 1, "Work", new DateTime(),new DateTime(2014, 12, 31)));
-            
-            ////Chores >...
-            //projectList.Add(new Project(004, "9999", 2, "Gardening", new DateTime(2014,04,01),new DateTime(2014, 5, 28)));
-            //projectList.Add(new Project(005, "9999", 2, "Bills", new DateTime(),new DateTime(2014, 12, 30)));
+        //projectList.Add(new Project(001, "9999", 1, "Chores", new DateTime(),new DateTime(2014, 12, 31)));
+        //projectList.Add(new Project(002, "9999", 1, "School", new DateTime(),new DateTime(2014, 5, 10)));
+        //projectList.Add(new Project(003, "9999", 1, "Work", new DateTime(),new DateTime(2014, 12, 31)));
 
-            ////Gardening > ...
-            //projectList.Add(new Project(006, "9999", 3, "Gather Supplies", new DateTime(2014, 04,01),new DateTime(2014, 4, 10)));
-            //projectList.Add(new Project(007, "9999", 3, "Prep", new DateTime(2014, 04, 11),new DateTime(2014, 04, 20)));
-            //projectList.Add(new Project(008, "9999", 3, "Plant", new DateTime(2014, 04, 21),new DateTime(2014, 5, 01)));
+        ////Chores >...
+        //projectList.Add(new Project(004, "9999", 2, "Gardening", new DateTime(2014,04,01),new DateTime(2014, 5, 28)));
+        //projectList.Add(new Project(005, "9999", 2, "Bills", new DateTime(),new DateTime(2014, 12, 30)));
 
-            //// School > ..
-            //projectList.Add(new Project(009, "9999", 2, "CSC201j", new DateTime(),new DateTime(2014, 5, 10)));
-            //projectList.Add(new Project(010, "9999", 2, "CSC202j", new DateTime(),new DateTime(2014, 5, 10)));
+        ////Gardening > ...
+        //projectList.Add(new Project(006, "9999", 3, "Gather Supplies", new DateTime(2014, 04,01),new DateTime(2014, 4, 10)));
+        //projectList.Add(new Project(007, "9999", 3, "Prep", new DateTime(2014, 04, 11),new DateTime(2014, 04, 20)));
+        //projectList.Add(new Project(008, "9999", 3, "Plant", new DateTime(2014, 04, 21),new DateTime(2014, 5, 01)));
 
-            //// CSC201j > ..
-            //projectList.Add(new Project(011, "9999", 2, "Reading", new DateTime(),new DateTime(2014, 5, 10)));
-            //projectList.Add(new Project(012, "9999", 2, "Labs", new DateTime(),new DateTime(2014, 5, 10
+        //// School > ..
+        //projectList.Add(new Project(009, "9999", 2, "CSC201j", new DateTime(),new DateTime(2014, 5, 10)));
+        //projectList.Add(new Project(010, "9999", 2, "CSC202j", new DateTime(),new DateTime(2014, 5, 10)));
+
+        //// CSC201j > ..
+        //projectList.Add(new Project(011, "9999", 2, "Reading", new DateTime(),new DateTime(2014, 5, 10)));
+        //projectList.Add(new Project(012, "9999", 2, "Labs", new DateTime(),new DateTime(2014, 5, 10
     }
 }

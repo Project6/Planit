@@ -15,13 +15,43 @@ namespace Planit.Controllers
         //private ProjectDBContext db = new ProjectDBContext();
 
         // GET: /Project/
-        public ActionResult Index2()
+        public ActionResult Outline()
+        {
+            ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
+            IEnumerable<Project> tree = BAL.TraverseByDueDate();
+
+            return View(tree);
+            
+        }
+
+        // GET: /Project/
+        public ActionResult Task()
         {
             ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
             IEnumerable<Project> tree = BAL.DFS();
 
             return View(tree);
-            
+
+        }
+
+        // GET: /Project/
+        public ActionResult Tree()
+        {
+            ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
+            IEnumerable<Project> tree = BAL.DFS();
+
+            return View(tree);
+
+        }
+
+        // GET: /Project/
+        public ActionResult Schedule()
+        {
+            ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
+            IEnumerable<Project> tree = BAL.TraverseByDueDate();
+
+            return View(tree);
+
         }
 
         // GET: /Project/Details/5

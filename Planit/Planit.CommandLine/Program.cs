@@ -56,12 +56,17 @@ namespace Planit.CommandLine
                 Console.ReadKey();
             }
 
+
             //IEnumerable<Project> list = BAL.TraverseByDueDate();
 
             //foreach (var item in list)
             //{
             //    Console.WriteLine(item.Description + "\n\t\t" + item.DueDate);
             //}
+
+
+            // commented out to use (fn & ctrl) + f5 to run and keep console open
+            //Console.ReadLine();
 
         }
     }
