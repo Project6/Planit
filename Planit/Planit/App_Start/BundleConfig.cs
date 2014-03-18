@@ -12,7 +12,8 @@ namespace Planit
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/jquery.min.js",
                          "~/Scripts/moment.min.js",
-                          "~/Scripts/fullcalendar.js"
+                          "~/Scripts/fullcalendar.js",
+                          "~/Scripts/jquery-ui.custom.min.js"
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(

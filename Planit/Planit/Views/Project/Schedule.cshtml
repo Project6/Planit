@@ -44,7 +44,7 @@
                 <li>@Html.ActionLink("Outline", "Outline", "Project")</li>
                 <li>@Html.ActionLink("Task", "Task", "Project")</li>
                 <!--Added these links to the nav bar-->
-                <li >@Html.ActionLink("Schedule", "Schedule", "Project")</li>
+                <li class="active">@Html.ActionLink("Schedule", "Schedule", "Project")</li>
                 <li>@Html.ActionLink("Dashboard", "About", "Home")</li>
                 <li>@Html.ActionLink("Analytics", "Contact", "Home")</li>
                 <li>@Html.ActionLink("Notifications", "Contact", "Home")</li>
@@ -55,8 +55,7 @@
     </div>
 </div>
 
-<div id = 'calendar'>
-   </div>
+
 
 <div class="row">
 
@@ -64,7 +63,7 @@
 
         <div>
             <!--*************1/3  partial Task & Outline views goe here******************-->
-            <ul class="navbar nav pagination">
+            <ul class="navbar nav pagination ">
                 <li>@Html.ActionLink("Outline", "Outline", "Project")</li>
                 <li>@Html.ActionLink("Task", "Task", "Project")</li>
                 </ul>
@@ -117,48 +116,11 @@
             <!--it might be self evident that we are in the Outline View
                 <h4>Outline</h4>
                 -->
-            <p>
-                @Html.ActionLink("Create New", "Create")
-            </p>
-            <table class="table">
+           
+            <div id='calendar'>
+            </div>
 
-
-
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DueDate)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Description)
-                    </th>
-
-                    <th></th>
-                </tr>
-
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DueDate)
-                        </td>
-                        <td>
-
-                            @for (int i = 0; i < item.Depth * 3; i++) // item.Depth * 3 is to make the difference between parent child more drastic
-                            {
-                                <p style="display:inline;"></p>
-                            }
-
-                            @Html.DisplayFor(modelItem => item.Description)
-
-                        </td>
-
-
-
-                    </tr>
-                }
-
-            </table>
         </div>
     </div>
 </div>
-</div>
+
