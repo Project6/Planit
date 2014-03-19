@@ -64,7 +64,34 @@
 
                     allDay: false
 
+                },
+
+                @foreach (var item in Model)
+                {
+                @:{
+
+                    @:title: '@item.Description',
+
+                    @:start: new Date(Date.parse("@item.StartDate.ToUniversalTime()")),
+
+                    @:end: new Date(Date.parse("@item.DueDate.ToUniversalTime()"))
+
+                @:},
                 }
+
+                
+            
+
+                    //json object
+                    //you can do it all in the controller and pass it here
+                    // or do it here like we did below with razor
+                    //google charts uses json to pass the data
+                    //create a function in the controller that converts the model to jquery
+
+
+                   
+            
+            
 
              
 
@@ -73,6 +100,16 @@
             });
 
         });
+
+        //create a helper that converts our objects (model) to calender structure.  That way when we use fullCalender...
+        //maybe you can create your own by extending the helping
+       // var something =  @Json.Encode(Model);
+        //got to the microsoft decument for encode
+        //microsoftsdn
+
+        //option 2 - easier
+        //create a javascript function that is going to recieve json data in the model format and rewrite into the calendar format
+        //second suggestion is to change the model
 
     </script>
 
@@ -137,7 +174,7 @@
                
             </tr>
             
-            <div style="position: absolute; width: 100%; overflow-x: hidden; overflow-y: auto; height: 532px;">
+            <div style=" overflow-x: hidden; overflow-y: auto; height: 532px;">
             <table class="table table-condensed">
 
 
