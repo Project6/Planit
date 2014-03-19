@@ -5,18 +5,77 @@
 
 <link rel='stylesheet' type='text/css' href='fullcalendar.css' />
 
-<head><title></title>
-    <script>
+<head>
+    <title></title>
+
+    <script type='text/javascript'>
+
         $(document).ready(function () {
 
-            // page is now ready, initialize the calendar...
+            var date = new Date();
+
+            var d = date.getDate();
+
+            var m = date.getMonth();
+
+            var y = date.getFullYear();
 
             $('#calendar').fullCalendar({
-                // put your options and callbacks here
-            })
+
+                header: {
+
+                    left: 'prev,next today',
+
+                    center: 'title',
+
+                    right: 'month,agendaWeek,agendaDay'
+
+                },
+
+                editable: true,
+
+                events: [
+
+                {
+
+                    title: 'All Day Event',
+
+                    start: new Date(y, m, 1)
+
+                },
+
+                {
+
+                    title: 'Long Event',
+
+                    start: new Date(y, m, d - 5),
+
+                    end: new Date(y, m, d - 2)
+
+                },
+
+                {
+
+                    id: 999,
+
+                    title: 'Repeating Event',
+
+                    start: new Date(y, m, d - 3, 16, 0),
+
+                    allDay: false
+
+                }
+
+             
+
+                ]
+
+            });
 
         });
+
     </script>
+
 </head>
 
 <h2>Schedule</h2>
@@ -67,21 +126,22 @@
                 <li>@Html.ActionLink("Outline", "Outline", "Project")</li>
                 <li>@Html.ActionLink("Task", "Task", "Project")</li>
                 </ul>
-            
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DueDate)
+                </th>
 
+               
+            </tr>
+            
+            <div style="position: absolute; width: 100%; overflow-x: hidden; overflow-y: auto; height: 532px;">
             <table class="table table-condensed">
 
 
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Description)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DueDate)
-                    </th>
-
-                    <th></th>
-                </tr>
+                
 
                 @foreach (var item in Model)
                 {
@@ -105,6 +165,8 @@
                 }
 
             </table>
+                </div>
+                
 
         </div>
     </div>
@@ -113,9 +175,7 @@
 
     <div class="col-md-9">
         <div class="well">
-            <!--it might be self evident that we are in the Outline View
-                <h4>Outline</h4>
-                -->
+           
            
             <div id='calendar'>
             </div>
