@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace Planit.Core
 {
-    public class TestProjectDataLayer : IProjectDataLayer
+    public class ProjectDataLayer : IProjectDataLayer
     {
         public Project Root { get; private set; }
         ProjectDbContext db = new ProjectDbContext();
-        public TestProjectDataLayer()
+        public ProjectDataLayer()
         {
             // need to set by acessing DB
             Root = new Project() { Description = "Devin's Task's", Depth = 0 };

@@ -13,7 +13,7 @@ namespace Planit.Controllers
     public class ProjectController : Controller
     {
         //private ProjectDBContext db = new ProjectDBContext();
-        ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
+        ProjectBusinessLayer BAL = new ProjectBusinessLayer(new ProjectDataLayer());
         // GET: /Project/
         public ActionResult Outline()
         {
