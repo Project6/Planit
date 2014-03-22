@@ -6,15 +6,43 @@ namespace Planit.Core
     public class TestProjectDataLayer : IProjectDataLayer
     {
         public Project Root { get; private set; }
-
+        ProjectDbContext db = new ProjectDbContext();
         public TestProjectDataLayer()
         {
             // need to set by acessing DB
             Root = new Project() { Description = "Devin's Task's", Depth = 0 };
 
-            Seed();
+            Seed1();
         }
+        public void Seed1()
+        {
+            using (db)
+            {
 
+                Project Chores = new Project
+                {
+                    ID = 10,
+                    Description = "eChores_1",
+                    Depth = 1,
+                    DueDate = new DateTime(2014, 5, 15),
+                    StartDate = new DateTime(2014, 2, 25),
+                };
+
+                Project Gardening = new Project
+                {
+                    ID = 11,
+                    Description = "fGardening_2",
+                    Depth = 2,
+                    DueDate = new DateTime(2014, 5, 15),
+                    StartDate = new DateTime(2014, 3, 5)
+                };
+                Chores = Root.addChild(Chores);
+                Gardening = Chores.addChild(Gardening);
+
+                db.Projects.Add(Chores);
+                db.SaveChanges();
+            }
+        }
         public void Seed()
         {
             Project Chores = new Project

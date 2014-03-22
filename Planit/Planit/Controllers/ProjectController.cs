@@ -13,11 +13,11 @@ namespace Planit.Controllers
     public class ProjectController : Controller
     {
         //private ProjectDBContext db = new ProjectDBContext();
-
+        ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
         // GET: /Project/
         public ActionResult Outline()
         {
-            ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
+           
             IEnumerable<Project> tree = BAL.TraverseByDueDate();
 
             return View(tree);
@@ -27,7 +27,7 @@ namespace Planit.Controllers
         // GET: /Project/
         public ActionResult Task()
         {
-            ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
+          //  ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
             IEnumerable<Project> tree = BAL.DFS();
 
             return View(tree);
@@ -37,7 +37,7 @@ namespace Planit.Controllers
         // GET: /Project/
         public ActionResult Tree()
         {
-            ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
+           // ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
             IEnumerable<Project> tree = BAL.DFS();
 
             return View(tree);
@@ -47,7 +47,7 @@ namespace Planit.Controllers
         // GET: /Project/
         public ActionResult Schedule()
         {
-            ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
+           // ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
             IEnumerable<Project> tree = BAL.TraverseByDueDate();
 
             return View(tree);
