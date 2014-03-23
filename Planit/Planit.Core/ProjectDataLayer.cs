@@ -6,13 +6,13 @@ namespace Planit.Core
     public class ProjectDataLayer : IProjectDataLayer
     {
         public Project Root { get; private set; }
-        ProjectDbContext db = new ProjectDbContext();
+        public ProjectDbContext db = new ProjectDbContext();
         public ProjectDataLayer()
         {
             // need to set by acessing DB
             Root = new Project() { Description = "Devin's Task's", Depth = 0 };
 
-            Seed1();
+           //Seed1();
         }
         public void Seed1()
         {
@@ -24,7 +24,7 @@ namespace Planit.Core
                     ID = 10,
                     Description = "eChores_1",
                     Depth = 1,
-                    DueDate = new DateTime(2014, 5, 15),
+                    DueDate = new DateTime(2014, 4, 15),
                     StartDate = new DateTime(2014, 2, 25),
                 };
 
@@ -33,7 +33,7 @@ namespace Planit.Core
                     ID = 11,
                     Description = "fGardening_2",
                     Depth = 2,
-                    DueDate = new DateTime(2014, 5, 15),
+                    DueDate = new DateTime(2014, 3, 15),
                     StartDate = new DateTime(2014, 3, 5)
                 };
                 Chores = Root.addChild(Chores);

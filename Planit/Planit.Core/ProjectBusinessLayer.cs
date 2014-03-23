@@ -10,7 +10,7 @@ namespace Planit.Core
     {
         #region Fields & Properties
 
-            public IProjectDataLayer _DAL {get; private set;}
+            public ProjectDataLayer _DAL {get; private set;}
             public IEnumerable<Project> _Tree { get; private set; }
             public List<Project> _List { get; private set; }
         
@@ -18,7 +18,7 @@ namespace Planit.Core
 
         #region Constructors
             
-            public ProjectBusinessLayer(IProjectDataLayer DAL)
+            public ProjectBusinessLayer(ProjectDataLayer DAL)
             {
                 _DAL = DAL;
                 _Tree = DFS();
@@ -46,14 +46,21 @@ namespace Planit.Core
                 }
             }
 
-            public IEnumerable<Project> TraverseByDueDate()
+            public List<Project> TraverseByDueDate()
             {
-                return TraverseByDueDate(_DAL.Root);
-            }
 
-            public IEnumerable<Project> TraverseByDueDate(Project parent)
-            {
-                _List.Sort( (first, second) => first.DueDate.CompareTo(second.DueDate) >= 0 ? 1 : -1);
+                var ProjectLst = new List<string>();
+
+                var ProjectQry = from d in _DAL.db.Projects
+                                 orderby d.DueDate
+                                 select d.Description;
+
+                ProjectLst.AddRange(ProjectQry.Distinct());
+             
+                var projects = from m in _DAL.db.Projects
+                               select m;
+               _List = projects.ToList();
+                 _List.Sort((first, second) => first.DueDate.CompareTo(second.DueDate) >= 0 ? 1 : -1);
                 return _List;
             }
 
