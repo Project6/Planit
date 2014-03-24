@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Planit.Core.Project>
-    @{
+@{
     ViewBag.Title = "Task";
 }
 <!--
@@ -48,42 +48,45 @@
             <!--Task Outline Toggle is redundent with the Navbar-->
             <h2>Outline</h2>
 
-            <table class="table table-condensed">
-                
+            <!--scroll in well block done here-->
+            <div style=" overflow-x: hidden; overflow-y: auto; height: 532px;">
+                <table class="table table-condensed">
 
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Description)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DueDate)
-                    </th>
-                    
-                    <th></th>
-                </tr>
 
-                @foreach (var item in Model)
-                {
                     <tr>
-                        <td>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DueDate)
+                        </th>
 
-                            @for (int i = 0; i < item.Depth * 3; i++) // item.Depth * 3 is to make the difference between parent child more drastic
-                            {
-                                <p style="display:inline;">-</p>
-                            }
-
-                            @Html.DisplayFor(modelItem => item.Description)
-
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DueDate)
-                        </td>
-                       
-                       
+                        <th></th>
                     </tr>
-                }
 
-            </table>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+
+                                @for (int i = 0; i < item.Depth * 3; i++) // item.Depth * 3 is to make the difference between parent child more drastic
+                                {
+                                    <p style="display:inline;">-</p>
+                                }
+
+                                @Html.DisplayFor(modelItem => item.Description)
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DueDate)
+                            </td>
+
+
+                        </tr>
+                    }
+
+                </table>
+            </div>
 
         </div>
     </div>
@@ -98,44 +101,48 @@
             <p>
                 @Html.ActionLink("Create New", "Create")
             </p>
-            <table class="table">
-                
+
+            <!--scroll in well block done here-->
+            <div style=" overflow-x: hidden; overflow-y: auto; height: 532px;">
+                <table class="table">
 
 
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DueDate)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Description)
-                    </th>
 
-                    <th></th>
-                </tr>
-
-                @foreach (var item in Model)
-                {
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DueDate)
-                        </td>
-                        <td>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DueDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
 
-                            @for (int i = 0; i < item.Depth * 3; i++) // item.Depth * 3 is to make the difference between parent child more drastic
-                            {
-                                <p style="display:inline;"></p>
-                            }
-
-                            @Html.DisplayFor(modelItem => item.Description)
-
-                        </td>
-
-
-
+                        <th></th>
                     </tr>
-                }
 
-            </table>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DueDate)
+                            </td>
+                            <td>
+
+                                @for (int i = 0; i < item.Depth * 3; i++) // item.Depth * 3 is to make the difference between parent child more drastic
+                                {
+                                    <p style="display:inline;"></p>
+                                }
+
+                                @Html.DisplayFor(modelItem => item.Description)
+
+                            </td>
+
+
+
+                        </tr>
+                    }
+
+                </table>
+            </div>
         </div>
     </div>
 </div>
