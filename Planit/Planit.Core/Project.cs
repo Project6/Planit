@@ -8,6 +8,7 @@ namespace Planit.Core
 {
     public class Project
     {
+       
         #region Fields & Properties 
 
             public int ID { get; set; }
@@ -23,7 +24,7 @@ namespace Planit.Core
             public DateTime DueDate { get; set; }
 
             public DateTime StartDate { get; set; }
-
+           // public enum Status { quarter, half, threequarter, complete}
 
             public List<Project> Children { get; private set; }
         
@@ -44,10 +45,11 @@ namespace Planit.Core
                 this.Description = Description;
                 this.DueDate = DueDate;
                 this.StartDate = StartDate;
+                // this.Status = Status;
                 Children = new List<Project>();
             }
 
-            public Project(int ID, string UserID, string Description, DateTime  DueDate, DateTime StartDate, Project parent)
+            public Project(int ID, string UserID, string Description, DateTime DueDate, DateTime StartDate, Project parent)
             {
                 this.ID = ID;
                 this.UserID = UserID;
@@ -66,6 +68,7 @@ namespace Planit.Core
                 this.Description = child.Description;
                 this.DueDate = child.DueDate;
                 this.StartDate = child.StartDate;
+               
                 Children = new List<Project>();
             }
 
@@ -78,10 +81,14 @@ namespace Planit.Core
                 return Children.Last();
             }
 
+
+          
     }
 
     public class ProjectDbContext : DbContext
     {
         public DbSet<Project> Projects { get; set; }
     }
+
+     
 }

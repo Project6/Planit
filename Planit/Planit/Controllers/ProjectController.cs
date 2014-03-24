@@ -27,9 +27,9 @@ namespace Planit.Controllers
         public ActionResult Task()
         {
           //  ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
-            IEnumerable<Project> tree = BAL.DFS();
+            IEnumerable<Project> task = BAL.TraverseByDueDate();
 
-            return View(tree);
+            return View(task);
 
         }
 
@@ -47,30 +47,31 @@ namespace Planit.Controllers
         public ActionResult Schedule()
         {
            // ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
-            IEnumerable<Project> tree = BAL.DFS();// BAL.TraverseByDueDate();
+            IEnumerable<Project> schedule =  BAL.TraverseByDueDate();
 
-            return View(tree);
+            return View(schedule);
 
         }
 
         // GET: /Project/Details/5
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Project project = db.Projects.Find(id);
-        //    if (project == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(project);
-        //}
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Project project = BAL._DAL.db.Projects.Find(id);
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+            return View(project);
+        }
 
         // GET: /Project/Create
         public ActionResult Create()
         {
+            ViewBag.returnUrl = Request.UrlReferrer;
                 return View();
         }
 
@@ -79,15 +80,16 @@ namespace Planit.Controllers
          //more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ID,Name,DueDate,StartDate")] Project project)
+        public ActionResult Create([Bind(Include = "ID,Description,DueDate,StartDate")] Project project, string returnUrl)
         {
-            try
+           
+           try
             {
                 if (ModelState.IsValid)
                 {
                     BAL._DAL.db.Projects.Add(project);
                     BAL._DAL.db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return Redirect(returnUrl);
                 }
             }
             catch(DataException)
@@ -101,6 +103,7 @@ namespace Planit.Controllers
         // GET: /Project/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.returnUrl = Request.UrlReferrer;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -118,13 +121,13 @@ namespace Planit.Controllers
          //more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ID,Name,DueDate,StartDate")] Project project)
+        public ActionResult Edit([Bind(Include = "ID,Description,Name,DueDate,StartDate")] Project project, string returnUrl)
         {
-            if (ModelState.IsValid)
+           if (ModelState.IsValid)
             {
                 BAL._DAL.db.Entry(project).State = EntityState.Modified;
                 BAL._DAL.db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect(returnUrl);
             }
             return View(project);
         }
@@ -132,6 +135,8 @@ namespace Planit.Controllers
         // GET: /Project/Delete/5
         public ActionResult Delete(int? id)
         {
+            ViewBag.returnUrl = Request.UrlReferrer;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -147,12 +152,12 @@ namespace Planit.Controllers
          //POST: /Project/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id, string returnUrl)
         {
             Project project = BAL._DAL.db.Projects.Find(id);
             BAL._DAL.db.Projects.Remove(project);
             BAL._DAL.db.SaveChanges();
-            return RedirectToAction("Index");
+            return Redirect(returnUrl);
         }
 
         //protected override void Dispose(bool disposing)

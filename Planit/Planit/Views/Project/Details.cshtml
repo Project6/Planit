@@ -35,8 +35,9 @@
         </dd>
 
     </dl>
-</div>
+</div><input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Outline", "Project")
+ 
 </p>
