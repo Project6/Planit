@@ -27,9 +27,9 @@ namespace Planit.Controllers
         public ActionResult Task()
         {
           //  ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
-            IEnumerable<Project> tree = BAL.DFS();
+            IEnumerable<Project> task = BAL.TraverseByDueDate();
 
-            return View(tree);
+            return View(task);
 
         }
 
@@ -47,9 +47,9 @@ namespace Planit.Controllers
         public ActionResult Schedule()
         {
            // ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
-            IEnumerable<Project> tree = BAL.DFS();// BAL.TraverseByDueDate();
+            IEnumerable<Project> schedule =  BAL.TraverseByDueDate();
 
-            return View(tree);
+            return View(schedule);
 
         }
 
@@ -80,16 +80,16 @@ namespace Planit.Controllers
          //more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Description,Name,DueDate,StartDate")] Project project, string returnUrl)
+        public ActionResult Create([Bind(Include = "ID,Description,DueDate,StartDate")] Project project, string returnUrl)
         {
-            ViewBag.returnUrl = Request.UrlReferrer;
+           
            try
             {
                 if (ModelState.IsValid)
                 {
                     BAL._DAL.db.Projects.Add(project);
                     BAL._DAL.db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return Redirect(returnUrl);
                 }
             }
             catch(DataException)

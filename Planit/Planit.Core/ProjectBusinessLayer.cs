@@ -22,7 +22,7 @@ namespace Planit.Core
             {
                 _DAL = DAL;
                 _Tree = DFS();
-                _List = _Tree.ToList<Project>();
+                _List = DAL.db.Projects.ToList<Project>();
             }
 
         #endregion 
@@ -31,6 +31,7 @@ namespace Planit.Core
         
             public IEnumerable<Project> DFS()
             {
+                DFS(_DAL.Root);
                 return DFS(_DAL.Root);
             }
 
@@ -55,7 +56,7 @@ namespace Planit.Core
                                  orderby d.DueDate
                                  select d.Description;
 
-                ProjectLst.AddRange(ProjectQry.Distinct());
+                //ProjectLst.AddRange(ProjectQry.Distinct());
              
                 var projects = from m in _DAL.db.Projects
                                select m;
