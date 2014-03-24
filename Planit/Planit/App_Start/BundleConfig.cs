@@ -13,7 +13,8 @@ namespace Planit
                         "~/Scripts/jquery.min.js",
                          "~/Scripts/moment.min.js",
                            "~/Scripts/jquery-ui.custom.min.js",
-                          "~/Scripts/fullcalendar.js"
+                          "~/Scripts/fullcalendar.js",
+                          "~/Scripts/jquery.circliful.min.js"
                           
                         ));
 
@@ -34,7 +35,8 @@ namespace Planit
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/fullcalendar.css"));
+                      "~/Content/fullcalendar.css",
+                      "~/Content/jquery.circliful.css"));
         }
     }
 }

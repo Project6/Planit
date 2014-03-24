@@ -163,6 +163,8 @@
                 <li>@Html.ActionLink("Outline", "Outline", "Project")</li>
                 <li>@Html.ActionLink("Task", "Task", "Project")</li>
                 </ul>
+
+            //What doe we do about this?  Element "tr" cannot be nested inside element "div"
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.Description)
@@ -175,10 +177,7 @@
             </tr>
             
             <div style=" overflow-x: hidden; overflow-y: auto; height: 532px;">
-            <table class="table table-condensed">
-
-
-                
+            <table class="table table-condensed">      
 
                 @foreach (var item in Model)
                 {
@@ -196,21 +195,18 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.DueDate)
                         </td>
-
-
                     </tr>
                 }
 
             </table>
                 </div>
-                
-
+        
         </div>
     </div>
 
     <div class="col-md-9">
         <div class="well">
-           <!----You Rock Beth, Wunda, Wunda, Wunda. . . Wunda Woman-->>        
+           <!----You Rock Beth, Wunda, Wunda, Wunda. . . Wunda Woman-->       
             <div id='calendar'>
             </div>
 
