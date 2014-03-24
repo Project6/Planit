@@ -39,7 +39,8 @@
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
-
+    //where is default for the delete button, so that that it goes back from which view we came from.  But we don't where that is.
+    //true also for the other edit buttons.
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Outline", "Project")
