@@ -141,7 +141,7 @@
                 <li>@Html.ActionLink("Task", "Task", "Project")</li>
                 <!--Added these links to the nav bar-->
                 <li class="active">@Html.ActionLink("Schedule", "Schedule", "Project")</li>
-                <li>@Html.ActionLink("Dashboard", "About", "Home")</li>
+                <li>@Html.ActionLink("Dashboard", "Dashboard", "Project")</li>
                 <li>@Html.ActionLink("Analytics", "Contact", "Home")</li>
                 <li>@Html.ActionLink("Notifications", "Contact", "Home")</li>
 
@@ -164,7 +164,7 @@
                 <li>@Html.ActionLink("Task", "Task", "Project")</li>
                 </ul>
 
-            //What doe we do about this?  Element "tr" cannot be nested inside element "div"
+            <!--What doe we do about this?  Element "tr" cannot be nested inside element "div"-->
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.Description)

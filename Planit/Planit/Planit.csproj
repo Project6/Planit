@@ -233,6 +233,7 @@
     <Content Include="Views\Project\Task.cshtml" />
     <Content Include="Views\Project\Tree.cshtml" />
     <Content Include="Views\Project\Schedule.cshtml" />
+    <Content Include="Views\Project\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

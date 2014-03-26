@@ -28,7 +28,7 @@
                 <li class="active">@Html.ActionLink("Task", "Task, Project")</li>
                 <!--Added these links to the nav bar-->
                 <li>@Html.ActionLink("Schedule", "Schedule", "Project")</li>
-                <li>@Html.ActionLink("Dashboard", "About", "Home")</li>
+                <li>@Html.ActionLink("Dashboard", "Dashboard", "Project")</li>
                 <li>@Html.ActionLink("Analytics", "Contact", "Home")</li>
                 <li>@Html.ActionLink("Notifications", "Contact", "Home")</li>
 
@@ -136,7 +136,11 @@
 
                             </td>
 
-
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                            </td>
 
                         </tr>
                     }

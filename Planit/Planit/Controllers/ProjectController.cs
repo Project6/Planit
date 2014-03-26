@@ -53,6 +53,16 @@ namespace Planit.Controllers
 
         }
 
+        // GET: /Project/
+        public ActionResult Dashboard()
+        {
+            //  ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
+            IEnumerable<Project> dashboard = BAL.TraverseByDueDate();
+
+            return View(dashboard);
+
+        }
+
         // GET: /Project/Details/5
         public ActionResult Details(int? id)
         {
