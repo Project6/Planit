@@ -26,41 +26,30 @@ namespace Planit.Controllers
         // GET: /Project/
         public ActionResult Task()
         {
-          //  ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
-            IEnumerable<Project> task = BAL.TraverseByDueDate();
-
+           IEnumerable<Project> task = BAL.TraverseByDueDate();
             return View(task);
-
         }
 
         // GET: /Project/
         public ActionResult Tree()
         {
-           // ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
-            IEnumerable<Project> tree = BAL.DFS();
-
-            return View(tree);
+           IEnumerable<Project> tree = BAL.DFS();
+           return View(tree);
 
         }
 
         // GET: /Project/
         public ActionResult Schedule()
         {
-           // ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
-            IEnumerable<Project> schedule =  BAL.TraverseByDueDate();
-
+               IEnumerable<Project> schedule =  BAL.TraverseByDueDate();
             return View(schedule);
-
         }
 
         // GET: /Project/
         public ActionResult Dashboard()
         {
-            //  ProjectBusinessLayer BAL = new ProjectBusinessLayer(new TestProjectDataLayer());
             IEnumerable<Project> dashboard = BAL.TraverseByDueDate();
-
             return View(dashboard);
-
         }
 
         // GET: /Project/Details/5
