@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
@@ -18,16 +19,25 @@ namespace Planit.Core
             public int Depth { get; set; }
         
             //public string ParentID { get; set; } // commenting out until we need it
-
+            [Required]
             public string Description { get; set; }
 
             public DateTime DueDate { get; set; }
 
             public DateTime StartDate { get; set; }
-           // public enum Status { quarter, half, threequarter, complete}
+
+            public int Status { get; set; }
 
             public List<Project> Children { get; private set; }
-        
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext) 
+     { 
+         if (StartDate == DueDate) 
+         { 
+             yield return new ValidationResult 
+              ("Start date must be before Due date", new[] { "StartDate", "DueDate" }); 
+         } 
+     } 
+
         #endregion 
 
         #region Constructors

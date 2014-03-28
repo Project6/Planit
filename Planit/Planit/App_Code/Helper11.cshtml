@@ -1,0 +1,29 @@
+﻿
+    // your helper can contain code and/or markup, e.g.
+    // var msg = "Hello " + name;
+    // <p>@msg</p>
+    // For more information, visit http://go.microsoft.com/fwlink/?LinkID=204658
+
+public static IHtmlString DropDownListForEnum<TModel, Tenum>
+    (
+    this HtmlHelper<TModel> htmlHelper,
+        Expression<Func<TModel, Tenum>> expression
+                )
+                {
+                var metadata = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData);
+                var enumType = GetNonNullableModelType(metadata);
+                var values = Enum.GetValues(enumType).Cast<Tenum>
+                    ();
+                    var converter = TypeDescriptor.GetConverter(enumType);
+
+                    var items =
+                    from value in values
+                    select new SelectListItem
+                    {
+                    Text = converter.ConvertToString(value),
+                    Value = value.ToString(),
+                    Selected = value.Equals(metadata.Model)
+                    };
+
+                    return htmlHelper.DropDownListFor(expression, items);
+                    }

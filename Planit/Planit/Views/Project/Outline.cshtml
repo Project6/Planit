@@ -103,6 +103,9 @@
                         <th>
                             @Html.DisplayNameFor(model => model.StartDate)
                         </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </th>
                         <th></th>
                     </tr>
 
@@ -125,6 +128,9 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.StartDate)
                             </td>
+                            <th>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </th>
                             <td>
                                 @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                                 @Html.ActionLink("Details", "Details", new { id = item.ID }) |

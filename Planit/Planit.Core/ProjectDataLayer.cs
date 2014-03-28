@@ -12,7 +12,7 @@ namespace Planit.Core
             // need to set by acessing DB
             Root = new Project() { Description = "Devin's Task's", Depth = 0 };
 
-           //Seed1();
+         //  Seed1();
         }
         public void Seed1()
         {
@@ -26,6 +26,7 @@ namespace Planit.Core
                     Depth = 1,
                     DueDate = new DateTime(2014, 4, 15),
                     StartDate = new DateTime(2014, 2, 25),
+                    Status = 10
                 };
 
                 Project Gardening = new Project
@@ -34,7 +35,8 @@ namespace Planit.Core
                     Description = "fGardening_2",
                     Depth = 2,
                     DueDate = new DateTime(2014, 3, 15),
-                    StartDate = new DateTime(2014, 3, 5)
+                    StartDate = new DateTime(2014, 3, 5),
+                    Status = 30
                 };
                 Chores = Root.addChild(Chores);
                 Gardening = Chores.addChild(Gardening);
@@ -52,6 +54,7 @@ namespace Planit.Core
                 Depth = 1,
                 DueDate = new DateTime(2014, 5, 15),
                 StartDate = new DateTime(2014, 2, 25)
+
             };
 
             Chores = Root.addChild(Chores);
