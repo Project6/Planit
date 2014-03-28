@@ -160,21 +160,15 @@
         <div>
             <!--*************1/3  partial Task & Outline views goe here******************-->
             <ul class="navbar nav pagination ">
-                <li>@Html.ActionLink("Outline", "Outline", "Project")</li>
-                <li>@Html.ActionLink("Task", "Task", "Project")</li>
+                <!--These are supposed to be the link to the partial views but I'm not sure how to have these go to the partial veiws below-->
+                <li>@Html.ActionLink("Outline", "_Outline", "Shared")</li>
+                <li>@Html.ActionLink("Task", "_Task", "Shared")</li>
                 </ul>
 
             <!--What doe we do about this?  Element "tr" cannot be nested inside element "div"-->
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DueDate)
-                </th>
-
-               
-            </tr>
+            <!--These are the partial views-->
+            @Html.Partial("_Outline", Model)
+             @Html.Partial("_Task", Model)
             
             <div style=" overflow-x: hidden; overflow-y: auto; height: 532px;">
             <table class="table table-condensed">      

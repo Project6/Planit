@@ -50,42 +50,7 @@
 
             <!--scroll in well block done here-->
             <div style=" overflow-x: hidden; overflow-y: auto; height: 532px;">
-                <table class="table table-condensed">
-
-
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Description)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.DueDate)
-                        </th>
-
-                        <th></th>
-                    </tr>
-
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-
-                                @for (int i = 0; i < item.Depth * 3; i++) // item.Depth * 3 is to make the difference between parent child more drastic
-                                {
-                                    <p style="display:inline;">-</p>
-                                }
-
-                                @Html.DisplayFor(modelItem => item.Description)
-
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DueDate)
-                            </td>
-
-
-                        </tr>
-                    }
-
-                </table>
+                @Html.Partial("_Outline", Model)
             </div>
 
         </div>
