@@ -47,28 +47,28 @@ namespace Planit.Core
                 Children = new List<Project>();
             }
 
-            public Project(int ID, string UserID, int Depth, string Description, DateTime  DueDate, DateTime StartDate)
-            {
-                this.ID = ID;
-                this.UserID = UserID;
-                this.Depth = Depth;
-                this.Description = Description;
-                this.DueDate = DueDate;
-                this.StartDate = StartDate;
-                // this.Status = Status;
-                Children = new List<Project>();
-            }
+            //public Project(int ID, string UserID, int Depth, string Description, DateTime  DueDate, DateTime StartDate, int Status)
+            //{
+            //    this.ID = ID;
+            //    this.UserID = UserID;
+            //    this.Depth = Depth;
+            //    this.Description = Description;
+            //    this.DueDate = DueDate;
+            //    this.StartDate = StartDate;
+            //    this.Status = Status;
+            //    Children = new List<Project>();
+            //}
 
-            public Project(int ID, string UserID, string Description, DateTime DueDate, DateTime StartDate, Project parent)
-            {
-                this.ID = ID;
-                this.UserID = UserID;
-                this.Depth = parent.Depth + 1;
-                this.Description = Description;
-                this.DueDate = DueDate;
-                this.StartDate = StartDate;
-                Children = new List<Project>();
-            }
+            //public Project(int ID, string UserID, string Description, DateTime DueDate, DateTime StartDate, Project parent)
+            //{
+            //    this.ID = ID;
+            //    this.UserID = UserID;
+            //    this.Depth = parent.Depth + 1;
+            //    this.Description = Description;
+            //    this.DueDate = DueDate;
+            //    this.StartDate = StartDate;
+            //    Children = new List<Project>();
+            //}
 
             public Project(Project child, Project parent)
             {
@@ -78,6 +78,8 @@ namespace Planit.Core
                 this.Description = child.Description;
                 this.DueDate = child.DueDate;
                 this.StartDate = child.StartDate;
+                this.Status = child.Status;
+                
                
                 Children = new List<Project>();
             }

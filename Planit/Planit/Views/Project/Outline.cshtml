@@ -52,12 +52,10 @@
 
     <div class="col-md-9">
         <div class="well">
-            <!--it might be self evident that we are in the Outline View
-                <h4>Outline</h4>
-                -->
-            <p>
-                @Html.ActionLink("Create New", "Create")
-            </p>
+            <!--it might be self evident that we are in the Outline View-->
+                <h2>Outline</h2>
+                
+            
 
             <!--scroll in well block done here-->
             <div style=" overflow-x: hidden; overflow-y: auto; height: 532px;">
@@ -101,6 +99,9 @@
                                 @Html.DisplayFor(modelItem => item.Status)
                             </th>
                             <td>
+                                
+                                @Html.ActionLink("Create", "Create", new { id = item.ID}) |
+                               
                                 @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                                 @Html.ActionLink("Details", "Details", new { id = item.ID }) |
                                 @Html.ActionLink("Delete", "Delete", new { id = item.ID })

@@ -12,7 +12,7 @@ namespace Planit.Core
             // need to set by acessing DB
             Root = new Project() { Description = "Devin's Task's", Depth = 0 };
 
-         //  Seed1();
+          // Seed1();
         }
         public void Seed1()
         {
@@ -41,7 +41,7 @@ namespace Planit.Core
                 Chores = Root.addChild(Chores);
                 Gardening = Chores.addChild(Gardening);
 
-                db.Projects.Add(Chores);
+                db.Projects.Add(Root);
                 db.SaveChanges();
             }
         }
