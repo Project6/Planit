@@ -26,7 +26,7 @@ namespace Planit.Controllers
         // GET: /Project/
         public ActionResult Task()
         {
-           IEnumerable<Project> task = BAL.TraverseByDueDate();
+           IEnumerable<Project> task = BAL.TraverseByStartDate();
             return View(task);
         }
 

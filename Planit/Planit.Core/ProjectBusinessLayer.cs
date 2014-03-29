@@ -50,18 +50,25 @@ namespace Planit.Core
             public List<Project> TraverseByDueDate()
             {
 
-                var ProjectLst = new List<string>();
-
-                var ProjectQry = from d in _DAL.db.Projects
-                                 orderby d.DueDate
-                                 select d.Description;
-
                 //ProjectLst.AddRange(ProjectQry.Distinct());
              
                 var projects = from m in _DAL.db.Projects
                                select m;
                _List = projects.ToList();
                  _List.Sort((first, second) => first.DueDate.CompareTo(second.DueDate) >= 0 ? 1 : -1);
+                return _List;
+            }
+
+
+            public List<Project> TraverseByStartDate()
+            {
+
+                //ProjectLst.AddRange(ProjectQry.Distinct());
+
+                var projects = from m in _DAL.db.Projects
+                               select m;
+                _List = projects.ToList();
+                _List.Sort((first, second) => first.StartDate.CompareTo(second.StartDate) >= 0 ? 1 : -1);
                 return _List;
             }
 

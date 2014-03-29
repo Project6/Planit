@@ -314,7 +314,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.428571429;
-  color: #333333;
+  color: #FFFFFF;
   background-color: #ffffff;
   background-image:  url(http://simplebits.com/-/img/bg-lighter.jpg);
 }
@@ -336,7 +336,7 @@ textarea {
 }
 
 a {
-  color: #428bca;
+  color: #fc6b35;
   text-decoration: none;
 }
 
@@ -2092,7 +2092,7 @@ fieldset[disabled] .btn-default.active {
 
 .btn-primary {
   color: #ffffff;
-  background-color: #428bca;
+  background-color: #fc6b35;
   border-color: #357ebd;
 }
 
@@ -4935,7 +4935,7 @@ a.list-group-item.active > .badge,
   font-weight: 200;
   line-height: 2.1428571435;
   color: inherit;
-  background-color: #eeeeee;
+  background-color: #6e6e6e;
 }
 
 .jumbotron h1 {
@@ -5551,7 +5551,7 @@ a.list-group-item:focus {
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
-  background-color: #ffeed5;
+  background-color: #6e6e6e;
   border: 1px solid #e3e3e3;
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
