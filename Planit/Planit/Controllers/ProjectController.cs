@@ -79,13 +79,14 @@ namespace Planit.Controllers
          //more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Description,DueDate,StartDate")] Project project, string returnUrl)
+        public ActionResult Create([Bind(Include = "ID,Description,DueDate,StartDate,Status")] Project project, string returnUrl, int? id)
         {
-           
+            Project parent = BAL._DAL.db.Projects.Find(id); //this is the project that create was clicked on
            try
             {
                 if (ModelState.IsValid)
                 {
+                    project = parent.addChild(project); //add the new project as a child of the originating project
                     BAL._DAL.db.Projects.Add(project);
                     BAL._DAL.db.SaveChanges();
                     return Redirect(returnUrl);
@@ -120,13 +121,23 @@ namespace Planit.Controllers
          //more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Description,Name,DueDate,StartDate")] Project project, string returnUrl)
+        public ActionResult Edit([Bind(Include = "ID,Description,DueDate,StartDate,Status")] Project project, string returnUrl)
         {
+            var v = BAL._DAL.db.Projects.Find(project.ID);
+            try
+            {
            if (ModelState.IsValid)
             {
-                BAL._DAL.db.Entry(project).State = EntityState.Modified;
+               // var v = BAL._DAL.db.Projects.Find(project.ID);
+               // BAL._DAL.db.Entry(project).State = EntityState.Modified;
+                BAL._DAL.db.Entry(v).CurrentValues.SetValues(project.ID);
                 BAL._DAL.db.SaveChanges();
                 return Redirect(returnUrl);
+            }
+            }
+            catch (DataException)
+            {
+                ModelState.AddModelError(string.Empty, "Unable to save changes. Try again, and if the problem persists contact your system administrator.");
             }
             return View(project);
         }
