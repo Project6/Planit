@@ -1,85 +1,169 @@
-﻿@model IEnumerable<Planit.Core.Project>
-@{
-    ViewBag.Title = "Tree";
-}
+﻿
 
-<div>
-    <div class="container">
-        <div class="navbar-header navbar-fixed-top">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <!--Disabled
-            @Html.ActionLink("Tree", "Outline", "Task", null, new { @class = "navbar-brand" })
-                -->
-        </div>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Custom buttons</title>
+    <link rel="stylesheet" href="~/Content/jquery-ui-1.10.2.custom.css" />
+    <script type="text/javascript" src="~/Scripts/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-ui-1.10.2.custom.min.js"></script>
 
-        <!--Not sure how to make the inner nav bar like the outer nav bar that goes across the outer nav bar length-->
-        <div>
-            <!--pagination makes the -->
-            <ul class="navbar nav pagination ">
-                <li class="active">@Html.ActionLink("Tree", "Tree", "Project")</li>
-                <li>@Html.ActionLink("Outline", "Outline", "Project")</li>
-                <li>@Html.ActionLink("Task", "Task", "Project")</li>
-                <!--Added these links to the nav bar-->
-                <li>@Html.ActionLink("Schedule", "Schedule", "Project")</li>
-                <li>@Html.ActionLink("Dashboard", "Dashboard", "Project")</li>
-                <li>@Html.ActionLink("Analytics", "Contact", "Home")</li>
-                <li>@Html.ActionLink("Notifications", "Contact", "Home")</li>
+    <script type="text/javascript" src="~/Scripts/primitives.min.js"></script>
+    <link href="~/Content/primitives.latest.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    <script type='text/javascript'>
+        //<![CDATA[
+        jQuery(window).load(function () {
+            var maximumId = 3;
+            var options = new primitives.orgdiagram.Config();
 
-            </ul>
+            var items = [
+                new primitives.orgdiagram.ItemConfig({
+                    id: 0,
+                    parent: null,
+                    title: "Beth's Van Belle",
+                    description: "Project Tree",
+                    image: "demo/images/photos/a.png"
+                }),
+                new primitives.orgdiagram.ItemConfig({
+                    id: 1,
+                    parent: 0,
+                    title: "CSC 311",
+                    description: "Ugh! C#",
+                    image: "demo/images/photos/b.png"
+                }),
+                new primitives.orgdiagram.ItemConfig({
+                    id: 2,
+                    parent: 0,
+                    title: "Senior Project",
+                    description: "Fek'd Up Crap",
+                    image: "demo/images/photos/c.png"
+                }),
+                new primitives.orgdiagram.ItemConfig({
+                    id: 3,
+                    parent: 0,
+                    title: "Mom",
+                    description: "Visit and Love",
+                    image: "demo/images/photos/d.png"
+                }),
+                new primitives.orgdiagram.ItemConfig({
+                    id: 4,
+                    parent: 3,
+                    title: "Inspect Booger Size",
+                    description: "Fek'd Up Crap",
+                    image: "demo/images/photos/d.png"
+                })
 
-        </div>
-    </div>
-</div>
+            ];
+
+            var buttons = [];
+            buttons.push(new primitives.orgdiagram.ButtonConfig("delete", "ui-icon-close", "Delete"));
+            buttons.push(new primitives.orgdiagram.ButtonConfig("properties", "ui-icon-gear", "Details"));
+            buttons.push(new primitives.orgdiagram.ButtonConfig("add", "ui-icon-person", "Create"));
+
+            options.items = items;
+            options.cursorItem = 0;
+            options.buttons = buttons;
+            options.hasButtons = primitives.common.Enabled.Auto;
+
+            //enables selector button
+            //options.hasSelectorCheckbox = primitives.common.Enabled.True;
+
+            options.leavesPlacementType = primitives.orgdiagram.ChildrenPlacementType.Matrix;
+
+            options.onButtonClick = function (e, /*primitives.orgdiagram.EventArgs*/ data) {
+                switch (data.name) {
+                    case "delete":
+                        if (/*parentItem: primitives.orgdiagram.ItemConfig*/data.parentItem == null) {
+                            alert("You are trying to delete root item!");
+                        }
+                        else {
+                            var items = jQuery("#basicdiagram2").orgDiagram("option", "items");
+                            var newItems = [];
+                            /* collect all children of deleted items, we are going to delete them as well. */
+                            var itemsToBeDeleted = getSubItemsForParent(items, /*context: primitives.orgdiagram.ItemConfig*/data.context);
+                            /* add deleted item to that collection*/
+                            itemsToBeDeleted[data.context.id] = true;
+
+                            /* copy to newItems collection only remaining items */
+                            for (var index = 0, len = items.length; index < len; index += 1) {
+                                var item = items[index];
+                                if (!itemsToBeDeleted.hasOwnProperty(item.id)) {
+                                    newItems.push(item);
+                                }
+                            }
+                            /* update items list in chart */
+                            jQuery("#basicdiagram2").orgDiagram({
+                                items: newItems,
+                                cursorItem: data.parentItem.id
+                            });
+                            jQuery("#basicdiagram2").orgDiagram("update", /*Refresh: use fast refresh to update chart*/ primitives.orgdiagram.UpdateMode.Refresh);
+
+                        }
+                        break;
+                    case "add":
+                        /* get items collection */
+                        var items = jQuery("#basicdiagram2").orgDiagram("option", "items");
+                        /* create new item */
+                        var newItem = new primitives.orgdiagram.ItemConfig({
+                            id: ++maximumId,
+                            parent: data.context.id,
+                            title: "New Title",
+                            description: "New Description",
+                            image: "demo/images/photos/z.png"
+                        });
+                        /* add it to items collection and put it back to chart, actually it is the same reference*/
+                        items.push(newItem);
+                        jQuery("#basicdiagram2").orgDiagram({
+                            items: items,
+                            cursorItem: newItem.id
+                        });
+                        /* updating chart options does not fire its referesh, so it should be call explicitly */
+                        jQuery("#basicdiagram2").orgDiagram("update", /*Refresh: use fast refresh to update chart*/ primitives.orgdiagram.UpdateMode.Refresh);
+                        break;
+                }
+
+                //initial alert message stating a button was clicked
+                //var message = "User clicked '" + data.name + "' button for item '" + data.context.title + "'.";
+                //alert(message);
+            };
+
+            jQuery("#basicdiagram2").orgDiagram(options);
+        });//]]>
+
+        function getSubItemsForParent(items, parentItem) {
+            var children = {},
+                itemsById = {},
+                index, len, item;
+            for (index = 0, len = items.length; index < len; index += 1) {
+                var item = items[index];
+                if (children[item.parent] == null) {
+                    children[item.parent] = [];
+                }
+                children[item.parent].push(item);
+            }
+            var newChildren = children[parentItem.id];
+            var result = {};
+            if (newChildren != null) {
+                while (newChildren.length > 0) {
+                    var tempChildren = [];
+                    for (var index = 0; index < newChildren.length; index++) {
+                        var item = newChildren[index];
+                        result[item.id] = item;
+                        if (children[item.id] != null) {
+                            tempChildren = tempChildren.concat(children[item.id]);
+                        }
+                    }
+                    newChildren = tempChildren;
+                }
+            }
+            return result;
+        };
+
+    </script>
+</head>
+<body>
+    <div id="basicdiagram2" style="width: 640px; height: 480px; border-style: dotted; border-width: 1px;" />
+</body> 
 
 
-<div class="row">
 
-    <div class=" well col-md-3">
-
-        <div>
-            <!--*************1/3 Task view goes here******************-->
-            <!--Task Outline Toggle is redundent with the Navbar-->
-            <h2>Outline</h2>
-
-            <div style=" overflow-x: hidden; overflow-y: auto; height: 532px;">
-                <table class="table table-condensed">
-                    
-                    @Html.Partial("_Outline", Model)
-
-                </table>
-            </div>
-
-        </div>
-    </div>
-
-
-
-    <div class="col-md-9">
-        <div class="well">
-
-            <p>
-                Tree Node View Goes Here
-                @Html.ActionLink("Create New", "Create")
-            </p>
-
-    <div style=" overflow-x: hidden; overflow-y: auto; height: 532px;">
-
-
-        <div class="row">
-
-            
-</div>
-        </div>
-</div>
-
-      
-       
-        </div>
-
-
-       
-    </div>
