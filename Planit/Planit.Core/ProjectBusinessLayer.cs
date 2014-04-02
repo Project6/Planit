@@ -12,7 +12,7 @@ namespace Planit.Core
 
             public ProjectDataLayer _DAL {get; private set;}
             public IEnumerable<Project> _Tree { get; private set; }
-            public List<Project> _List { get; private set; }
+          //  public List<Project> _List { get; private set; }
         
         #endregion
 
@@ -22,7 +22,7 @@ namespace Planit.Core
             {
                 _DAL = DAL;
                 _Tree = DFS();
-                _List = DAL.db.Projects.ToList<Project>();
+               // _List = DAL.db.Projects.ToList<Project>();
             }
 
         #endregion 
@@ -46,36 +46,21 @@ namespace Planit.Core
                     }
                 }
             }
-
-            public List<Project> TraverseByDueDate()
+            public IQueryable<Project> TraverseByDueDate()
             {
-
-                //ProjectLst.AddRange(ProjectQry.Distinct());
-             
                 var projects = from m in _DAL.db.Projects
+                               orderby m.DueDate
                                select m;
-               _List = projects.ToList();
-                 _List.Sort((first, second) => first.DueDate.CompareTo(second.DueDate) >= 0 ? 1 : -1);
-                return _List;
+                return projects;
             }
 
 
-            public List<Project> TraverseByStartDate()
+            public IQueryable<Project> TraverseByStartDate()
             {
-
-                //ProjectLst.AddRange(ProjectQry.Distinct());
-
                 var projects = from m in _DAL.db.Projects
+                               orderby m.StartDate
                                select m;
-                _List = projects.ToList();
-                _List.Sort((first, second) => first.StartDate.CompareTo(second.StartDate) >= 0 ? 1 : -1);
-                return _List;
-            }
-
-            public Project Find(int id)
-            {
-                var results = _Tree.Where<Project>(project => project.ID == id);
-                return results.First();
+                return projects;
             }
 
             //public List<Project> GetProjects()

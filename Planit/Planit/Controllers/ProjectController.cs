@@ -15,33 +15,33 @@ namespace Planit.Controllers
         //private ProjectDBContext db = new ProjectDBContext();
         ProjectBusinessLayer BAL = new ProjectBusinessLayer(new ProjectDataLayer());
         // GET: /Project/
-        
+
         public ActionResult Outline()
         {
-           
-            IEnumerable<Project> projects  = BAL.TraverseByDueDate();
+
+            IEnumerable<Project> projects = BAL.DFS();
             return View(projects);
         }
 
         // GET: /Project/
         public ActionResult Task()
         {
-           IEnumerable<Project> task = BAL.TraverseByStartDate();
+            IEnumerable<Project> task = BAL.TraverseByStartDate();
             return View(task);
         }
 
         // GET: /Project/
         public ActionResult Tree()
         {
-           IEnumerable<Project> tree = BAL.DFS();
-           return View(tree);
+            IEnumerable<Project> tree = BAL.DFS();
+            return View(tree);
 
         }
 
         // GET: /Project/
         public ActionResult Schedule()
         {
-               IEnumerable<Project> schedule =  BAL.TraverseByDueDate();
+            IEnumerable<Project> schedule = BAL.TraverseByDueDate();
             return View(schedule);
         }
 
@@ -71,18 +71,27 @@ namespace Planit.Controllers
         public ActionResult Create()
         {
             ViewBag.returnUrl = Request.UrlReferrer;
-                return View();
+            return View();
         }
 
-         //POST: /Project/Create
-         //To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-         //more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //POST: /Project/Create
+        //To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Description,DueDate,StartDate,Status")] Project project, string returnUrl, int? id)
+        public ActionResult Create([Bind(Include = "ID,Description,DueDate,StartDate,Status,ParentID,Depth,ProjectID")] Project project, string returnUrl, int? id)
         {
-            Project parent = BAL._DAL.db.Projects.Find(id); //this is the project that create was clicked on
-           try
+            Project parent;
+            if (id != null)
+            {
+                parent = BAL._DAL.db.Projects.Find(id); //this is the project that create was clicked on
+            }
+            else
+            {
+                parent = new Project() { Description = "Your Task's", Depth = 0, DueDate = new DateTime(2014, 4, 15), StartDate = new DateTime(2014, 4, 15), Status = 0 };
+            }
+
+            try
             {
                 if (ModelState.IsValid)
                 {
@@ -92,12 +101,12 @@ namespace Planit.Controllers
                     return Redirect(returnUrl);
                 }
             }
-            catch(DataException)
+            catch (DataException)
             {
-                    ModelState.AddModelError(string.Empty, "Unable to save changes. Try again, and if the problem persists contact your system administrator.");
-              }
+                ModelState.AddModelError(string.Empty, "Unable to save changes. Try again, and if the problem persists contact your system administrator.");
+            }
 
-         return View(project);
+            return View(project);
         }
 
         // GET: /Project/Edit/5
@@ -116,24 +125,23 @@ namespace Planit.Controllers
             return View(project);
         }
 
-         //POST: /Project/Edit/5
-         //To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-         //more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //POST: /Project/Edit/5
+        //To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Description,DueDate,StartDate,Status")] Project project, string returnUrl)
+        public ActionResult Edit([Bind(Include = "ID,Description,DueDate,StartDate,Status,ParentID,Depth,ProjectID")] Project project, string returnUrl)
         {
             var v = BAL._DAL.db.Projects.Find(project.ID);
             try
             {
-           if (ModelState.IsValid)
-            {
-               // var v = BAL._DAL.db.Projects.Find(project.ID);
-               // BAL._DAL.db.Entry(project).State = EntityState.Modified;
-                BAL._DAL.db.Entry(v).CurrentValues.SetValues(project.ID);
-                BAL._DAL.db.SaveChanges();
-                return Redirect(returnUrl);
-            }
+                if (ModelState.IsValid)
+                {
+                    //BAL._DAL.db.Entry(project).State = EntityState.Modified;
+                    BAL._DAL.db.Entry(v).CurrentValues.SetValues(project);
+                    BAL._DAL.db.SaveChanges();
+                    return Redirect(returnUrl);
+                }
             }
             catch (DataException)
             {
@@ -159,7 +167,7 @@ namespace Planit.Controllers
             return View(project);
         }
 
-         //POST: /Project/Delete/5
+        //POST: /Project/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id, string returnUrl)

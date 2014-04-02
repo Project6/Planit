@@ -18,7 +18,7 @@ namespace Planit.Core
 
             public int Depth { get; set; }
         
-            //public string ParentID { get; set; } // commenting out until we need it
+            public string ParentID { get; set; } // commenting out until we need it
             [Required]
             public string Description { get; set; }
 
@@ -79,7 +79,7 @@ namespace Planit.Core
                 this.DueDate = child.DueDate;
                 this.StartDate = child.StartDate;
                 this.Status = child.Status;
-                
+                this.ParentID = parent.Description;
                
                 Children = new List<Project>();
             }
