@@ -10,9 +10,10 @@ namespace Planit.Core
         public ProjectDataLayer()
         {
             // need to set by acessing DB
-            Root = new Project() { Description = "Devin's Task's", Depth = 0 };
+            Root = db.Projects.Find(1); // hard coded for root node
 
-          // Seed1();
+            // SeedRoot();
+            // Seed();
         }
         public void Seed1()
         {
@@ -179,8 +180,15 @@ namespace Planit.Core
             Reading = CSC201j.addChild(Reading);
             Labs = CSC201j.addChild(Labs);
 
+            db.Projects.Add(Root);
+            db.SaveChanges();
+
         }
 
+        public void SeedRoot()
+        {
+            Root = new Project() { Description = "Devin's Task's", Depth = 0, DueDate = new DateTime(2020, 01, 01), StartDate = new DateTime(2014, 3, 31) };
+        }
 
         //public List<Project> GetProjects()
         //{
