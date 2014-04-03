@@ -25,7 +25,7 @@
             <ul class="navbar nav pagination ">
                 <li>@Html.ActionLink("Tree", "Tree", "Project")</li>
                 <li>@Html.ActionLink("Outline", "Outline", "Project")</li>
-                <li class="active">@Html.ActionLink("Task", "Task, Project")</li>
+                <li class="active">@Html.ActionLink("Task", "Task", "Project")</li>
                 <!--Added these links to the nav bar-->
                 <li>@Html.ActionLink("Schedule", "Schedule", "Project")</li>
                 <li>@Html.ActionLink("Dashboard", "Dashboard", "Project")</li>
@@ -50,7 +50,7 @@
 
             <!--scroll in well block done here-->
             <div style=" overflow-x: hidden; overflow-y: auto; height: 532px;">
-                @Html.Partial("_Outline", Model)
+                @Html.Partial("_Outline")
             </div>
 
         </div>
@@ -60,13 +60,8 @@
 
     <div class="col-md-9">
         <div class="well">
-            
-                
-            <div>
-            <h2>Your Tasks </h2>@Html.ActionLink("Create New", "Create")
-            
-            </div>
-
+          <h2>Your Tasks </h2> @Html.ActionLink("Create New", "Create")
+        
             <!--scroll in well block done here-->
             <div style=" overflow-x: hidden; overflow-y: auto; height: 532px;">
                 <table class="table">
@@ -76,6 +71,9 @@
                     <tr>
                         <th>
                             @Html.DisplayNameFor(model => model.DueDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Status)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.Title)
@@ -90,6 +88,9 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.DueDate)
                             </td>
+                            <th>
+                              @Html.DisplayFor(modelItem => item.Status)
+                            </th>
                             <td>
 
                                 @for (int i = 0; i < item.Depth * 3; i++) // item.Depth * 3 is to make the difference between parent child more drastic
@@ -100,7 +101,7 @@
                                 @Html.DisplayFor(modelItem => item.Title)
 
                             </td>
-
+                            
                             <td>
                                 @Html.ActionLink("Create", "Create", new { id = item.ID }) |
 
@@ -115,5 +116,6 @@
                 </table>
             </div>
         </div>
+
     </div>
 </div>

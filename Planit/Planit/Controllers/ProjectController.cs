@@ -23,6 +23,13 @@ namespace Planit.Controllers
             return View(projects);
         }
 
+        public ActionResult _Outline()
+        {
+
+            IEnumerable<Project> projects = BAL.TraverseByDueDate();
+            return View(projects);
+        }
+
         // GET: /Project/
         public ActionResult Task()
         {
