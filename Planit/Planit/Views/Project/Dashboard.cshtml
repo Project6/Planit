@@ -4,7 +4,7 @@
     ViewBag.Title = "Dashboard";
 }
 
-<h2>Dashboard</h2>
+
 
 <div>
     <div class="container">
@@ -28,7 +28,7 @@
                 <li>@Html.ActionLink("Task", "Task", "Project")</li>
                 <!--Added these links to the nav bar-->
                 <li>@Html.ActionLink("Schedule", "Schedule", "Project")</li>
-                <li class ="active">@Html.ActionLink("Dashboard", "Dashboard", "Project")</li>
+                <li class="active">@Html.ActionLink("Dashboard", "Dashboard", "Project")</li>
                 <li>@Html.ActionLink("Analytics", "Contact", "Home")</li>
                 <li>@Html.ActionLink("Notifications", "Contact", "Home")</li>
 
@@ -41,91 +41,79 @@
 
 <div class="row">
 
-    <div class=" well col-md-3">
-
-        <div>
-            <!--*************1/3 Task view goes here******************-->
-            <!--Task Outline Toggle is redundent with the Navbar-->
-            <h2>Outline</h2>
-
-            <div style=" overflow-x: hidden; overflow-y: auto; height: 532px;">
-                <table class="table table-condensed">
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.DueDate)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Description)
-                        </th>
-
-                        <th></th>
-                    </tr>
-
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DueDate)
-                            </td>
-                            <td>
-
-                                @for (int i = 0; i < item.Depth * 3; i++) // item.Depth * 3 is to make the difference between parent child more drastic
-                                {
-                                    <p style="display:inline;"></p>
-                                }
-
-                                @Html.DisplayFor(modelItem => item.Description)
-
-                            </td>
-
-
-
-                        </tr>
-                    }
-
-                </table>
-            </div>
-
-        </div>
-    </div>
-
-
-
-
-    <div class="col-md-9">
+    <div class="col-md-12">
         <div class="well">
 
             <p>
-                
                 @Html.ActionLink("Create New", "Create")
             </p>
 
             <div style=" overflow-x: hidden; overflow-y: auto; height: 532px;">
 
-
                 <div class="row">
 
-                    <!-- start: Page section -->
                     <section id="page-sidebar" class="span12">
 
-
-                        <!--Testing the Dashboard here for now-->
                         <div class="row-fluid">
-                       
-                            <div class="col-md-4">
+
+                            
 
                                 @foreach (var item in Model)
-{
-    <div id="myStat" data-dimension="200" data-text="@Html.DisplayFor(modelItem => item.Status)%" data-info="@Html.DisplayFor(modelItem => item.Description)" data-width="30"
-         data-fontsize="15" data-percent="@Html.DisplayFor(modelItem => item.Status)" data-fgcolor="#7ea568" data-bgcolor="#eee" data-fill="#ddd" class="circliful" style="width: 200px;">
-    </div>
-                                                                    <div></div>
+                                {
+                                    <div class="col-md-4">
+                                    <div id="myStat" data-dimension="250" data-text="@Html.DisplayFor(modelItem => item.Status)%" 
+                                         data-info="@Html.DisplayFor(modelItem => item.Description)" data-width="30"
+                                         data-fontsize="35" data-percent="@Html.DisplayFor(modelItem => item.Status)" data-fgcolor="#7ea568" 
+                                         data-bgcolor="#eee" data-fill="#ddd" class="circliful" style="width: 250px;">
+                                    </div>
+                                        </div>
+                                    <div class="col-md-4">
+                                    <div id="myStat2" data-dimension="250" data-text="@Html.DisplayFor(modelItem => item.Status)%" 
+                                         data-info="@Html.DisplayFor(modelItem => item.Description)" data-width="30"
+                                         data-fontsize="35" data-percent="@Html.DisplayFor(modelItem => item.Status)" data-fgcolor="#7ea568" 
+                                         data-bgcolor="#eee" data-fill="#ddd" class="circliful" style="width: 250px;">
+                                    </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                    <div id="myStat3" data-dimension="250" data-text="@Html.DisplayFor(modelItem => item.Status)%" 
+                                         data-info="@Html.DisplayFor(modelItem => item.Description)" data-width="30"
+                                         data-fontsize="35" data-percent="@Html.DisplayFor(modelItem => item.Status)" data-fgcolor="#7ea568" 
+                                         data-bgcolor="#eee" data-fill="#ddd" class="circliful" style="width: 250px;">
+                                    </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                    <div id="myStat4" data-dimension="250" data-text="@Html.DisplayFor(modelItem => item.Status)%" 
+                                         data-info="@Html.DisplayFor(modelItem => item.Description)" data-width="30"
+                                         data-fontsize="35" data-percent="@Html.DisplayFor(modelItem => item.Status)" data-fgcolor="#7ea568" 
+                                         data-bgcolor="#eee" data-fill="#ddd" class="circliful" style="width: 250px;">
+                                    </div>
+                                        </div>
+                                    <div class="col-md-4">
+                                    <div id="myStat5" data-dimension="250" data-text="@Html.DisplayFor(modelItem => item.Status)%" 
+                                         data-info="@Html.DisplayFor(modelItem => item.Description)" data-width="30"
+                                         data-fontsize="35" data-percent="@Html.DisplayFor(modelItem => item.Status)" data-fgcolor="#7ea568" 
+                                         data-bgcolor="#eee" data-fill="#ddd" class="circliful" style="width: 250px;">
+                                    </div>
+                                        </div>
+                                    <div class="col-md-4">
+                                    <div id="myStat6" data-dimension="250" data-text="@Html.DisplayFor(modelItem => item.Status)%" 
+                                         data-info="@Html.DisplayFor(modelItem => item.Description)" data-width="30"
+                                         data-fontsize="35" data-percent="@Html.DisplayFor(modelItem => item.Status)" data-fgcolor="#7ea568" 
+                                         data-bgcolor="#eee" data-fill="#ddd" class="circliful" style="width: 250px;">
+                                    </div>
+                                        </div>
+                                    <div class="col-md-4">
+                                    <div id="myStat7" data-dimension="250" data-text="@Html.DisplayFor(modelItem => item.Status)%" 
+                                         data-info="@Html.DisplayFor(modelItem => item.Description)" data-width="30"
+                                         data-fontsize="35" data-percent="@Html.DisplayFor(modelItem => item.Status)" data-fgcolor="#7ea568" 
+                                         data-bgcolor="#eee" data-fill="#ddd" class="circliful" style="width: 250px;">
+                                    </div>
+                                        </div>
+                                    
+                                    
+                                    
+                                }
 
-
-}
-
-
-                                </div>
                            
 
 
@@ -133,52 +121,52 @@
 
                     </section>
                     <!-- end: Page section -->
-            </div>
                 </div>
-</div>
-
-
-
-
-                <script>
-
-                    $(document).ready(function () {
-                        $('#myStat').circliful();
-                    });
-
-                    $(document).ready(function () {
-                        $('#myStat2').circliful();
-                    });
-
-                    $(document).ready(function () {
-                        $('#myStat3').circliful();
-                    });
-
-                    $(document).ready(function () {
-                        $('#myStat4').circliful();
-                    });
-
-                    $(document).ready(function () {
-                        $('#myStat5').circliful();
-                    });
-
-                    $(document).ready(function () {
-                        $('#myStat6').circliful();
-                    });
-
-                </script>
-
-
             </div>
-
-
-
-
-
-
-
-
-
-
-
         </div>
+
+        <script>
+
+            $(document).ready(function () {
+                $('#myStat').circliful();
+            });
+
+            $(document).ready(function () {
+                $('#myStat2').circliful();
+            });
+
+            $(document).ready(function () {
+                $('#myStat3').circliful();
+            });
+
+            $(document).ready(function () {
+                $('#myStat4').circliful();
+            });
+
+            $(document).ready(function () {
+                $('#myStat5').circliful();
+            });
+
+            $(document).ready(function () {
+                $('#myStat6').circliful();
+            });
+
+            $(document).ready(function () {
+                $('#myStat7').circliful();
+            });
+        </script>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+</div>
