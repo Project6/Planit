@@ -79,7 +79,7 @@ namespace Planit.Controllers
         //more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Description,DueDate,StartDate,Status,ParentID,Depth,ProjectID")] Project project, string returnUrl, int? id)
+        public ActionResult Create([Bind(Include = "ID,Description,DueDate,StartDate,Status,ParentID,Depth,ParentDescription")] Project project, string returnUrl, int? id)
         {
             Project parent;
             if (id != null)
@@ -130,7 +130,7 @@ namespace Planit.Controllers
         //more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Description,DueDate,StartDate,Status,ParentID,Depth,ProjectID")] Project project, string returnUrl)
+        public ActionResult Edit([Bind(Include = "ID,Description,DueDate,StartDate,Status,ParentID,Depth,ParentDescription")] Project project, string returnUrl)
         {
             var v = BAL._DAL.db.Projects.Find(project.ID);
             try
