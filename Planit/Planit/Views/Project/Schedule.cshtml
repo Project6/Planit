@@ -70,7 +70,7 @@
                 {
                 @:{
 
-                    @:title: '@item.Description',
+                    @:title: '@item.Title',
 
                     @:start: new Date(Date.parse("@item.StartDate.ToUniversalTime()")),
 
@@ -184,7 +184,7 @@
                                 <p style="display:inline;">-</p>
                             }
 
-                            @Html.DisplayFor(modelItem => item.Description)
+                            @Html.DisplayFor(modelItem => item.Title)
 
                         </td>
                         <td>

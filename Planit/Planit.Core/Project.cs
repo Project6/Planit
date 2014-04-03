@@ -19,10 +19,10 @@ namespace Planit.Core
             public int Depth { get; set; }
 
             public int ParentID { get; set; }
-            public string ParentDescription { get; set; } // commenting out until we need it
+            public string ParentTitle { get; set; } // commenting out until we need it
             [Required]
-            public string Description { get; set; }
-
+            public string Title { get; set; }
+            public string Note { get; set; }
             public DateTime DueDate { get; set; }
 
             public DateTime StartDate { get; set; }
@@ -48,24 +48,24 @@ namespace Planit.Core
                 Children = new List<Project>();
             }
 
-            //public Project(int ID, string UserID, int Depth, string Description, DateTime  DueDate, DateTime StartDate, int Status)
+            //public Project(int ID, string UserID, int Depth, string Title, DateTime  DueDate, DateTime StartDate, int Status)
             //{
             //    this.ID = ID;
             //    this.UserID = UserID;
             //    this.Depth = Depth;
-            //    this.Description = Description;
+            //    this.Title = Title;
             //    this.DueDate = DueDate;
             //    this.StartDate = StartDate;
             //    this.Status = Status;
             //    Children = new List<Project>();
             //}
 
-            //public Project(int ID, string UserID, string Description, DateTime DueDate, DateTime StartDate, Project parent)
+            //public Project(int ID, string UserID, string Title, DateTime DueDate, DateTime StartDate, Project parent)
             //{
             //    this.ID = ID;
             //    this.UserID = UserID;
             //    this.Depth = parent.Depth + 1;
-            //    this.Description = Description;
+            //    this.Title = Title;
             //    this.DueDate = DueDate;
             //    this.StartDate = StartDate;
             //    Children = new List<Project>();
@@ -76,11 +76,11 @@ namespace Planit.Core
                 this.ID = child.ID;
                 this.UserID = child.UserID;
                 this.Depth = parent.Depth + 1;
-                this.Description = child.Description;
+                this.Title = child.Title;
                 this.DueDate = child.DueDate;
                 this.StartDate = child.StartDate;
                 this.Status = child.Status;
-                this.ParentDescription = parent.Description;
+                this.ParentTitle = parent.Title;
                
                 Children = new List<Project>();
             }
