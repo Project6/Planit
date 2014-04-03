@@ -22,7 +22,7 @@ namespace Planit.CommandLine
                 Project Chores = new Project
                 {
                     ID = 10,
-                    Description = "Chores_1",
+                    Title = "Chores_1",
                     Depth = 1,
                     DueDate = new DateTime(2014, 5, 15),
                     StartDate = new DateTime(2014, 2, 25), 
@@ -31,7 +31,7 @@ namespace Planit.CommandLine
                 Project Gardening = new Project
                 {
                     ID = 11,
-                    Description = "Gardening_2",
+                    Title = "Gardening_2",
                     Depth = 2,
                     DueDate = new DateTime(2014, 5, 15),
                     StartDate = new DateTime(2014, 3, 5)
@@ -44,12 +44,12 @@ namespace Planit.CommandLine
 
                 // Display all Blogs from the database 
                 var query = from b in db.Projects
-                            orderby b.Description
+                            orderby b.Title
                             select b;
 
                 foreach (var item in query)
                 {
-                    Console.WriteLine(item.Description);
+                    Console.WriteLine(item.Title);
                 }
 
                 Console.WriteLine("Press any key to exit...");

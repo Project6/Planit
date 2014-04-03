@@ -78,7 +78,7 @@
                             @Html.DisplayNameFor(model => model.DueDate)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Description)
+                            @Html.DisplayNameFor(model => model.Title)
                         </th>
 
                         <th></th>
@@ -97,11 +97,13 @@
                                     <p style="display:inline;"></p>
                                 }
 
-                                @Html.DisplayFor(modelItem => item.Description)
+                                @Html.DisplayFor(modelItem => item.Title)
 
                             </td>
 
                             <td>
+                                @Html.ActionLink("Create", "Create", new { id = item.ID }) |
+
                                 @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                                 @Html.ActionLink("Details", "Details", new { id = item.ID }) |
                                 @Html.ActionLink("Delete", "Delete", new { id = item.ID })
