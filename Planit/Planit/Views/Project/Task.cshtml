@@ -23,12 +23,13 @@
         <div>
             <!--pagination makes the -->
             <ul class="navbar nav pagination ">
+                <li>@Html.ActionLink("Dashboard", "Dashboard", "Project")</li>
                 <li>@Html.ActionLink("Tree", "Tree", "Project")</li>
                 <li>@Html.ActionLink("Outline", "Outline", "Project")</li>
                 <li class="active">@Html.ActionLink("Task", "Task, Project")</li>
                 <!--Added these links to the nav bar-->
                 <li>@Html.ActionLink("Schedule", "Schedule", "Project")</li>
-                <li>@Html.ActionLink("Dashboard", "Dashboard", "Project")</li>
+                
                 <li>@Html.ActionLink("Analytics", "Contact", "Home")</li>
                 <li>@Html.ActionLink("Notifications", "Contact", "Home")</li>
 

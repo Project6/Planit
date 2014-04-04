@@ -137,12 +137,13 @@
         <div>
             <!--pagination makes the -->
             <ul class="navbar nav pagination ">
+                <li>@Html.ActionLink("Dashboard", "Dashboard", "Project")</li>
                 <li>@Html.ActionLink("Tree", "Tree", "Project")</li>
                 <li>@Html.ActionLink("Outline", "Outline", "Project")</li>
                 <li>@Html.ActionLink("Task", "Task", "Project")</li>
                 <!--Added these links to the nav bar-->
                 <li class="active">@Html.ActionLink("Schedule", "Schedule", "Project")</li>
-                <li>@Html.ActionLink("Dashboard", "Dashboard", "Project")</li>
+                
                 <li>@Html.ActionLink("Analytics", "Contact", "Home")</li>
                 <li>@Html.ActionLink("Notifications", "Contact", "Home")</li>
 
@@ -156,50 +157,9 @@
 
 <div class="row">
 
-    <div class=" well col-md-3">
+    
 
-        <div>
-            <!--*************1/3  partial Task & Outline views goe here******************-->
-            <ul class="navbar nav pagination ">
-                <!--These are supposed to be the link to the partial views but I'm not sure how to have these go to the partial veiws below-->
-                <li>@Html.ActionLink("Outline", "_Outline", "Shared")</li>
-                <li>@Html.ActionLink("Task", "_Task", "Shared")</li>
-                </ul>
-
-            <!--What doe we do about this?  Element "tr" cannot be nested inside element "div"-->
-            <!--These are the partial views-->
-            @Html.Partial("_Outline", Model)
-             @Html.Partial("_Task", Model)
-            
-            <div style=" overflow-x: hidden; overflow-y: auto; height: 532px;">
-            <table class="table table-condensed">      
-
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-
-                            @for (int i = 0; i < item.Depth * 3; i++) // item.Depth * 3 is to make the difference between parent child more drastic
-                            {
-                                <p style="display:inline;">-</p>
-                            }
-
-                            @Html.DisplayFor(modelItem => item.Title)
-
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DueDate)
-                        </td>
-                    </tr>
-                }
-
-            </table>
-                </div>
-        
-        </div>
-    </div>
-
-    <div class="col-md-9">
+    <div class="col-md-12">
         <div class="well">
            <!----You Rock Beth, Wunda, Wunda, Wunda. . . Wunda Woman-->       
             <div id='calendar'>
