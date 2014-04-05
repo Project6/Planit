@@ -3,6 +3,8 @@
     ViewBag.Title = "Tree";
 }
 
+
+
 <link rel="stylesheet" href="~/Content/jquery-ui-1.10.2.custom.css" />
 <link href="~/Content/primitives.latest.css" media="screen" rel="stylesheet" type="text/css" />
 <head>
@@ -17,25 +19,32 @@
 
     <script type='text/javascript'>
         //<![CDATA[
+
+       
+
         jQuery(window).load(function () {
             var maximumId = 6;
             var options = new primitives.orgdiagram.Config();
+           
+           
+                
+                var items = [
+                    new primitives.orgdiagram.ItemConfig({
+                        id: 0, 
+                        parent: null,
+                        title: "Beth's Van Belle",
+                        description: "Project Tree",
+                        image: "demo/images/photos/a.png"
+                    }),
 
-            var items = [
-                new primitives.orgdiagram.ItemConfig({
-                    id: 0,
-                    parent: null,
-                    title: "Beth's Van Belle",
-                    description: "Project Tree",
-                    image: "demo/images/photos/a.png"
-                }),
-                new primitives.orgdiagram.ItemConfig({
-                    id: 1,
-                    parent: 0,
-                    title: "CSC 311",
-                    description: "Ugh! C#",
-                    image: "demo/images/photos/b.png"
-                }),
+                     new primitives.orgdiagram.ItemConfig({
+                         id: 1,
+                         parent: 0,
+                         title: "CSC 311",
+                         description: "Ugh! C#",
+                         image: "demo/images/photos/b.png"
+                     }),
+
                 new primitives.orgdiagram.ItemConfig({
                     id: 2,
                     parent: 0,
@@ -57,9 +66,9 @@
                     description: "Fek'd Up Crap",
                     image: "demo/images/photos/d.png"
                 })
-
-            ];
-
+                
+                ];
+           
             var buttons = [];
             buttons.push(new primitives.orgdiagram.ButtonConfig("delete", "ui-icon-close", "Delete"));
             buttons.push(new primitives.orgdiagram.ButtonConfig("properties", "ui-icon-gear", "Details"));
@@ -219,3 +228,4 @@
     </div>
 
 </div>
+  
