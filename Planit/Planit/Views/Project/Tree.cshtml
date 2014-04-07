@@ -14,7 +14,8 @@
     <script type="text/javascript" src="~/Scripts/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery-ui-1.10.2.custom.min.js"></script>
 
-    <script type="text/javascript" src="~/Scripts/primitives.min.js"></script>
+    <!--<script type="text/javascript" src="~/Scripts/primitives.min.js"></script>-->
+    <script type="text/javascript" src="~/Scripts/primitives.latest.js"></script>
 
 
     <script type='text/javascript'>
@@ -34,7 +35,10 @@
                         parent: null,
                         title: "Beth's Van Belle",
                         description: "Project Tree",
-                        image: "demo/images/photos/a.png"
+                        //image: "demo/images/photos/a.png"
+                        //itemTitleColor: primitives.common.Colors.Gray
+
+
                     }),
 
                      new primitives.orgdiagram.ItemConfig({
@@ -42,7 +46,8 @@
                          parent: 0,
                          title: "CSC 311",
                          description: "Ugh! C#",
-                         image: "demo/images/photos/b.png"
+                         //image: "demo/images/photos/b.png"
+                         //itemTitleColor: primitives.common.Colors.Gray
                      }),
 
                 new primitives.orgdiagram.ItemConfig({
@@ -78,9 +83,11 @@
             options.cursorItem = 0;
             options.buttons = buttons;
             options.hasButtons = primitives.common.Enabled.Auto;
+            options.itemTitleFirstFontColor = primitives.common.Colors.White;
+            options.itemTitleColor = primitives.common.Colors.Gray
 
-            //enables selector button
-            //options.hasSelectorCheckbox = primitives.common.Enabled.True;
+
+            options.hasSelectorCheckbox = primitives.common.Enabled.False;
 
             options.leavesPlacementType = primitives.orgdiagram.ChildrenPlacementType.Matrix;
 
