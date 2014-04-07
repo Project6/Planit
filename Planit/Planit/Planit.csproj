@@ -164,9 +164,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201404031336061_abc.cs" />
-    <Compile Include="Migrations\201404031336061_abc.Designer.cs">
-      <DependentUpon>201404031336061_abc.cs</DependentUpon>
+    <Compile Include="Migrations\201404071218402_AddedChildrenStr.cs" />
+    <Compile Include="Migrations\201404071218402_AddedChildrenStr.Designer.cs">
+      <DependentUpon>201404071218402_AddedChildrenStr.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -264,8 +264,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201404031336061_abc.resx">
-      <DependentUpon>201404031336061_abc.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201404071218402_AddedChildrenStr.resx">
+      <DependentUpon>201404071218402_AddedChildrenStr.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
