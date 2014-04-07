@@ -37,17 +37,13 @@ namespace Planit.Core
 
             public IEnumerable<Project> DFS(Project parent)
             {
-                int counter = 0;
-                if(counter == 0)
                     yield return parent;
     
                 foreach (var child in getChildren(parent))
                 {
-                    counter++;
                     yield return child;
                     foreach (var grandchild in DFS(child))
                     {
-                        counter++;
                         yield return grandchild;
                     }
                 }
