@@ -47,6 +47,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IProjectDataLayer.cs" />
+    <Compile Include="Migrations\201403190017425_InitialCreate.cs" />
+    <Compile Include="Migrations\201403190017425_InitialCreate.Designer.cs">
+      <DependentUpon>201403190017425_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404080259571_blah.cs" />
+    <Compile Include="Migrations\201404080259571_blah.Designer.cs">
+      <DependentUpon>201404080259571_blah.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="ProjectBusinessLayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -55,6 +64,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201403190017425_InitialCreate.resx">
+      <DependentUpon>201403190017425_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404080259571_blah.resx">
+      <DependentUpon>201404080259571_blah.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

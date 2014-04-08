@@ -88,15 +88,7 @@ namespace Planit.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Title,DueDate,StartDate,Status,ParentID,Depth,ParentTitle")] Project child, string returnUrl, int? id)
         {
-            Project parent;
-            if (id != null)
-            {
-                parent = BAL.Find(id); //this is the project that create was clicked on
-            }
-            else
-            {
-                parent = new Project() { Title = "Your Task's", Depth = 0, DueDate = new DateTime(2014, 4, 15), StartDate = new DateTime(2014, 4, 15), Status = 0 };
-            }
+            Project parent = BAL.Find(id); //this is the project that create was clicked on
 
             try
             {
