@@ -38,135 +38,49 @@
     </div>
 </div>
 
+                   <div class="col-md-12">
+                                    <div class="well">
 
-<div class="row">
+                                        <p>
+                                            @Html.ActionLink("Create New", "Create")
+                                        </p>
 
-    <div class="col-md-12">
-        <div class="well">
+                                        <div style=" overflow-x: hidden; overflow-y: auto; height: 532px;">
 
-            <p>
-                @Html.ActionLink("Create New", "Create")
-            </p>
+                                            <div class="row">
 
-            <div style=" overflow-x: hidden; overflow-y: auto; height: 532px;">
+                                                <section id="page-sidebar" class="span12">
 
-                <div class="row">
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        <div class="col-md-4">
+                                                            <div id="@item.ID"
+                                                                 data-dimension="250"
+                                                                 data-text="@item.Status%"
+                                                                 data-info="@item.Title"
+                                                                 data-width="30"
+                                                                 data-fontsize="35"
+                                                                 data-percent="@item.Status"
+                                                                 data-fgcolor="#ff5a09"
+                                                                 data-bgcolor="#6e6e6e"
+                                                                 data-fill="#ddd"
+                                                                 class="circliful"
+                                                                 style="width: 250px;">
+                                                            </div>
 
-                    <section id="page-sidebar" class="span12">
+                                                        </div>
+                                                        <script>
+                               $(document).ready(function () {
+                                $('#@item.ID').circliful()
+                                return false;
+                                 });
+                                                        </script>
+                                                    }
 
-                        <div class="row-fluid">
-
-                            
-
-                                @foreach (var item in Model)
-                                {
-                                    <div class="col-md-4">
-                                        <div id="myStat" data-dimension="250" data-text="@Html.DisplayFor(modelItem => item.Status)%"
-                                             data-info="@Html.DisplayFor(modelItem => item.Title)" data-width="30"
-                                             data-fontsize="35" data-percent="@Html.DisplayFor(modelItem => item.Status)" data-fgcolor="#ff5a09"
-                                             data-bgcolor="#6e6e6e" data-fill="#ddd" class="circliful" style="width: 250px;">
-                                        </div>
-                                        </div>
-                                    <div class="col-md-4">
-                                        <div id="myStat2" data-dimension="250" data-text="@Html.DisplayFor(modelItem => item.Status)%"
-                                             data-info="@Html.DisplayFor(modelItem => item.Title)" data-width="30"
-                                             data-fontsize="35" data-percent="@Html.DisplayFor(modelItem => item.Status)" data-fgcolor="#ff5a09"
-                                             data-bgcolor="#6e6e6e" data-fill="#ddd" class="circliful" style="width: 250px;">
+                                                </section>
+                                                <!-- end: Page section -->
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div id="myStat3" data-dimension="250" data-text="75%"
-                                             data-info="Math Ch3" data-width="30"
-                                             data-fontsize="35" data-percent="75" data-fgcolor="#ff5a09"
-                                             data-bgcolor="#6e6e6e" data-fill="#ddd" class="circliful" style="width: 250px;">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div id="myStat4" data-dimension="250" data-text="45%"
-                                             data-info="CSC311 lab 2" data-width="30"
-                                             data-fontsize="35" data-percent="45" data-fgcolor="#ff5a09"
-                                             data-bgcolor="#6e6e6e" data-fill="#ddd" class="circliful" style="width: 250px;">
-                                        </div>
-                                        </div>
-                                    <div class="col-md-4">
-                                        <div id="myStat5" data-dimension="250" data-text="85%"
-                                             data-info="World Lit II" data-width="30"
-                                             data-fontsize="35" data-percent="85" data-fgcolor="#ff5a09"
-                                             data-bgcolor="#6e6e6e" data-fill="#ddd" class="circliful" style="width: 250px;">
-                                        </div>
-                                        </div>
-                                    <div class="col-md-4">
-                                        <div id="myStat6" data-dimension="250" data-text="60%"
-                                             data-info="Fiber Arts" data-width="30"
-                                             data-fontsize="35" data-percent="60" data-fgcolor="#ff5a09"
-                                             data-bgcolor="#6e6e6e" data-fill="#ddd" class="circliful" style="width: 250px;">
-                                        </div>
-                                        </div>
-                                    <div class="col-md-4">
-                                        <div id="myStat7" data-dimension="250" data-text="40%"
-                                             data-info="Laundry" data-width="30"
-                                             data-fontsize="35" data-percent="40" data-fgcolor="#ff5a09"
-                                             data-bgcolor="#6e6e6e" data-fill="#ddd" class="circliful" style="width: 250px;">
-                                        </div>
-                                        </div>
-                                    
-                                    
-                                    
-                                }
 
-                           
-
-
-                        </div>
-
-                    </section>
-                    <!-- end: Page section -->
-                </div>
-            </div>
-        </div>
-
-        <script>
-
-            $(document).ready(function () {
-                $('#myStat').circliful();
-            });
-
-            $(document).ready(function () {
-                $('#myStat2').circliful();
-            });
-
-            $(document).ready(function () {
-                $('#myStat3').circliful();
-            });
-
-            $(document).ready(function () {
-                $('#myStat4').circliful();
-            });
-
-            $(document).ready(function () {
-                $('#myStat5').circliful();
-            });
-
-            $(document).ready(function () {
-                $('#myStat6').circliful();
-            });
-
-            $(document).ready(function () {
-                $('#myStat7').circliful();
-            });
-        </script>
-
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-</div>
+                                </div>

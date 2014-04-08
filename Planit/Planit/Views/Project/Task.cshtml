@@ -71,15 +71,14 @@
 
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.DueDate)
+                            @Html.ActionLink("DueDate", "Task", new { sortOrder = ViewBag.DueDateSortParm })
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Status)
+                            @Html.ActionLink("Status", "Task", new { sortOrder = ViewBag.StatusSortParm })
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Title)
+                            @Html.ActionLink("Title", "Task", new { sortOrder = ViewBag.TitleSortParm })
                         </th>
-
                         <th></th>
                     </tr>
 
