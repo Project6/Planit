@@ -13826,8 +13826,8 @@ primitives.orgdiagram.Template.prototype._getDefaultItemTemplate = function () {
 	description = jQuery('<div name="description"></div>')
 	.css({
 		top: "24px",
-		left: "56px",
-		width: (contentSize.width - 4 - 56) + "px",
+		left: "8px",
+		width: (contentSize.width - 4 - 16) + "px",
 		height: "74px"
 	}).addClass("bp-item bp-description");
 
