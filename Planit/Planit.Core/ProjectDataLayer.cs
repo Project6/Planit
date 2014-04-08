@@ -45,7 +45,7 @@ namespace Planit.Core
         {
             return db.Projects.Find(id);
         }
-        public Project Remove(Project project)
+        public Project Remove(Project project) //WHY?
         {
             return db.Projects.Remove(project);
             db.SaveChanges();

@@ -38,10 +38,10 @@ namespace Planit.Core
             public IEnumerable<Project> DFS(Project parent)
             {
                 yield return parent;
-    
+
                 foreach (var child in getChildren(parent))
                 {
-                    yield return child;
+                    //yield return child;
                     foreach (var grandchild in DFS(child))
                     {
                         yield return grandchild;
