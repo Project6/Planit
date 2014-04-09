@@ -128,6 +128,7 @@ namespace Planit.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    //child.ParentTitle = parent.Title;
                     child = BAL.AddChild(child, parent);
                     return Redirect(returnUrl);
                 }

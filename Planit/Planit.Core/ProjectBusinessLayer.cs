@@ -66,6 +66,7 @@ namespace Planit.Core
             // Adds Child to the DB and updates relationship
             public Project AddChild(Project child, Project parent)
             {
+                child.ParentTitle = parent.Title;
                 child = _DAL.Add(child); // Generates DB ID for child
                 child = parent.addChild(child); // adds id to parent.Children AND assigns child.ParentID to parent.ID
                 _DAL.Update(child); // updates child db reference with new ParentID
@@ -90,10 +91,12 @@ namespace Planit.Core
             {
                 return _DAL.Find(id);
             }
+
             public void Update(Project project)
             {
                 _DAL.Update(project);
             }
+
             public Project Remove(Project project)
             {
                 return _DAL.Remove(project);

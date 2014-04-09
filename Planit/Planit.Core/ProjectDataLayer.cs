@@ -47,8 +47,10 @@ namespace Planit.Core
         }
         public Project Remove(Project project) //WHY?
         {
-            return db.Projects.Remove(project);
+            Project removed = db.Projects.Remove(project);
             db.SaveChanges();
+            return removed;
+           
         }
 
         public void Seed1()
