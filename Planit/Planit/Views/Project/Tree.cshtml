@@ -21,22 +21,23 @@
     <script type='text/javascript'>
         //<![CDATA[
 
-       
+
 
         jQuery(window).load(function () {
             var maximumId = 6;
             var options = new primitives.orgdiagram.Config();
-           
-           
+
+            var items = {};
+            items.id =  "item.ID";
+            var item = new primitives.orgdiagram.ItemConfig(items);
+            
                 
-                var items = [
+            var items = [
                     new primitives.orgdiagram.ItemConfig({
-                        id: 0, 
+                        id: 0,
                         parent: null,
                         title: "Your Tasks",
-                        description: "Project Tree",
-                        
-
+                        description: "Project Tree"
 
                     }),
 
@@ -44,8 +45,8 @@
                          id: 1,
                          parent: 0,
                          title: "CSC 311",
-                         description: "C++",
-                         
+                         description: "C++"
+
                      }),
 
                 new primitives.orgdiagram.ItemConfig({
@@ -53,23 +54,25 @@
                     parent: 0,
                     title: "Senior Project",
                     description: "Marginal Progress",
+                    image: "demo/images/photos/c.png"
                 }),
                 new primitives.orgdiagram.ItemConfig({
                     id: 3,
                     parent: 0,
                     title: "Mom",
-                    description: "Wednesday's Upwords",
+                    description: "Wednesday's Upwords"
                 }),
                 new primitives.orgdiagram.ItemConfig({
                     id: 4,
                     parent: 3,
                     title: "Work",
-                    description: "More things to do",
+                    description: "More things to do"
+
 
                 })
-                
+
                 ];
-           
+
             var buttons = [];
             buttons.push(new primitives.orgdiagram.ButtonConfig("delete", "ui-icon-close", "Delete"));
             buttons.push(new primitives.orgdiagram.ButtonConfig("properties", "ui-icon-gear", "Details"));
