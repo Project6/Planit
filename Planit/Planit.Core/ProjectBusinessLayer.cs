@@ -37,9 +37,11 @@ namespace Planit.Core
 
             public IEnumerable<Project> DFS(Project parent)
             {
-                foreach (var child in parent.Children)
+                yield return parent;
+
+                foreach (var child in getChildren(parent))
                 {
-                    yield return child;
+                    //yield return child;
                     foreach (var grandchild in DFS(child))
                     {
                         yield return grandchild;
@@ -53,8 +55,6 @@ namespace Planit.Core
                                select m;
                 return projects;
             }
-
-
             public IQueryable<Project> TraverseByStartDate()
             {
                 var projects = from m in _DAL.db.Projects
@@ -62,17 +62,50 @@ namespace Planit.Core
                                select m;
                 return projects;
             }
+            
+            // Adds Child to the DB and updates relationship
+            public Project AddChild(Project child, Project parent)
+            {
+                child = _DAL.Add(child); // Generates DB ID for child
+                child = parent.addChild(child); // adds id to parent.Children AND assigns child.ParentID to parent.ID
+                _DAL.Update(child); // updates child db reference with new ParentID
+                _DAL.Update(parent); // updates parent db reference with new children string
+                return child;
+            }
+            public IEnumerable<Project> getChildren(Project parent)
+            {    
+                string[] ChildrenStrArray = parent.ChildrenStr.Split(',');
+                foreach(string childStr in ChildrenStrArray)
+                {
+                    int childInt;
+                    if (int.TryParse(childStr, out childInt))
+                    {
+                        yield return _DAL.Find(childInt);
+                    }
+
+                   
+                }
+            }
+            public Project Find(int? id)
+            {
+                return _DAL.Find(id);
+            }
+            public void Update(Project project)
+            {
+                _DAL.Update(project);
+            }
+            public Project Remove(Project project)
+            {
+                return _DAL.Remove(project);
+            }
+
+            
 
             //public List<Project> GetProjects()
             //{
             //    return _repository.GetProjects();
             //}
             //
-            //public void AddChild(Project child, Project parent)
-            //{
-            //    parent.Children.Add(child);
-            //}
-
             //public void Remove(Project project)
             //{ 
             //    // remove

@@ -100,7 +100,7 @@ namespace Planit.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = BAL._DAL.db.Projects.Find(id);
+            Project project = BAL.Find(id);
             if (project == null)
             {
                 return HttpNotFound();
@@ -120,25 +120,15 @@ namespace Planit.Controllers
         //more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Title,DueDate,StartDate,Status,ParentID,Depth,ParentTitle")] Project project, string returnUrl, int? id)
+        public ActionResult Create([Bind(Include = "ID,Title,DueDate,StartDate,Status,ParentID,Depth,ParentTitle")] Project child, string returnUrl, int? id)
         {
-            Project parent;
-            if (id != null)
-            {
-                parent = BAL._DAL.db.Projects.Find(id); //this is the project that create was clicked on
-            }
-            else
-            {
-                parent = new Project() { Title = "Your Task's", Depth = 0, DueDate = new DateTime(2014, 4, 15), StartDate = new DateTime(2014, 4, 15), Status = 0 };
-            }
+            Project parent = BAL.Find(id); //this is the project that create was clicked on
 
             try
             {
                 if (ModelState.IsValid)
                 {
-                    project = parent.addChild(project); //add the new project as a child of the originating project
-                    BAL._DAL.db.Projects.Add(project);
-                    BAL._DAL.db.SaveChanges();
+                    child = BAL.AddChild(child, parent);
                     return Redirect(returnUrl);
                 }
             }
@@ -147,7 +137,7 @@ namespace Planit.Controllers
                 ModelState.AddModelError(string.Empty, "Unable to save changes. Try again, and if the problem persists contact your system administrator.");
             }
 
-            return View(project);
+            return View(child);
         }
 
         // GET: /Project/Edit/5
@@ -158,7 +148,7 @@ namespace Planit.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = BAL._DAL.db.Projects.Find(id);
+            Project project = BAL.Find(id);
             if (project == null)
             {
                 return HttpNotFound();
@@ -173,14 +163,11 @@ namespace Planit.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Title,DueDate,StartDate,Status,ParentID,Depth,ParentTitle")] Project project, string returnUrl)
         {
-            var v = BAL._DAL.db.Projects.Find(project.ID);
             try
             {
                 if (ModelState.IsValid)
                 {
-                    //BAL._DAL.db.Entry(project).State = EntityState.Modified;
-                    BAL._DAL.db.Entry(v).CurrentValues.SetValues(project);
-                    BAL._DAL.db.SaveChanges();
+                    BAL.Update(project);
                     return Redirect(returnUrl);
                 }
             }
@@ -200,7 +187,7 @@ namespace Planit.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = BAL._DAL.db.Projects.Find(id);
+            Project project = BAL.Find(id);
             if (project == null)
             {
                 return HttpNotFound();
@@ -213,9 +200,7 @@ namespace Planit.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id, string returnUrl)
         {
-            Project project = BAL._DAL.db.Projects.Find(id);
-            BAL._DAL.db.Projects.Remove(project);
-            BAL._DAL.db.SaveChanges();
+            BAL.Remove( BAL.Find(id) );
             return Redirect(returnUrl);
         }
 
