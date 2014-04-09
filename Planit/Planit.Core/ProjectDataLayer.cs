@@ -7,7 +7,7 @@ namespace Planit.Core
     public class ProjectDataLayer : IProjectDataLayer
     {
         public Project Root { get; private set; }
-        public ProjectDbContext db = new ProjectDbContext();
+        public ProjectDbContext db = new ProjectDbContext("ProjectDB");
         public ProjectDataLayer()
         {
             try

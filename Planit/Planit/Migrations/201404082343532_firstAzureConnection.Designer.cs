@@ -7,13 +7,13 @@ namespace Planit.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
-    public sealed partial class AddedChildrenStr : IMigrationMetadata
+    public sealed partial class firstAzureConnection : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedChildrenStr));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(firstAzureConnection));
         
         string IMigrationMetadata.Id
         {
-            get { return "201404071218402_AddedChildrenStr"; }
+            get { return "201404082343532_firstAzureConnection"; }
         }
         
         string IMigrationMetadata.Source

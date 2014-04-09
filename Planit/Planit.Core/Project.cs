@@ -91,6 +91,10 @@ namespace Planit.Core
 
     public class ProjectDbContext : DbContext
     {
+        public ProjectDbContext(string connectionString) : base("name=" + connectionString)
+        { 
+        }
+
         public DbSet<Project> Projects { get; set; }
     }
 
