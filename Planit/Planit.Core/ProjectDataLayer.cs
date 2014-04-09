@@ -1,20 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Planit.Core
 {
     public class ProjectDataLayer : IProjectDataLayer
     {
         public Project Root { get; private set; }
-        public ProjectDbContext db = new ProjectDbContext();
+        public ProjectDbContext db = new ProjectDbContext("ProjectDB");
         public ProjectDataLayer()
         {
-            // need to set by acessing DB
-            Root = db.Projects.Find(1); // hard coded for root node
-
-            // SeedRoot();
-            // Seed();
+            try
+            {
+                Root = db.Projects
+                                    .Where(p => p.Title == "Your Task's")
+                                    .Select(p => p)
+                                    .First<Project>();
+            }
+            catch (Exception e)
+            {
+                Root = new Project() { Title = "Your Task's", Depth = 0, DueDate = new DateTime(2014, 4, 15), StartDate = new DateTime(2014, 4, 15), Status = 0 };
+                Root = Add(Root);
+            }
+            //SeedRoot();
+            //Seed();
         }
+
+        
+        public Project Add(Project project)
+        {
+            Project returnedProject = db.Projects.Add(project);
+            db.SaveChanges();
+            return returnedProject;
+        }
+
+        public void Update(Project project)
+        {
+            Project projectOld = Find(project.ID);
+            db.Entry(projectOld).CurrentValues.SetValues(project);
+            db.SaveChanges();
+        }
+
+        public Project Find(int? id)
+        {
+            return db.Projects.Find(id);
+        }
+        public Project Remove(Project project) //WHY?
+        {
+            Project removed = db.Projects.Remove(project);
+            db.SaveChanges();
+            return removed;
+           
+        }
+
         public void Seed1()
         {
             using (db)
@@ -220,5 +258,7 @@ namespace Planit.Core
         //// CSC201j > ..
         //projectList.Add(new Project(011, "9999", 2, "Reading", new DateTime(),new DateTime(2014, 5, 10)));
         //projectList.Add(new Project(012, "9999", 2, "Labs", new DateTime(),new DateTime(2014, 5, 10
+
+        
     }
 }

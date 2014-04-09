@@ -29,15 +29,7 @@ namespace Planit.Core
 
             public int Status { get; set; }
 
-            public List<Project> Children { get; private set; }
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext) 
-     { 
-         if (StartDate == DueDate) 
-         { 
-             yield return new ValidationResult 
-              ("Start date must be before Due date", new[] { "StartDate", "DueDate" }); 
-         } 
-     } 
+            public String ChildrenStr { get; private set; }
 
         #endregion 
 
@@ -45,7 +37,7 @@ namespace Planit.Core
 
             public Project()
             {
-                Children = new List<Project>();
+                ChildrenStr = "";
             }
 
             //public Project(int ID, string UserID, int Depth, string Title, DateTime  DueDate, DateTime StartDate, int Status)
@@ -71,35 +63,38 @@ namespace Planit.Core
             //    Children = new List<Project>();
             //}
 
-            public Project(Project child, Project parent)
-            {
-                this.ID = child.ID;
-                this.UserID = child.UserID;
-                this.Depth = parent.Depth + 1;
-                this.Title = child.Title;
-                this.DueDate = child.DueDate;
-                this.StartDate = child.StartDate;
-                this.Status = child.Status;
-                this.ParentTitle = parent.Title;
-               
-                Children = new List<Project>();
-            }
-
         #endregion
 
-            // add's Project argument to the children list and then returns a reference to the child
+        #region Methods
+            
             public Project addChild(Project child)
             {
-                Children.Add(new Project(child, this));
-                return Children.Last();
+                ChildrenStr = ChildrenStr + "," + child.ID;
+                child.ParentID = this.ID;
+                child.Depth = this.Depth + 1;
+                return child;
             }
+            
+            
+            public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+            {
+                if (StartDate == DueDate)
+                {
+                    yield return new ValidationResult
+                     ("Start date must be before Due date", new[] { "StartDate", "DueDate" });
+                }
+            }
+        #endregion
 
 
-          
     }
 
     public class ProjectDbContext : DbContext
     {
+        public ProjectDbContext(string connectionString) : base("name=" + connectionString)
+        { 
+        }
+
         public DbSet<Project> Projects { get; set; }
     }
 

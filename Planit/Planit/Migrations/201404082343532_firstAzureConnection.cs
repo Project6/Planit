@@ -3,7 +3,7 @@ namespace Planit.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class abc : DbMigration
+    public partial class firstAzureConnection : DbMigration
     {
         public override void Up()
         {
