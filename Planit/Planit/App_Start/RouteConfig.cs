@@ -13,7 +13,11 @@ namespace Planit
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            
+            routes.MapRoute(
+                name: "otherDefault",
+                url: "",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional}
+                );
 
             routes.MapRoute(
                 name: "Default",
@@ -21,11 +25,11 @@ namespace Planit
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
-            routes.MapRoute(
-                name: "NoController",
-                url: "{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-                );
+            //routes.MapRoute(
+            //    name: "NoController",
+            //    url: "{id}",
+            //    defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+            //    );
 
         }
     }
