@@ -47,10 +47,11 @@
         <div>
             <!--*************1/3 Task view goes here******************-->
             <!--Task Outline Toggle is redundent with the Navbar-->
-            <h2>Outline</h2>
+            <h2 style="color: #6e6e6e">Outline</h2>
+            <br/>
 
             <!--scroll in well block done here-->
-            <div style=" overflow-x: hidden; overflow-y: auto; height: 532px;">
+            <div style=" overflow-x: hidden; overflow-y: auto; height: 532px; color:#6e6e6e">
                 @Html.Partial("_Outline")
             </div>
 
@@ -61,11 +62,11 @@
 
     <div class="col-md-9">
         <div class="well">
-          <h2>Your Tasks </h2> @Html.ActionLink("Create New", "Create")
+            <h2 style="color: #6e6e6e">Your Tasks </h2> @Html.ActionLink("Create New", "Create")
         
             <!--scroll in well block done here-->
             <div style=" overflow-x: hidden; overflow-y: auto; height: 532px;">
-                <table class="table">
+                <table class="table" style="color: #6e6e6e">
 
 
 
@@ -89,7 +90,7 @@
                                 @Html.DisplayFor(modelItem => item.DueDate)
                             </td>
                             <th>
-                              @Html.DisplayFor(modelItem => item.Status)
+                                @Html.DisplayFor(modelItem => item.Status)
                             </th>
                             <td>
 
@@ -101,7 +102,7 @@
                                 @Html.DisplayFor(modelItem => item.Title)
 
                             </td>
-                            
+
                             <td>
                                 @Html.ActionLink("Create", "Create", new { id = item.ID }) |
 
