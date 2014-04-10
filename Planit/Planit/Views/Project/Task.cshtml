@@ -71,27 +71,24 @@
 
 
                     <tr>
+
+                        <th>
+                            @Html.ActionLink("Title", "Task", new { sortOrder = ViewBag.TitleSortParm })
+                        </th>
                         <th>
                             @Html.ActionLink("DueDate", "Task", new { sortOrder = ViewBag.DueDateSortParm })
                         </th>
                         <th>
                             @Html.ActionLink("Status", "Task", new { sortOrder = ViewBag.StatusSortParm })
                         </th>
-                        <th>
-                            @Html.ActionLink("Title", "Task", new { sortOrder = ViewBag.TitleSortParm })
-                        </th>
+                        
                         <th></th>
                     </tr>
 
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DueDate)
-                            </td>
-                            <th>
-                                @Html.DisplayFor(modelItem => item.Status)
-                            </th>
+
                             <td>
 
                                 @for (int i = 0; i < item.Depth * 3; i++) // item.Depth * 3 is to make the difference between parent child more drastic
@@ -99,15 +96,21 @@
                                     <p style="display:inline;"></p>
                                 }
 
-                                @Html.DisplayFor(modelItem => item.Title)
-
+                                @Html.ActionLink((item.Title), "Details", new { id = item.ID })
                             </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DueDate)
+                            </td>
+                            <th>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </th>
+                            
 
                             <td>
                                 @Html.ActionLink("Create", "Create", new { id = item.ID }) |
 
                                 @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                 
                                 @Html.ActionLink("Delete", "Delete", new { id = item.ID })
                             </td>
 
