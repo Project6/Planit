@@ -247,6 +247,7 @@
     <Content Include="Views\Project\Schedule.cshtml" />
     <Content Include="Views\Project\Dashboard.cshtml" />
     <Content Include="Views\Shared\_Outline.cshtml" />
+    <Content Include="Views\Shared\_Task.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
