@@ -25,16 +25,13 @@
                 <li class=" active">@Html.ActionLink("Outline", "Outline", "Project")</li>
                 <li>@Html.ActionLink("Task", "Task", "Project")</li>
                 <!--Added these links to the nav bar-->
-                <li>@Html.ActionLink("Schedule", "Schedule", "Project")</li>
-                
+                <li>@Html.ActionLink("Schedule", "Schedule", "Project")</li> 
                 <li>@Html.ActionLink("Analytics", "Contact", "Home")</li>
                 <li>@Html.ActionLink("Notifications", "Contact", "Home")</li>
             </ul>
-
         </div>
     </div>
 </div>
-
 
 <div class="row">
 
@@ -55,9 +52,7 @@
         <div class="well">
             <!--it might be self evident that we are in the Outline View-->
             <h2 style="color: #6e6e6e">Outline</h2>
-                
-            
-
+ 
             <!--scroll in well block done here-->
             <div style=" overflow-x: hidden; overflow-y: auto; height: 532px; color: #6e6e6e">
                 <table class="table">
@@ -87,20 +82,14 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.DueDate)
-                            </td>
-                            
-                            
-                            <td>
-                                
-                                @Html.ActionLink("Create", "Create", new { id = item.ID}) |
-                               
-                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                                
+                            </td>                                         
+                            <td>                            
+                                @Html.ActionLink("Create", "Create", new { id = item.ID}) |                          
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |                          
                                 @Html.ActionLink("Delete", "Delete", new { id = item.ID })
                             </td>
                         </tr>
                     }
-
                 </table>
             </div>
         </div>

@@ -7,63 +7,36 @@
 
 <head>
     <title></title>
-
-    <script type='text/javascript'>
-
+        <script type='text/javascript'>
         $(document).ready(function () {
-
             var date = new Date();
-
             var d = date.getDate();
-
             var m = date.getMonth();
-
             var y = date.getFullYear();
-
             $('#calendar').fullCalendar({
-
                 header: {
-
                     left: 'prev,next today',
-
                     center: 'title',
-
                     right: 'month,agendaWeek,agendaDay'
-
                 },
-
                 editable: true,
-
                 events: [
-
                 {
-
                     title: 'All Day Event',
-
                     start: new Date(y, m, 1)
-
                 },
-
                 {
-
                     title: 'Long Event',
-
                     start: new Date(y, m, d - 5),
-
                     end: new Date(y, m, d - 2)
-
                 },
 
                 {
 
                     id: 999,
-
                     title: 'Repeating Event',
-
                     start: new Date(y, m, d - 3, 16, 0),
-
                     allDay: false
-
                 },
 
                 @foreach (var item in Model)
@@ -71,34 +44,17 @@
                 @:{
 
                     @:title: '@item.Title',
-
                     @:start: new Date(Date.parse("@item.StartDate.ToUniversalTime()")),
-
                     @:end: new Date(Date.parse("@item.DueDate.ToUniversalTime()"))
-
                 @:},
                 }
-
-                
-            
-
                     //json object
                     //you can do it all in the controller and pass it here
                     // or do it here like we did below with razor
                     //google charts uses json to pass the data
                     //create a function in the controller that converts the model to jquery
-
-
-                   
-            
-            
-
-             
-
                 ]
-
             });
-
         });
 
         //create a helper that converts our objects (model) to calender structure.  That way when we use fullCalender...
@@ -106,22 +62,14 @@
        // var something =  @Json.Encode(Model);
         //got to the microsoft decument for encode
         //microsoftsdn
-
         //option 2 - easier
         //create a javascript function that is going to recieve json data in the model format and rewrite into the calendar format
         //second suggestion is to change the model
-
     </script>
-
 </head>
 
-
-
-
-
 <div class="container" >
-    <div class="container">
-        
+    <div class="container">  
         <div class="navbar-header navbar-fixed-top">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
@@ -142,29 +90,20 @@
                 <li>@Html.ActionLink("Outline", "Outline", "Project")</li>
                 <li>@Html.ActionLink("Task", "Task", "Project")</li>
                 <!--Added these links to the nav bar-->
-                <li class="active">@Html.ActionLink("Schedule", "Schedule", "Project")</li>
-                
+                <li class="active">@Html.ActionLink("Schedule", "Schedule", "Project")</li>      
                 <li>@Html.ActionLink("Analytics", "Contact", "Home")</li>
                 <li>@Html.ActionLink("Notifications", "Contact", "Home")</li>
-
             </ul>
-
         </div>
     </div>
 </div>
 
-
-
 <div class="row">
-
-    
-
     <div class="col-md-12">
         <div class="well" style="color: #6e6e6e">
             <!----You Rock Beth, Wunda, Wunda, Wunda. . . Wunda Woman-->
             <div id='calendar'>
             </div>
-
         </div>
     </div>
 </div>

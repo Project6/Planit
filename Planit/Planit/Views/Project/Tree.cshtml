@@ -3,8 +3,6 @@
     ViewBag.Title = "Tree";
 }
 
-
-
 <link rel="stylesheet" href="~/Content/jquery-ui-1.10.2.custom.css" />
 <link href="~/Content/primitives.latest.css" media="screen" rel="stylesheet" type="text/css" />
 <head>
@@ -16,16 +14,12 @@
 
     <!--<script type="text/javascript" src="~/Scripts/primitives.min.js"></script>-->
     <script type="text/javascript" src="~/Scripts/primitives.latest.js"></script>
-
-
     <script type='text/javascript'>
-
     //<![CDATA[
 
     jQuery(window).load(function () {
         var maximumId = 50;
         var options = new primitives.orgdiagram.Config();
-
         var items;
         var newItem ;
         var items = [ ];
@@ -51,12 +45,8 @@
         options.hasButtons = primitives.common.Enabled.Auto;
         options.itemTitleFirstFontColor = primitives.common.Colors.White;
         options.itemTitleColor = primitives.common.Colors.Gray
-
-
         options.hasSelectorCheckbox = primitives.common.Enabled.False;
-
         options.leavesPlacementType = primitives.orgdiagram.ChildrenPlacementType.Matrix;
-
         options.onButtonClick = function (e, /*primitives.orgdiagram.EventArgs*/ data) {
             switch (data.name) {
                 case "delete":
@@ -103,12 +93,10 @@
                     jQuery("#basicdiagram2").orgDiagram("update", /*Refresh: use fast refresh to update chart*/ primitives.orgdiagram.UpdateMode.Refresh);
                     break;
 
-
                 case "details":
                     window.location.href = 'Details/'+ data.context.id;
                     break;
             }
-            
         };
 
         jQuery("#basicdiagram2").orgDiagram(options);
@@ -148,7 +136,6 @@
 
 <div>
     <div class="container">
-
         <div class="navbar-header navbar-fixed-top">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
@@ -159,8 +146,7 @@
             @Html.ActionLink("Tree", "Outline", "Task", null, new { @class = "navbar-brand" })
                 -->
         </div>
-
-        <!--Not sure how to make the inner nav bar like the outer nav bar that goes across the outer nav bar length-->
+     <!--Not sure how to make the inner nav bar like the outer nav bar that goes across the outer nav bar length-->
         <div>
             <!--pagination makes the -->
             <ul class="navbar nav pagination ">
@@ -173,29 +159,19 @@
                 
                 <li>@Html.ActionLink("Analytics", "Contact", "Home")</li>
                 <li>@Html.ActionLink("Notifications", "Contact", "Home")</li>
-
             </ul>
-
         </div>
     </div>
 </div>
 
 <div class="row">
-
-  
-
     <div class="col-md-12">
         <div class="well">
-
-
-            <!--scroll in well block done here-->
+       <!--scroll in well block done here-->
             <div >
-
                 <div id="basicdiagram2" style="width: 1100px; height: 580px; border-style: none; border-width: 1px;" />
-
             </div>
         </div>
     </div>
-
 </div>
   

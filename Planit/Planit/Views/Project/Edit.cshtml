@@ -3,7 +3,35 @@
 @{
     ViewBag.Title = "Edit";
 }
+<div>
+    <div class="container">
+        <div class="navbar-header navbar-fixed-top">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!--Disabled
+            @Html.ActionLink("Tree", "Outline", "Task", null, new { @class = "navbar-brand" })
+                -->
+        </div>
+        <!--Not sure how to make the inner nav bar like the outer nav bar that goes across the outer nav bar length-->
+        <div>
+            <!--pagination makes the -->
+            <ul class="navbar nav pagination ">
+                <li>@Html.ActionLink("Dashboard", "Dashboard", "Project")</li>
+                <li>@Html.ActionLink("Tree", "Tree", "Project")</li>
+                <li>@Html.ActionLink("Outline", "Outline", "Project")</li>
+                <li>@Html.ActionLink("Task", "Task", "Project")</li>
+                <!--Added these links to the nav bar-->
+                <li>@Html.ActionLink("Schedule", "Schedule", "Project")</li>
 
+                <li>@Html.ActionLink("Analytics", "Contact", "Home")</li>
+                <li>@Html.ActionLink("Notifications", "Contact", "Home")</li>
+            </ul>
+        </div>
+    </div>
+</div>
 <h2 style="color: #ffffff">Edit</h2>
 
 
@@ -53,9 +81,7 @@
                 @Html.ValidationMessageFor(model => model.DueDate)
             </div>
         </div>
-
-       
-
+               
         <div class="form-group" style="color: #ffffff">
             @Html.LabelFor(model => model.Status, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -67,8 +93,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
-                <a href="javascript:void(0);" onclick="history.go(-1);">Back to List</a>
-              </div>
+            </div>
         </div>
         <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
     </div>
