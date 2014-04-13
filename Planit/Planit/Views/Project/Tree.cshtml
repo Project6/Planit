@@ -19,17 +19,14 @@
 
 
     <script type='text/javascript'>
-<<<<<<< HEAD
+
     //<![CDATA[
-
-
 
     jQuery(window).load(function () {
         var maximumId = 50;
         var options = new primitives.orgdiagram.Config();
 
         var items;
-        // var itemstring;
         var newItem ;
         var items = [ ];
         @foreach(var item in Model)
@@ -79,100 +76,7 @@
                             var item = items[index];
                             if (!itemsToBeDeleted.hasOwnProperty(item.id)) {
                                 newItems.push(item);
-=======
-        //<![CDATA[
-
-
-
-        jQuery(window).load(function () {
-            var maximumId = 6;
-            var options = new primitives.orgdiagram.Config();
-
-            var items = {};
-            items.id =  "item.ID";
-            var item = new primitives.orgdiagram.ItemConfig(items);
-            
-                
-            var items = [
-                    new primitives.orgdiagram.ItemConfig({
-                        id: 0,
-                        parent: null,
-                        title: "Your Tasks",
-                        description: "Project Tree"
-
-                    }),
-
-                     new primitives.orgdiagram.ItemConfig({
-                         id: 1,
-                         parent: 0,
-                         title: "CSC 311",
-                         description: "C++"
-
-                     }),
-
-                new primitives.orgdiagram.ItemConfig({
-                    id: 2,
-                    parent: 0,
-                    title: "Senior Project",
-                    description: "Marginal Progress",
-                    image: "demo/images/photos/c.png"
-                }),
-                new primitives.orgdiagram.ItemConfig({
-                    id: 3,
-                    parent: 0,
-                    title: "Mom",
-                    description: "Wednesday's Upwords"
-                }),
-                new primitives.orgdiagram.ItemConfig({
-                    id: 4,
-                    parent: 3,
-                    title: "Work",
-                    description: "More things to do"
-
-
-                })
-
-                ];
-
-            var buttons = [];
-            buttons.push(new primitives.orgdiagram.ButtonConfig("delete", "ui-icon-close", "Delete"));
-            buttons.push(new primitives.orgdiagram.ButtonConfig("properties", "ui-icon-gear", "Details"));
-            buttons.push(new primitives.orgdiagram.ButtonConfig("add", "ui-icon-person", "Create"));
-
-            options.items = items;
-            options.cursorItem = 0;
-            options.buttons = buttons;
-            options.hasButtons = primitives.common.Enabled.Auto;
-            options.itemTitleFirstFontColor = primitives.common.Colors.White;
-            options.itemTitleColor = primitives.common.Colors.Gray
-
-
-            options.hasSelectorCheckbox = primitives.common.Enabled.False;
-
-            options.leavesPlacementType = primitives.orgdiagram.ChildrenPlacementType.Matrix;
-
-            options.onButtonClick = function (e, /*primitives.orgdiagram.EventArgs*/ data) {
-                switch (data.name) {
-                    case "delete":
-                        if (/*parentItem: primitives.orgdiagram.ItemConfig*/data.parentItem == null) {
-                            alert("What You Talking About Willis?  You Can't Delete The Root!");
-                        }
-                        else {
-                            var items = jQuery("#basicdiagram2").orgDiagram("option", "items");
-                            var newItems = [];
-                            /* collect all children of deleted items, we are going to delete them as well. */
-                            var itemsToBeDeleted = getSubItemsForParent(items, /*context: primitives.orgdiagram.ItemConfig*/data.context);
-                            /* add deleted item to that collection*/
-                            itemsToBeDeleted[data.context.id] = true;
-
-                            /* copy to newItems collection only remaining items */
-                            for (var index = 0, len = items.length; index < len; index += 1) {
-                                var item = items[index];
-                                if (!itemsToBeDeleted.hasOwnProperty(item.id)) {
-                                    newItems.push(item);
-                                }
->>>>>>> b8d8bc6b62f93179c1c37d842fc69fd3adccdd63
-                            }
+                                          }
                         }
                         /* update items list in chart */
                         jQuery("#basicdiagram2").orgDiagram({
@@ -186,17 +90,7 @@
                 case "add":
                     /* get items collection */
                     var items = jQuery("#basicdiagram2").orgDiagram("option", "items");
-                    /* create new item
-                    var newItem = new primitives.orgdiagram.ItemConfig({
-                        id: ++maximumId,
-                        parent: data.context.id,
-                        title: "New Title",
-                        description: "Oh, More Stuff To Do",
-                        image: "demo/images/photos/z.png"
-                    });*/
-                    /* add it to items collection and put it back to chart, actually it is the same reference*/
-                    /* items.push(newItem);*/
-
+                    
                     var itemstring = { id: ++maximumId, parent: data.context.id, title: 'Your Tasks', description: 'Project Tree' };
                     var newItem = new primitives.orgdiagram.ItemConfig(itemstring);
                     items.push(newItem);
@@ -211,20 +105,14 @@
 
 
                 case "details":
-
                     window.location.href = 'Details/'+ data.context.id;
-                    //initial alert message stating a button was clicked
-                    // var message = "Title" + data.context.title+"\n" ;//+ "Start Date" + data.context.startdate +"\n"+"Due Date" + data.context.duedate+"\n"+ "Status" + data.context.startdate+"\n";
-                    // alert(message);
                     break;
             }
-            //initial alert message stating a button was clicked
-            //var message = "User clicked '" + data.name + "' button for item '" + data.context.title + "'.";
-            //alert(message);
+            
         };
 
         jQuery("#basicdiagram2").orgDiagram(options);
-    });//]]>
+    });
 
     function getSubItemsForParent(items, parentItem) {
         var children = {},
