@@ -43,9 +43,9 @@
         <div>
             <!--*************1/3 Task view goes here******************-->
             <!--Task Outline Toggle is redundent with the Navbar-->
-            <h2>Tasks</h2>
+            <h2 style="color: #6e6e6e"">Tasks</h2>
 
-            <div style=" overflow-x: hidden; overflow-y: auto; height: 532px;">
+            <div style=" overflow-x: hidden; overflow-y: auto; height: 532px; color: #6e6e6e"">
                 @Html.Partial("_Task", Model)
             </div>
         </div>
@@ -54,12 +54,12 @@
     <div class="col-md-9">
         <div class="well">
             <!--it might be self evident that we are in the Outline View-->
-                <h2>Outline</h2>
+            <h2 style="color: #6e6e6e">Outline</h2>
                 
             
 
             <!--scroll in well block done here-->
-            <div style=" overflow-x: hidden; overflow-y: auto; height: 532px;">
+            <div style=" overflow-x: hidden; overflow-y: auto; height: 532px; color: #6e6e6e">
                 <table class="table">
                     <tr>
                         <th>
@@ -68,12 +68,7 @@
                         <th>
                             @Html.DisplayNameFor(model => model.DueDate)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.StartDate)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Status)
-                        </th>
+                        
                         <th></th>
                     </tr>
 
@@ -87,24 +82,20 @@
                                     <p style="display:inline;">-</p>
                                 }
 
-                                @Html.DisplayFor(modelItem => item.Title)
+                                @Html.ActionLink((item.Title), "Details", new { id = item.ID })
 
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.DueDate)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.StartDate)
-                            </td>
-                            <th>
-                                @Html.DisplayFor(modelItem => item.Status)
-                            </th>
+                            
+                            
                             <td>
                                 
                                 @Html.ActionLink("Create", "Create", new { id = item.ID}) |
                                
                                 @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                
                                 @Html.ActionLink("Delete", "Delete", new { id = item.ID })
                             </td>
                         </tr>

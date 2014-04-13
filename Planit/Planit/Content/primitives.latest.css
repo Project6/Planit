@@ -20,7 +20,7 @@
 
 .bt-item-frame {
     border: 1px solid #dddddd;
-    background: #eeeeee url(images/ui-bg_highlight-soft_100_eeeeee_1x100.png) 50% top repeat-x;
+    background: linear-gradient(to bottom, #ffffff, #e6e6e6 );
     color: #333333;
 }
 

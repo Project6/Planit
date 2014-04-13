@@ -42,7 +42,8 @@
 <div class="row">
 
     <div class="col-md-12">
-        <div class="well">
+        <!--Gradient in Well is the Style="background"-->
+        <div class="well" style="background: linear-gradient(to bottom, #ffffff, #e6e6e6 )">
 
             <p>
                 @Html.ActionLink("Create New", "Create")
@@ -55,23 +56,23 @@
                     <section id="page-sidebar" class="span12">
 
                         @foreach (var item in Model)
-                        {
-                            <div class="col-md-4">
-                                <div id="@item.ID"
-                                     data-dimension="250"
-                                     data-text="@item.Status%"
-                                     data-info="@item.Title"
-                                     data-width="30"
-                                     data-fontsize="35"
-                                     data-percent="@item.Status"
-                                     data-fgcolor="#ff5a09"
-                                     data-bgcolor="#6e6e6e"
-                                     data-fill="#ddd"
-                                     class="circliful"
-                                     style="width: 250px;">
-                                </div>
+{
+    <div class="col-md-4" style="color: #6e6e6e">
+        <div id="@item.ID"
+             data-dimension="250"
+             data-text="@item.Status%"
+             data-info="@item.Title"
+             data-width="30"
+             data-fontsize="35"
+             data-percent="@item.Status"
+             data-fgcolor="#ff5a09"
+             data-bgcolor="#6e6e6e"
+             data-fill="#ddd"
+             class="circliful"
+             style="width: 250px;">
+        </div>
 
-                            </div>
+    </div>
                             <script>
                                $(document).ready(function () {
                                 $('#@item.ID').circliful()
