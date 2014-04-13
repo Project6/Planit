@@ -19,162 +19,147 @@
 
 
     <script type='text/javascript'>
-        //<![CDATA[
-
-       
-
-        jQuery(window).load(function () {
-            var maximumId = 6;
-            var options = new primitives.orgdiagram.Config();
-           
-           
-                
-                var items = [
-                    new primitives.orgdiagram.ItemConfig({
-                        id: 0, 
-                        parent: null,
-                        title: "Your Tasks",
-                        description: "Project Tree",
-                        
+    //<![CDATA[
 
 
-                    }),
 
-                     new primitives.orgdiagram.ItemConfig({
-                         id: 1,
-                         parent: 0,
-                         title: "CSC 311",
-                         description: "C++",
-                         
-                     }),
+    jQuery(window).load(function () {
+        var maximumId = 50;
+        var options = new primitives.orgdiagram.Config();
 
-                new primitives.orgdiagram.ItemConfig({
-                    id: 2,
-                    parent: 0,
-                    title: "Senior Project",
-                    description: "Marginal Progress",
-                }),
-                new primitives.orgdiagram.ItemConfig({
-                    id: 3,
-                    parent: 0,
-                    title: "Mom",
-                    description: "Wednesday's Upwords",
-                }),
-                new primitives.orgdiagram.ItemConfig({
-                    id: 4,
-                    parent: 3,
-                    title: "Work",
-                    description: "More things to do",
+        var items;
+        // var itemstring;
+        var newItem ;
+        var items = [ ];
+        @foreach(var item in Model)
+            {
+            @:newItem = new primitives.orgdiagram.ItemConfig({ id: @(item.ID) , parent: @(item.ParentID) , title: '@(item.Title)', description: 'Project Tree' });
+                 @:if('@item.ParentID' == '0') //needed to make javascript implementation compatible with Project Model
+                 @: {                           //specifically, project model has int for parentid and sets root to zero
+                 @: var headparent =  0 ;
+                 @: newItem.parent =  null ;
+                 @: } 
+              @:items.push(newItem);
+             }
 
-                })
-                
-                ];
-           
-            var buttons = [];
-            buttons.push(new primitives.orgdiagram.ButtonConfig("delete", "ui-icon-close", "Delete"));
-            buttons.push(new primitives.orgdiagram.ButtonConfig("properties", "ui-icon-gear", "Details"));
-            buttons.push(new primitives.orgdiagram.ButtonConfig("add", "ui-icon-person", "Create"));
+        var buttons = [];
+        buttons.push(new primitives.orgdiagram.ButtonConfig("delete", "ui-icon-close", "Delete"));
+        buttons.push(new primitives.orgdiagram.ButtonConfig("details", "ui-icon-gear", "Details"));
+        buttons.push(new primitives.orgdiagram.ButtonConfig("add", "ui-icon-person", "Create"));
 
-            options.items = items;
-            options.cursorItem = 0;
-            options.buttons = buttons;
-            options.hasButtons = primitives.common.Enabled.Auto;
-            options.itemTitleFirstFontColor = primitives.common.Colors.White;
-            options.itemTitleColor = primitives.common.Colors.Gray
+        options.items = items;
+        options.cursorItem = headparent;
+        options.buttons = buttons;
+        options.hasButtons = primitives.common.Enabled.Auto;
+        options.itemTitleFirstFontColor = primitives.common.Colors.White;
+        options.itemTitleColor = primitives.common.Colors.Gray
 
 
-            options.hasSelectorCheckbox = primitives.common.Enabled.False;
+        options.hasSelectorCheckbox = primitives.common.Enabled.False;
 
-            options.leavesPlacementType = primitives.orgdiagram.ChildrenPlacementType.Matrix;
+        options.leavesPlacementType = primitives.orgdiagram.ChildrenPlacementType.Matrix;
 
-            options.onButtonClick = function (e, /*primitives.orgdiagram.EventArgs*/ data) {
-                switch (data.name) {
-                    case "delete":
-                        if (/*parentItem: primitives.orgdiagram.ItemConfig*/data.parentItem == null) {
-                            alert("What You Talking About Willis?  You Can't Delete The Root!");
-                        }
-                        else {
-                            var items = jQuery("#basicdiagram2").orgDiagram("option", "items");
-                            var newItems = [];
-                            /* collect all children of deleted items, we are going to delete them as well. */
-                            var itemsToBeDeleted = getSubItemsForParent(items, /*context: primitives.orgdiagram.ItemConfig*/data.context);
-                            /* add deleted item to that collection*/
-                            itemsToBeDeleted[data.context.id] = true;
-
-                            /* copy to newItems collection only remaining items */
-                            for (var index = 0, len = items.length; index < len; index += 1) {
-                                var item = items[index];
-                                if (!itemsToBeDeleted.hasOwnProperty(item.id)) {
-                                    newItems.push(item);
-                                }
-                            }
-                            /* update items list in chart */
-                            jQuery("#basicdiagram2").orgDiagram({
-                                items: newItems,
-                                cursorItem: data.parentItem.id
-                            });
-                            jQuery("#basicdiagram2").orgDiagram("update", /*Refresh: use fast refresh to update chart*/ primitives.orgdiagram.UpdateMode.Refresh);
-
-                        }
-                        break;
-                    case "add":
-                        /* get items collection */
-                        var items = jQuery("#basicdiagram2").orgDiagram("option", "items");
-                        /* create new item */
-                        var newItem = new primitives.orgdiagram.ItemConfig({
-                            id: ++maximumId,
-                            parent: data.context.id,
-                            title: "New Title",
-                            description: "Oh, More Stuff To Do",
-                            image: "demo/images/photos/z.png"
-                        });
-                        /* add it to items collection and put it back to chart, actually it is the same reference*/
-                        items.push(newItem);
-                        jQuery("#basicdiagram2").orgDiagram({
-                            items: items,
-                            cursorItem: newItem.id
-                        });
-                        /* updating chart options does not fire its referesh, so it should be call explicitly */
-                        jQuery("#basicdiagram2").orgDiagram("update", /*Refresh: use fast refresh to update chart*/ primitives.orgdiagram.UpdateMode.Refresh);
-                        break;
-                }
-
-                //initial alert message stating a button was clicked
-                //var message = "User clicked '" + data.name + "' button for item '" + data.context.title + "'.";
-                //alert(message);
-            };
-
-            jQuery("#basicdiagram2").orgDiagram(options);
-        });//]]>
-
-        function getSubItemsForParent(items, parentItem) {
-            var children = {},
-                itemsById = {},
-                index, len, item;
-            for (index = 0, len = items.length; index < len; index += 1) {
-                var item = items[index];
-                if (children[item.parent] == null) {
-                    children[item.parent] = [];
-                }
-                children[item.parent].push(item);
-            }
-            var newChildren = children[parentItem.id];
-            var result = {};
-            if (newChildren != null) {
-                while (newChildren.length > 0) {
-                    var tempChildren = [];
-                    for (var index = 0; index < newChildren.length; index++) {
-                        var item = newChildren[index];
-                        result[item.id] = item;
-                        if (children[item.id] != null) {
-                            tempChildren = tempChildren.concat(children[item.id]);
-                        }
+        options.onButtonClick = function (e, /*primitives.orgdiagram.EventArgs*/ data) {
+            switch (data.name) {
+                case "delete":
+                    if (/*parentItem: primitives.orgdiagram.ItemConfig*/data.parentItem == null) {
+                        alert("You Can't Delete The Root!");
                     }
-                    newChildren = tempChildren;
-                }
+                    else {
+                        var items = jQuery("#basicdiagram2").orgDiagram("option", "items");
+                        var newItems = [];
+                        /* collect all children of deleted items, we are going to delete them as well. */
+                        var itemsToBeDeleted = getSubItemsForParent(items, /*context: primitives.orgdiagram.ItemConfig*/data.context);
+                        /* add deleted item to that collection*/
+                        itemsToBeDeleted[data.context.id] = true;
+
+                        /* copy to newItems collection only remaining items */
+                        for (var index = 0, len = items.length; index < len; index += 1) {
+                            var item = items[index];
+                            if (!itemsToBeDeleted.hasOwnProperty(item.id)) {
+                                newItems.push(item);
+                            }
+                        }
+                        /* update items list in chart */
+                        jQuery("#basicdiagram2").orgDiagram({
+                            items: newItems,
+                            cursorItem: data.parentItem.id
+                        });
+                        jQuery("#basicdiagram2").orgDiagram("update", /*Refresh: use fast refresh to update chart*/ primitives.orgdiagram.UpdateMode.Refresh);
+
+                    }
+                    break;
+                case "add":
+                    /* get items collection */
+                    var items = jQuery("#basicdiagram2").orgDiagram("option", "items");
+                    /* create new item
+                    var newItem = new primitives.orgdiagram.ItemConfig({
+                        id: ++maximumId,
+                        parent: data.context.id,
+                        title: "New Title",
+                        description: "Oh, More Stuff To Do",
+                        image: "demo/images/photos/z.png"
+                    });*/
+                    /* add it to items collection and put it back to chart, actually it is the same reference*/
+                    /* items.push(newItem);*/
+
+                    var itemstring = { id: ++maximumId, parent: data.context.id, title: 'Your Tasks', description: 'Project Tree' };
+                    var newItem = new primitives.orgdiagram.ItemConfig(itemstring);
+                    items.push(newItem);
+
+                    jQuery("#basicdiagram2").orgDiagram({
+                        items: items,
+                        cursorItem: newItem.id
+                    });
+                    /* updating chart options does not fire its referesh, so it should be call explicitly */
+                    jQuery("#basicdiagram2").orgDiagram("update", /*Refresh: use fast refresh to update chart*/ primitives.orgdiagram.UpdateMode.Refresh);
+                    break;
+
+
+                case "details":
+
+                    window.location.href = 'Details/'+ data.context.id;
+                    //initial alert message stating a button was clicked
+                    // var message = "Title" + data.context.title+"\n" ;//+ "Start Date" + data.context.startdate +"\n"+"Due Date" + data.context.duedate+"\n"+ "Status" + data.context.startdate+"\n";
+                    // alert(message);
+                    break;
             }
-            return result;
+            //initial alert message stating a button was clicked
+            //var message = "User clicked '" + data.name + "' button for item '" + data.context.title + "'.";
+            //alert(message);
         };
+
+        jQuery("#basicdiagram2").orgDiagram(options);
+    });//]]>
+
+    function getSubItemsForParent(items, parentItem) {
+        var children = {},
+            itemsById = {},
+            index, len, item;
+        for (index = 0, len = items.length; index < len; index += 1) {
+            var item = items[index];
+            if (children[item.parent] == null) {
+                children[item.parent] = [];
+            }
+            children[item.parent].push(item);
+        }
+        var newChildren = children[parentItem.id];
+        var result = {};
+        if (newChildren != null) {
+            while (newChildren.length > 0) {
+                var tempChildren = [];
+                for (var index = 0; index < newChildren.length; index++) {
+                    var item = newChildren[index];
+                    result[item.id] = item;
+                    if (children[item.id] != null) {
+                        tempChildren = tempChildren.concat(children[item.id]);
+                    }
+                }
+                newChildren = tempChildren;
+            }
+        }
+        return result;
+    };
 
     </script>
 </head>

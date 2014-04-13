@@ -13,13 +13,13 @@ namespace Planit.Core
             try
             {
                 Root = db.Projects
-                                    .Where(p => p.Title == "Your Task's")
+                                    .Where(p => p.Title == "Your Tasks")
                                     .Select(p => p)
                                     .First<Project>();
             }
             catch (Exception e)
             {
-                Root = new Project() { Title = "Your Task's", Depth = 0, DueDate = new DateTime(2014, 4, 15), StartDate = new DateTime(2014, 4, 15), Status = 0 };
+                Root = new Project() { Title = "Your Tasks", Depth = 0, DueDate = new DateTime(2014, 4, 15), StartDate = new DateTime(2014, 4, 15), Status = 0, ParentID = 0 };
                 Root = Add(Root);
             }
             //SeedRoot();
