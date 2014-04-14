@@ -3,11 +3,10 @@
 <table class="table table-condensed" >
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
+        
+        
 
         <th></th>
     </tr>
@@ -15,9 +14,7 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
+            
             <td>
 
                 @for (int i = 0; i < item.Depth * 3; i++) // item.Depth * 3 is to make the difference between parent child more drastic
@@ -28,6 +25,7 @@
                 @Html.DisplayFor(modelItem => item.Title)
 
             </td>
+            
         </tr>
     }
 
