@@ -314,7 +314,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 18px;
   line-height: 1.428571429;
-  color: #ffffff;
+  color: #e6e6e6;
   background-color: #ffffff;
   background-image:  url(http://simplebits.com/-/img/bg-lighter.jpg);
 }
@@ -4935,7 +4935,10 @@ a.list-group-item.active > .badge,
   font-weight: 200;
   line-height: 2.1428571435;
   color: inherit;
-  background-color: #ffffff;
+  /*background-color: #ffffff;*/
+   background-image: url(~/Content/images/Money_Noise_tm.png),
+            -webkit-radial-gradient(50% -100px, circle cover, rgba(255,255,255,0.6) 0%, 
+    transparent 100%),-webkit-linear-gradient(top, #393939, #393939);
 }
 
 .jumbotron h1 {
@@ -6814,4 +6817,12 @@ td.visible-print {
   td.hidden-print {
     display: none !important;
   }
+}
+
+.basicdiagram2 {
+width: 1100px; 
+height: 580px; 
+border-style: none; 
+border-width: 1px;
+
 }

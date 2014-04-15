@@ -178,6 +178,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fullcalendar.css" />
+    <Content Include="Content\images\Money_Noise_tm.png" />
     <Content Include="Content\jquery-ui-1.10.2.custom.css" />
     <Content Include="Content\jquery.circliful.css" />
     <Content Include="Content\primitives.latest.css" />
