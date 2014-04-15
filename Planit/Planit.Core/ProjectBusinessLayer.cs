@@ -63,21 +63,6 @@ namespace Planit.Core
                 return projects;
             }
 
-            public IList<ProjectAdapter> Treejs()
-            {
-                ProjectAdapter projectadapted = new ProjectAdapter();
-                IList<ProjectAdapter> tree = new List<ProjectAdapter>();
-                var projects = from m in _DAL.db.Projects
-                               select m;
-
-                foreach (var item in projects)
-                {
-                    tree.Add(projectadapted.convertToTreeForView(item));
-                }
-
-                return tree;
-            }
-
             // Adds Child to the DB and updates relationship
             public Project AddChild(Project child, Project parent)
             {
@@ -89,12 +74,6 @@ namespace Planit.Core
                 return child;
             }
 
-            public Project RemoveChild(Project child, Project parent)
-            {
-                parent.removeChildRef(child, parent);
-                _DAL.Update(parent); // updates parent db reference with new children string
-                return child;
-            }
             public IEnumerable<Project> getChildren(Project parent)
             {    
                 string[] ChildrenStrArray = parent.ChildrenStr.Split(',');
@@ -156,28 +135,4 @@ namespace Planit.Core
         #endregion
     }
 
-    public class ProjectAdapter
-    {
-        public int id { get; set; }
-        public int parent { get; set; }
-        public string title { get; set; }
-        public string description { get; set; }
-
-        public ProjectAdapter()
-        {
-
-
-        }
-
-        public ProjectAdapter convertToTreeForView(Project item)
-        {
-            ProjectAdapter tree = new ProjectAdapter();
-            tree.id = item.ID;
-            tree.parent = item.ParentID;
-            tree.title = item.Title;
-            tree.description = item.Note;
-            return tree;
-        }
-
-    }
 }
