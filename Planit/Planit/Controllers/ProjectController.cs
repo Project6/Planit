@@ -120,7 +120,7 @@ namespace Planit.Controllers
         //more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Title,DueDate,StartDate,Status,ParentID,Depth,ParentTitle")] Project child, string returnUrl, int? id)
+        public ActionResult Create([Bind(Include = "ID,Title,DueDate,StartDate,Status,ParentID,Depth,ParentTitle,ChildrenStr")] Project child, string returnUrl, int? id)
         {
             Project parent = BAL.Find(id); //this is the project that create was clicked on
 
@@ -162,7 +162,7 @@ namespace Planit.Controllers
         //more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Title,DueDate,StartDate,Status,ParentID,Depth,ParentTitle")] Project project, string returnUrl)
+        public ActionResult Edit([Bind(Include = "ID,Title,DueDate,StartDate,Status,ParentID,Depth,ParentTitle,ChildrenStr")] Project project, string returnUrl)
         {
             try
             {

@@ -49,7 +49,8 @@
         @Html.HiddenFor(model => model.ParentID)
 
         @Html.HiddenFor(model => model.ParentTitle)
-
+        @Html.HiddenFor(model => model.Depth)
+        @Html.HiddenFor(model => model.ChildrenStr)
 
         <div class="form-group" style="color: #ffffff">
             @Html.LabelFor(model => model.ParentTitle, new { @class = "control-label col-md-2" })
