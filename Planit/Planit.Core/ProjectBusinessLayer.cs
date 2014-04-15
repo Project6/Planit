@@ -114,7 +114,19 @@ namespace Planit.Core
 
             public Project Remove(Project project)
             {
-                return _DAL.Remove(project);
+                List<Project> list = new List<Project>();
+
+                foreach (Project p in DFS(project))
+                {
+                    list.Add(p);
+                }
+
+                foreach (Project p in list)
+                {
+                    _DAL.Remove(p);
+                }
+
+                return project;
             }
 
            
