@@ -88,18 +88,28 @@ namespace Planit.Core
                 _DAL.Update(parent); // updates parent db reference with new children string
                 return child;
             }
+
+            public Project RemoveChild(Project child, Project parent)
+            {
+                parent.removeChildRef(child, parent);
+                _DAL.Update(parent); // updates parent db reference with new children string
+                return child;
+            }
             public IEnumerable<Project> getChildren(Project parent)
             {    
                 string[] ChildrenStrArray = parent.ChildrenStr.Split(',');
+                Project result;
                 foreach(string childStr in ChildrenStrArray)
                 {
                     int childInt;
                     if (int.TryParse(childStr, out childInt))
                     {
-                        yield return _DAL.Find(childInt);
-                    }
-
-                   
+                        result = _DAL.Find(childInt);
+                        if (result != null)
+                        {
+                            yield return result;
+                        }
+                    }             
                 }
             }
             public Project Find(int? id)
@@ -114,6 +124,9 @@ namespace Planit.Core
 
             public Project Remove(Project project)
             {
+                Project parent = Find(project.ParentID);
+                parent.removeChildRef(project, parent);
+                _DAL.Update(parent);
                 List<Project> list = new List<Project>();
 
                 foreach (Project p in DFS(project))
