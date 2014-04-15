@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 namespace Planit.Core
@@ -74,7 +75,28 @@ namespace Planit.Core
                 child.Depth = this.Depth + 1;
                 return child;
             }
-            
+
+            public String removeChildRef(Project child, Project parent)
+            {
+                StringBuilder childIDList = new StringBuilder("", 100);
+                                               
+                string[] ChildrenStrArray = parent.ChildrenStr.Split(',');
+
+                foreach (string childStr in ChildrenStrArray)
+                {
+                    if (childStr.CompareTo(child.ID.ToString()) == 0)
+                    {
+                        //throw away reference
+                    }
+                    else
+                    {
+                        childIDList.Append(childStr);
+                        childIDList.Append(",");
+                    }
+                }
+                parent.ChildrenStr = childIDList.ToString();
+                return childIDList.ToString();
+            }     
             
             public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
             {
