@@ -18,14 +18,14 @@
     //<![CDATA[
 
     jQuery(window).load(function () {
-        var maximumId = 50;
+        var maximumId = 500;
         var options = new primitives.orgdiagram.Config();
         var items;
         var newItem ;
         var items = [ ];
         @foreach(var item in Model)
             {
-            @:newItem = new primitives.orgdiagram.ItemConfig({ id: @(item.ID) , parent: @(item.ParentID) , title: '@(item.Title)', description: 'Project Tree' });
+            @:newItem = new primitives.orgdiagram.ItemConfig({ id: @(item.ID) , parent: @(item.ParentID) , title: '@(item.Title)', description: '@(item.Note)' });
                  @:if('@item.ParentID' == '0') //needed to make javascript implementation compatible with Project Model
                  @: {                           //specifically, project model has int for parentid and sets root to zero
                  @: var headparent =  0 ;
@@ -54,43 +54,45 @@
                         alert("You Can't Delete The Root!");
                     }
                     else {
-                        var items = jQuery("#basicdiagram2").orgDiagram("option", "items");
-                        var newItems = [];
-                        /* collect all children of deleted items, we are going to delete them as well. */
-                        var itemsToBeDeleted = getSubItemsForParent(items, /*context: primitives.orgdiagram.ItemConfig*/data.context);
-                        /* add deleted item to that collection*/
-                        itemsToBeDeleted[data.context.id] = true;
+                        window.location.href = 'Delete/'+ data.context.id;
+                        //var items = jQuery("#basicdiagram2").orgDiagram("option", "items");
+                        //var newItems = [];
+                        ///* collect all children of deleted items, we are going to delete them as well. */
+                        //var itemsToBeDeleted = getSubItemsForParent(items, /*context: primitives.orgdiagram.ItemConfig*/data.context);
+                        ///* add deleted item to that collection*/
+                        //itemsToBeDeleted[data.context.id] = true;
 
-                        /* copy to newItems collection only remaining items */
-                        for (var index = 0, len = items.length; index < len; index += 1) {
-                            var item = items[index];
-                            if (!itemsToBeDeleted.hasOwnProperty(item.id)) {
-                                newItems.push(item);
-                                          }
-                        }
+                        ///* copy to newItems collection only remaining items */
+                        //for (var index = 0, len = items.length; index < len; index += 1) {
+                        //    var item = items[index];
+                        //    if (!itemsToBeDeleted.hasOwnProperty(item.id)) {
+                        //        newItems.push(item);
+                        //                  }
+                        //}
                         /* update items list in chart */
-                        jQuery("#basicdiagram2").orgDiagram({
-                            items: newItems,
-                            cursorItem: data.parentItem.id
-                        });
+                       // jQuery("#basicdiagram2").orgDiagram({
+                         //   items: newItems,
+                          //  cursorItem: data.parentItem.id
+                      //  });
                         jQuery("#basicdiagram2").orgDiagram("update", /*Refresh: use fast refresh to update chart*/ primitives.orgdiagram.UpdateMode.Refresh);
 
                     }
                     break;
                 case "add":
+                    window.location.href = 'Create/'+ data.context.id;
                     /* get items collection */
-                    var items = jQuery("#basicdiagram2").orgDiagram("option", "items");
+                    //var items = jQuery("#basicdiagram2").orgDiagram("option", "items");
                     
-                    var itemstring = { id: ++maximumId, parent: data.context.id, title: 'Your Tasks', description: 'Project Tree' };
-                    var newItem = new primitives.orgdiagram.ItemConfig(itemstring);
-                    items.push(newItem);
+                    //var itemstring = { id: ++maximumId, parent: data.context.id, title: 'Your Tasks', description: 'Project Tree' };
+                    //var newItem = new primitives.orgdiagram.ItemConfig(itemstring);
+                    //items.push(newItem);
 
-                    jQuery("#basicdiagram2").orgDiagram({
-                        items: items,
-                        cursorItem: newItem.id
-                    });
+                    //jQuery("#basicdiagram2").orgDiagram({
+                    //    items: items,
+                    //    cursorItem: newItem.id
+                    //});
                     /* updating chart options does not fire its referesh, so it should be call explicitly */
-                    jQuery("#basicdiagram2").orgDiagram("update", /*Refresh: use fast refresh to update chart*/ primitives.orgdiagram.UpdateMode.Refresh);
+                   // jQuery("#basicdiagram2").orgDiagram("update", /*Refresh: use fast refresh to update chart*/ primitives.orgdiagram.UpdateMode.Refresh);
                     break;
 
                 case "details":
