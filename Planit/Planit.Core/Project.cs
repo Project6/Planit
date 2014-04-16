@@ -70,7 +70,14 @@ namespace Planit.Core
             
             public Project addChild(Project child)
             {
+                if (ChildrenStr.CompareTo("")==0)
+                {
+                ChildrenStr = child.ID.ToString();
+                }
+                else
+                {
                 ChildrenStr = ChildrenStr + "," + child.ID;
+                }
                 child.ParentID = this.ID;
                 child.Depth = this.Depth + 1;
                 return child;
@@ -84,7 +91,7 @@ namespace Planit.Core
 
                 foreach (string childStr in ChildrenStrArray)
                 {
-                    if (childStr.CompareTo(child.ID.ToString()) == 0)
+                    if (childStr.CompareTo(child.ID.ToString()) == 0 || (childStr.CompareTo("") == 0))
                     {
                         //throw away reference
                     }
