@@ -21,7 +21,7 @@
                     <p style="display:inline;">-</p>
                 }
 
-                @Html.DisplayFor(modelItem => item.Title)
+                @Html.ActionLink((item.Title), "Details", new { id = item.ID })
 
             </td>
            
