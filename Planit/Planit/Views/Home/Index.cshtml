@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Planit.Models.LoginViewModel
+
+@{
     ViewBag.Title = "Home Page";
 }
 <style>
@@ -8,141 +10,211 @@
 </style>
 
 
-<br/><br/><br/><br/>
-<!--<div class="jumbotron" style="background: linear-gradient(to bottom, #ffffff, #e6e6e6 )">-->
-<div class="jumbotron" style="background-image: url(~/Content/images/Money_Noise_tm.png?),
-            -webkit-radial-gradient(50% -100px, circle cover, rgba(255,255,255,0.6) 0%,
-    transparent 50%),-webkit-linear-gradient(top, #6e6e6e, #6e6e6e);">
-
-    <h1 style="color: #fc6b35">Plan<i style="color: #e6e6e6">it!</i> <span class="small-font">Get Stuff Done.  Have Fun.  Win.</span></h1>
-    <p class="lead" style="color: #ffffff">
-        Planit! helps you take what's on your plate, and get them done.</p>
-    <p class="lead" style="color: #ffffff">By helping you break down larger tasks into more manageable pieces, you don't get overwhelmed.</p>
-    <p class="lead" style="color: #ffffff">
-        Then, use Dashboard or Tree, along with the Schedule to help you be more productive.
-    </p>
-    <!-- <p>
-         <a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a>
-     </p>-->
-</div>
 <br/><br/><br/>
 <div class="row">
-    <div class="col-md-4">
-        <h2><a href="#anchor_gettingStarted" class="current" style="color: #fc6b35">Getting Started</a></h2>
-        <p>
-            Create your account by registering.</p>
-        <p> Create tasks from the Tree, Outline or Task pages.</p>
+   <!-- <div class="col-md-1">
+
+        </div>-->
+<div class="col-md-7">
+    <br/>
+    <!--<div class="jumbotron" style="background: linear-gradient(to bottom, #ffffff, #e6e6e6 )">-->
+    <div class="jumbotron" style="background-image: url(~/Content/images/Money_Noise_tm.png?),
+            -webkit-radial-gradient(50% -100px, circle cover, rgba(255,255,255,0.6) 0%,
+    transparent 50%),-webkit-linear-gradient(top, #6e6e6e, #6e6e6e);">
         <br/>
-        <p>
-            Or, click <a href="#anchor_gettingStarted" class="current" style="color: #fc6b35">Getting Started</a> for more details.
-        </p>
+        <h1 style="color: #fc6b35">Plan<i style="color: #e6e6e6">it!</i> </h1>
+        <h2 style="color: #e6e6e6">Get Stuff Done.  Have Fun.  Win.</h2>
+        <br/>
+        <!-- <p>
+             <a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a>
+         </p>-->
     </div>
-    <div class="col-md-4">
-        <h2><a href="#anchor_aboutUs" class="current" style="color: #fc6b35">About Us</a></h2>
-        <p>Like you, we have too much on our plates.  We want to get stuff done, have fun and feel like we're winning.</p>
-        <p>  We don't take ourselves seriously but we seriously want to help you be more productive.</p>
     </div>
-    <div class="col-md-4">
-        <h2><a href="#anchor_contact" class="current" style="color: #fc6b35">Contact</a></h2>
 
-        <p>Feel free to send us cookies or contact us with suggestions or issues that arrise while using Planit!</p>
-        <p>We can't promise an immediate fix, but rest assured you're email will have us thinking about it night and day.</p>
+    <div class="col-md-5">
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+               <!-- <h4>Use a local account to log in.</h4>-->
+                <br/><br/><br/>
+                @Html.ValidationSummary(true)
+                <div class="form-group">
+                    @Html.LabelFor(m => m.UserName, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.UserName)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-4 col-md-8">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-4 col-md-8">
+                        <input type="submit" value="Log in" class="btn btn-default" />
+                    </div>
+                </div>
+                <br/>
+                <div class="col-md-offset-1 col-md-11">
+                <p>
+                    @Html.ActionLink("Register", "Register", "Account") if you don't have an account.
+                </p>
+                    </div>
+            }
+        </section>
+
+
     </div>
+
+
 </div>
-<br/><br/>
+    <br />
 <div class="row">
+    <!--<div class="col-md-1"></div>-->
     <div class="col-md-12">
-        <div class="clear anchor_points" id="anchor_gettingStarted">
-            <br />
+        <br/>
+        
+       <!-- <p class="lead" style="color: #ffffff">
+            Planit! helps you take what's on your plate, and get them done by helping you break down 
+        larger tasks into more manageable pieces, you don't get overwhelmed. Then, use Dashboard or Tree, 
+            along with the Schedule to help you be more productive.
+        </p>-->
+        </div>
 
-            <hr /><br/>
-            <h2 style="color: #fc6b35">Getting Started</h2>
-            <br/>
+   
+
+    </div>
+<br /><br />
+    <div class="row">
+        <div class="col-md-4">
+            <h2><a href="#anchor_gettingStarted" class="current" style="color: #fc6b35">Getting Started</a></h2>
             <p>
-                <h3 style ="color: #fc6b35"> To Register:</h3>
-<p>Click register at the top right of the page to create your account.</p>
+                Create your account by registering.
+            </p>
+            <p> Create tasks from the Tree, Outline or Task pages.</p>
+            <br />
+            <p>
+                Or, click <a href="#anchor_gettingStarted" class="current" style="color: #fc6b35">Getting Started</a> for more details.
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2><a href="#anchor_aboutUs" class="current" style="color: #fc6b35">About Us</a></h2>
+            <p>Like you, we have too much on our plates.  We want to get stuff done, have fun and feel like we're winning.</p>
+            <p>  We don't take ourselves seriously but we seriously want to help you be more productive.</p>
+        </div>
+        <div class="col-md-4">
+            <h2><a href="#anchor_contact" class="current" style="color: #fc6b35">Contact</a></h2>
+
+            <p>Feel free to send us cookies or contact us with suggestions or issues that arrise while using Planit!</p>
+            <p>We can't promise an immediate fix, but rest assured you're email will have us thinking about it night and day.</p>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="clear anchor_points" id="anchor_gettingStarted">
+                <br />
+
+                <hr /><br />
+                <h2 style="color: #fc6b35">Getting Started</h2>
+                <br />
+                <p>
+                    <h3 style="color: #fc6b35"> To Register:</h3>
+                <p>Click register at the top right of the page to create your account.</p>
                 <p>Create a User name and Password, click “Register”, and you’re ready to start using Planit!.</p>
-            <br/>
-            <h3 style="color: #fc6b35">To Create Tasks:</h3>
+                <br />
+                <h3 style="color: #fc6b35">To Create Tasks:</h3>
                 <p> Once you are logged in to your account, you can create a task by clicking “Your Projects” at the top left of the home page. </p>
                 <p>From there you can create a task from the Tree, Outline, or Task pages.</p>
                 <p>
                     Select create from an existing task to make tie it to that task, fill in the details and it’s done.
                 </p>
                 <br /><br /><br />
-</div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="clear anchor_points" id="anchor_aboutUs">
-            <br />
-
-            <hr /><br/>
-            <h2 style="color: #fc6b35">About Us</h2>
-            <br />
-            <h2> Mission Statement </h2>
-            <h3 style="color: #fc6b35"> Get Stuff Done.  Have Fun.  Win. </h3>
-            <p>
-                At the core, we share the desire to help others.  We know what has worked for us and we try to share that when we see others struggling.
-                We have set out to develop a web based tool that will help others be successful so that they can feel good about themselves, track their progress, and stay motivated
-                to finish their projects.  We strive to be continually learn in a fun and respectful environment where there is always food around to munch on.
-
-            </p>
-            <br />
-            <h3 style="color: #fc6b35"> Devin Gleason Lambert <span class="small-font" style="color:#e6e6e6">Co-founder</span></h3>
-            <p>
-                I am a technologist at heart, a deep love for technology is how I got here. I have been dismantling hardware and fixing software since
-                I was ten. I spent the last several years in Help desk related positions and decided I wanted something more challenging and left IT
-                to move onto software. I have finished my computer science coursework and am now working on building a portfolio around the .NET
-                framework and networking with other developers and am falling in love with the field all over again.
-
-            </p>
-            <br />
-            <h3 style="color: #fc6b35"> Beth Van Belle <span class="small-font" style="color:#e6e6e6">Co-founder</span></h3>
-
-            <p>
-                I look below the surface to understand how things work.  I am an experiential learner and typically find the 10 ways something won't work before I understand what does.
-                I came back to school to look at technology from a different perspective and wrestle with my thought process. And, I like chocolate birthday cake with ice cream.
-
-            </p>
-            <br />
-            <h3 style="color: #fc6b35"> Alberto D Beltran <span class="small-font" style="color:#e6e6e6">Co-founder</span></h3>
-            <p>
-                I have always been a technician that wondered how things worked, and why they worked that way.  Given enough time, I would take things apart to find out what made them tick.
-                It became a hobby and with time I became the "go to" person for anything technology.  I devoured anything and everything to do with technology.
-                I came back to school to build on my foundation of "how things work" and how to make them better.  Chocolate chip cookies are my kryptonite.
-
-            </p>
-
+            </div>
         </div>
     </div>
-</div>
-<br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="clear anchor_points" id="anchor_aboutUs">
+                <br />
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="clear anchor_points" id="anchor_contact">
-            <br />
-            <hr /><br/>
-            <h2 style="color: #fc6b35">Contact</h2>
-            
-            <br />
-            <address>
-                Computer Science Department<br />
-                Salem State University<br />
-                Meier Hall 200 <br />
-                352 lafayette Street<br />
-                Salem, MA 01970<br />
-                <abbr title="Phone">P:</abbr>
-                978-542-6000
-            </address>
+                <hr /><br />
+                <h2 style="color: #fc6b35">About Us</h2>
+                <br />
+                <h2> Mission Statement </h2>
+                <h3 style="color: #fc6b35"> Get Stuff Done.  Have Fun.  Win. </h3>
+                <p>
+                    At the core, we share the desire to help others.  We know what has worked for us and we try to share that when we see others struggling.
+                    We have set out to develop a web based tool that will help others be successful so that they can feel good about themselves, track their progress, and stay motivated
+                    to finish their projects.  We strive to be continually learn in a fun and respectful environment where there is always food around to munch on.
 
-            <address>
-                <strong>Support:</strong>   <a href="mailto:D_GleasonLambert@salemstate.edu, mailto:B_VanBelle@salemstate.edu">D_GleasonLambert@salemstate.edu, B_VanBelle@salemstate.edu</a><br />
-                <strong>Delivery of cookies:</strong> <a href="mailto:A_Beltran@salemstate.edu">A_Beltran@salemstate.edu</a>
-            </address>
-            <br/>
+                </p>
+                <br />
+                <h3 style="color: #fc6b35"> Devin Gleason Lambert <span class="small-font" style="color:#e6e6e6">Co-founder</span></h3>
+                <p>
+                    I am a technologist at heart, a deep love for technology is how I got here. I have been dismantling hardware and fixing software since
+                    I was ten. I spent the last several years in Help desk related positions and decided I wanted something more challenging and left IT
+                    to move onto software. I have finished my computer science coursework and am now working on building a portfolio around the .NET
+                    framework and networking with other developers and am falling in love with the field all over again.
+
+                </p>
+                <br />
+                <h3 style="color: #fc6b35"> Beth Van Belle <span class="small-font" style="color:#e6e6e6">Co-founder</span></h3>
+
+                <p>
+                    I look below the surface to understand how things work.  I am an experiential learner and typically find the 10 ways something won't work before I understand what does.
+                    I came back to school to look at technology from a different perspective and wrestle with my thought process. And, I like chocolate birthday cake with ice cream.
+
+                </p>
+                <br />
+                <h3 style="color: #fc6b35"> Alberto D Beltran <span class="small-font" style="color:#e6e6e6">Co-founder</span></h3>
+                <p>
+                    I have always been a technician that wondered how things worked, and why they worked that way.  Given enough time, I would take things apart to find out what made them tick.
+                    It became a hobby and with time I became the "go to" person for anything technology.  I devoured anything and everything to do with technology.
+                    I came back to school to build on my foundation of "how things work" and how to make them better.  Chocolate chip cookies are my kryptonite.
+
+                </p>
+
+            </div>
         </div>
     </div>
-</div>
+    <br />
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="clear anchor_points" id="anchor_contact">
+                <br />
+                <hr /><br />
+                <h2 style="color: #fc6b35">Contact</h2>
+
+                <br />
+                <address>
+                    Computer Science Department<br />
+                    Salem State University<br />
+                    Meier Hall 200 <br />
+                    352 lafayette Street<br />
+                    Salem, MA 01970<br />
+                    <abbr title="Phone">P:</abbr>
+                    978-542-6000
+                </address>
+
+                <address>
+                    <strong>Support:</strong>   <a href="mailto:D_GleasonLambert@salemstate.edu, mailto:B_VanBelle@salemstate.edu">D_GleasonLambert@salemstate.edu, B_VanBelle@salemstate.edu</a><br />
+                    <strong>Delivery of cookies:</strong> <a href="mailto:A_Beltran@salemstate.edu">A_Beltran@salemstate.edu</a>
+                </address>
+                <br />
+            </div>
+        </div>
+    </div>
