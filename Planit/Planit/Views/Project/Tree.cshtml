@@ -16,8 +16,10 @@
     <script type="text/javascript" src="~/Scripts/primitives.latest.js"></script>
     <script type='text/javascript'>
     //<![CDATA[
+        
 
-    jQuery(window).load(function () {
+        jQuery(window).load(function () {
+            ResizePlaceholder();
         var maximumId = 500;
         var options = new primitives.orgdiagram.Config();
         var items;
@@ -102,6 +104,11 @@
         };
 
         jQuery("#basicdiagram2").orgDiagram(options);
+
+        $(window).resize(function () {
+            onWindowResize();
+        });
+
     });
 
     function getSubItemsForParent(items, parentItem) {
@@ -132,6 +139,27 @@
         }
         return result;
     };
+
+    function onWindowResize() {
+        if (m_timer == null) {
+            m_timer = window.setTimeout(function () {
+                ResizePlaceholder();
+                jQuery("#orgdiagram").orgDiagram("update", primitives.orgdiagram.UpdateMode.Refresh)
+                window.clearTimeout(m_timer);
+                m_timer = null;
+            }, 300);
+        }
+    }
+
+    function ResizePlaceholder() {
+        var bodyWidth = $(window).width() - 40
+        var bodyHeight = $(window).height() - 20
+        jQuery("#orgdiagram").css(
+        {
+            "width": bodyWidth + "px",
+            "height": bodyHeight + "px"
+        });
+    }
 
     </script>
 </head>
@@ -170,7 +198,7 @@
     <div class="col-sm-12" >
         <div class="well">
        <!--scroll in well block done here-->
-                <div id="basicdiagram2" class="basicdiagram2"  />
+            <div id="basicdiagram2" class="basicdiagram2"  />
        </div>
     </div>
 </div>
