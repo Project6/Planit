@@ -55,7 +55,7 @@
 
     <div class="col-md-9">
         <div class="well">
-            <h2 style="color: #6e6e6e">Your Tasks </h2> <br/>
+            <h2 style="color: #6e6e6e">Tasks </h2> <br/>
         
             <!--scroll in well block done here-->
             <div style=" overflow-x: hidden; overflow-y: auto; height: 532px;">
@@ -72,15 +72,86 @@
                         </th>        
                         <th></th>
                     </tr>
+                    @{
+                        bool Overdue = false;
+                        bool Today = false;
+                        bool Tomorrow = false;
+                        bool ThisWeek = false;
+                        bool NextWeek = false;
+                        bool LaterOn = false;     
+                     }
+                   
 
                     @foreach (var item in Model)
                     {
+                        if(item.DueDate < DateTime.Today && Overdue == false)
+                        {
+                            Overdue = true;
+                            <tr style="background-color:lightgray">
+                                <th style="width:inherit">Overdue</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        }
+                        
+                        if(item.DueDate == DateTime.Today && Today == false)
+                        {
+                            Today = true;
+                            <tr style="background-color:lightgray">
+                                <th style="width:inherit">Today</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        }
+
+                        if (item.DueDate == DateTime.Today.AddDays(1) && Tomorrow == false)
+                        {
+                            Tomorrow = true;
+                            <tr style="background-color:lightgray">
+                                <th style="width:inherit">Tomorrow</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        }
+                        
+                        if (item.DueDate == DateTime.Today.AddDays(2) && ThisWeek == false)
+                        {
+                            ThisWeek = true;
+                            <tr style="background-color:lightgray">
+                                <th style="width:inherit">This Week</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        }
+                        
+                        if (item.DueDate == DateTime.Today.AddDays(7) && NextWeek == false)
+                        {
+                            NextWeek = true;
+                            <tr style="background-color:lightgray">
+                                <th style="width:inherit">Next Week</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        }
+                        
+                        if (item.DueDate > DateTime.Today.AddDays(7) && LaterOn == false)
+                        {
+                            LaterOn = true;
+                            <tr style="background-color:lightgray">
+                                <th style="width:inherit">Later on</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        }
+                        
                         <tr>
                             <td>
-                                @for (int i = 0; i < item.Depth * 3; i++) // item.Depth * 3 is to make the difference between parent child more drastic
-                                {
-                                    <p style="display:inline;"></p>
-                                }
                                 @Html.ActionLink((item.Title), "Details", new { id = item.ID })
                             </td>
                             <td>
