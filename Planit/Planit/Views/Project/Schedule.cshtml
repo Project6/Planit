@@ -3,7 +3,7 @@
     ViewBag.Title = "Schedule";
 }
 
-<link rel='stylesheet' type='text/css' href='fullcalendar.css' />
+<link rel='stylesheet' type='text/css' href='/Content/fullcalendar.css' />
 
 <head>
     <title></title>
@@ -14,10 +14,12 @@
             var m = date.getMonth();
             var y = date.getFullYear();
             $('#calendar').fullCalendar({
+                windowResize: true,
                 header: {
                     left: 'prev,next today',
                     center: 'title',
                     right: 'month,agendaWeek,agendaDay'
+                    
                 },
                 editable: true,
                 events: [

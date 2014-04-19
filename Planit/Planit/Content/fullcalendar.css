@@ -53,11 +53,13 @@ html .fc,
 .fc-header-title {
 	display: inline-block;
 	vertical-align: top;
+    resize:both;
 	}
 	
 .fc-header-title h2 {
 	margin-top: 0;
 	white-space: nowrap;
+    
 	}
 	
 .fc .fc-header-space {
@@ -148,6 +150,7 @@ html .fc,
 	line-height: 1.9em;
 	white-space: nowrap;
 	cursor: pointer;
+    
 	}
 	
 .fc-state-default { /* non-theme */
