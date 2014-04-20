@@ -164,9 +164,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201404082343532_firstAzureConnection.cs" />
-    <Compile Include="Migrations\201404082343532_firstAzureConnection.Designer.cs">
-      <DependentUpon>201404082343532_firstAzureConnection.cs</DependentUpon>
+    <Compile Include="Migrations\201404190017231_init.cs" />
+    <Compile Include="Migrations\201404190017231_init.Designer.cs">
+      <DependentUpon>201404190017231_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -274,8 +274,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201404082343532_firstAzureConnection.resx">
-      <DependentUpon>201404082343532_firstAzureConnection.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201404190017231_init.resx">
+      <DependentUpon>201404190017231_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
