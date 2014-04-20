@@ -213,5 +213,15 @@ namespace Planit.Controllers
         //    }
         //    base.Dispose(disposing);
         //}
+
+        public ActionResult Analytics()
+        {
+            return View();
+        }
+
+        public ActionResult Notifications()
+        {
+            return View();
+        }
     }
 }

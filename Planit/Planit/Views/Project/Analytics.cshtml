@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Planit.Core.Project>
+@{
+    ViewBag.Title = "Your Project's Analytics";
+}
+
+@{
+    ViewBag.Message = "Get Stuff Done.  Have Fun.  Win.";
+}
+
+
+<div>
+    <div class="container">
+        <div class="navbar-header navbar-fixed-top">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!--Disabled
+            @Html.ActionLink("Tree", "Outline", "Task", null, new { @class = "navbar-brand" })
+                -->
+        </div>
+        <!--Not sure how to make the inner nav bar like the outer nav bar that goes across the outer nav bar length-->
+        <div>
+            <!--pagination makes the -->
+            <ul class="navbar nav pagination ">
+                <li>@Html.ActionLink("Dashboard", "Dashboard", "Project")</li>
+                <li >@Html.ActionLink("Tree", "Tree", "Project")</li>
+                <li>@Html.ActionLink("Outline", "Outline", "Project")</li>
+                <li>@Html.ActionLink("Task", "Task", "Project")</li>
+                <!--Added these links to the nav bar-->
+                <li>@Html.ActionLink("Schedule", "Schedule", "Project")</li>
+
+                <li class="active">@Html.ActionLink("Analytics", "Analytics", "Project")</li>
+                <li>@Html.ActionLink("Notifications", "Notifications", "Project")</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<h2 style="color: #ffffff">@ViewBag.Title.</h2>
+<h3 style="color: #ec6A35">@ViewBag.Message</h3>
+<hr />
+<br />
+<address style="color: #ffffff">
+    <h3>Coming Soon!</h3><br />
+    See how you are doing with your projects overall.<br />
+    Compare your progress against other projects.<br />
+    Use this info to plan for the success of your projects.<br />
+    <br />
+    
+</address>

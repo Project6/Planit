@@ -50,7 +50,7 @@ var defaults = {
 	
 	// time formats
 	titleFormat: {
-		month: 'MMMM YYYY', // like "September 1986". each language will override this
+		month: 'MMM'+' '+"'"+ 'YY', // like "September 1986". each language will override this
 		week: 'll', // like "Sep 4 1986"
 		day: 'LL' // like "September 4 1986"
 	},
@@ -66,14 +66,14 @@ var defaults = {
 	// locale
 	isRTL: false,
 	buttonText: {
-		prev: "prev",
-		next: "next",
+		prev: "<",
+		next: ">",
 		prevYear: "prev year",
 		nextYear: "next year",
-		today: 'today',
-		month: 'month',
-		week: 'week',
-		day: 'day'
+		today: 'T',
+		month: 'M',
+		week: 'W',
+		day: 'D'
 	},
 
 	buttonIcons: {
