@@ -42,23 +42,25 @@
             <div style=" overflow-x: hidden; overflow-y: auto; height: 532px;">
             <div class="row">
              <section id="page-sidebar" class="span12">
-               @foreach (var item in Model)
+                                @foreach (var item in Model)
             {
-             <div class="col-sm-3" style="color: #6e6e6e">
-             <div id="@item.ID"
-             data-dimension="240"
-             data-text="@item.Status%"
-             data-info="@item.Title"
-             data-width="30"
-             data-fontsize="35"
-             data-percent="@item.Status"
-             data-fgcolor="#ff5a09"
-             data-bgcolor="#6e6e6e"
-             data-fill="#ddd"
-             class="circliful"
-             style="width: 240px;">
-          </div>
-            </div>
+                     <div class="col-sm-3" style="color: #6e6e6e" >
+                         <a href="@Url.Action("Edit", "Project", new { id = item.ID })">
+                         <div id="@item.ID"
+                              data-dimension="240"
+                              data-text="@item.Status%"
+                              data-info="@item.Title"
+                              data-width="30"
+                              data-fontsize="35"
+                              data-percent="@item.Status"
+                              data-fgcolor="#ff5a09"
+                              data-bgcolor="#6e6e6e"
+                              data-fill="#ddd"
+                              class="circliful"
+                              style="width: 240px">
+                         </div>
+                         </a>
+                     </div>
                             <script>
                                $(document).ready(function () {
                                 $('#@item.ID').circliful()
