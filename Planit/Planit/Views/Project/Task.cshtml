@@ -55,8 +55,8 @@
 
     <div class="col-md-9">
         <div class="well">
-            <h2 style="color: #6e6e6e">Tasks </h2> <br/>
-        
+            <h2 style="color: #6e6e6e">Tasks </h2> <br />
+
             <!--scroll in well block done here-->
             <div style=" overflow-x: hidden; overflow-y: auto; height: 532px;">
                 <table class="table" style="color: #6e6e6e">
@@ -69,7 +69,7 @@
                         </th>
                         <th>
                             @Html.ActionLink("Status", "Task", new { sortOrder = ViewBag.StatusSortParm })
-                        </th>        
+                        </th>
                         <th></th>
                     </tr>
                     @{
@@ -78,13 +78,13 @@
                         bool Tomorrow = false;
                         bool ThisWeek = false;
                         bool NextWeek = false;
-                        bool LaterOn = false;     
-                     }
-                   
+                        bool LaterOn = false;
+                    }
+
 
                     @foreach (var item in Model)
                     {
-                        if(item.DueDate < DateTime.Today && Overdue == false)
+                        if (item.DueDate < DateTime.Today && Overdue == false)
                         {
                             Overdue = true;
                             <tr style="background-color:lightgray">
@@ -94,8 +94,8 @@
                                 <td></td>
                             </tr>
                         }
-                        
-                        if(item.DueDate == DateTime.Today && Today == false)
+
+                        if (item.DueDate == DateTime.Today && Today == false)
                         {
                             Today = true;
                             <tr style="background-color:lightgray">
@@ -116,7 +116,7 @@
                                 <td></td>
                             </tr>
                         }
-                        
+
                         if (item.DueDate == DateTime.Today.AddDays(2) && ThisWeek == false)
                         {
                             ThisWeek = true;
@@ -127,7 +127,7 @@
                                 <td></td>
                             </tr>
                         }
-                        
+
                         if (item.DueDate == DateTime.Today.AddDays(7) && NextWeek == false)
                         {
                             NextWeek = true;
@@ -138,7 +138,7 @@
                                 <td></td>
                             </tr>
                         }
-                        
+
                         if (item.DueDate > DateTime.Today.AddDays(7) && LaterOn == false)
                         {
                             LaterOn = true;
@@ -149,7 +149,7 @@
                                 <td></td>
                             </tr>
                         }
-                        
+
                         <tr>
                             <td>
                                 @Html.ActionLink((item.Title), "Details", new { id = item.ID })
@@ -159,11 +159,11 @@
                             </td>
                             <th>
                                 @Html.DisplayFor(modelItem => item.Status)
-                            </th> 
+                            </th>
 
                             <td>
                                 @Html.ActionLink("Create", "Create", new { id = item.ID }) |
-                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |    
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                                 @Html.ActionLink("Delete", "Delete", new { id = item.ID })
                             </td>
                         </tr>

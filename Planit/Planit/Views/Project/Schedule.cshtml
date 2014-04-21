@@ -7,7 +7,7 @@
 
 <head>
     <title></title>
-        <script type='text/javascript'>
+    <script type='text/javascript'>
         $(document).ready(function () {
             var date = new Date();
             var d = date.getDate();
@@ -19,7 +19,7 @@
                     left: 'prev,next today',
                     center: 'title',
                     right: 'month,agendaWeek,agendaDay'
-                    
+
                 },
                 editable: true,
                 events: [
@@ -28,9 +28,10 @@
                 @:{
 
                     @:title: '@item.Title',
-                    @:start: new Date(Date.parse("@item.StartDate.ToUniversalTime()")),
-                    @:end: new Date(Date.parse("@item.DueDate.ToUniversalTime()"))
-                @:},
+                                        @:start: new Date(Date.parse("@item.StartDate.ToUniversalTime()")),
+                                        @:end: new Date(Date.parse("@item.DueDate.ToUniversalTime()"))
+                                    @:
+                },
                 }
                     //json object
                     //you can do it all in the controller and pass it here
@@ -43,7 +44,7 @@
 
         //create a helper that converts our objects (model) to calender structure.  That way when we use fullCalender...
         //maybe you can create your own by extending the helping
-       // var something =  @Json.Encode(Model);
+        // var something =  @Json.Encode(Model);
         //got to the microsoft decument for encode
         //microsoftsdn
         //option 2 - easier
@@ -52,8 +53,8 @@
     </script>
 </head>
 
-<div class="container" >
-    <div class="container">  
+<div class="container">
+    <div class="container">
         <div class="navbar-header navbar-fixed-top">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
@@ -74,7 +75,7 @@
                 <li>@Html.ActionLink("Outline", "Outline", "Project")</li>
                 <li>@Html.ActionLink("Task", "Task", "Project")</li>
                 <!--Added these links to the nav bar-->
-                <li class="active">@Html.ActionLink("Schedule", "Schedule", "Project")</li>      
+                <li class="active">@Html.ActionLink("Schedule", "Schedule", "Project")</li>
                 <li>@Html.ActionLink("Analytics", "Analytics", "Project")</li>
                 <li>@Html.ActionLink("Notifications", "Notifications", "Project")</li>
             </ul>
@@ -86,7 +87,7 @@
     <div class="col-md-12">
         <div class="well" style="color: #6e6e6e">
             <!----You Rock Beth, Wunda, Wunda, Wunda. . . Wunda Woman-->
-            
+
             <div id='calendar'>
             </div>
 
