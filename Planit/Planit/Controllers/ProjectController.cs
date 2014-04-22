@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Planit.Core;
+using Microsoft.AspNet.Identity;
 
 namespace Planit.Controllers
 {
@@ -18,7 +19,7 @@ namespace Planit.Controllers
 
         public ActionResult Outline()
         {
-
+            string blah = User.Identity.GetUserId();
             IEnumerable<Project> projects = BAL.DFS();
             return View(projects);
         }
