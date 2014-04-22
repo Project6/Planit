@@ -20,7 +20,7 @@
         bool LaterOn = false;
     }
 
-    @foreach (var item in Model)
+    @foreach (var item in ViewBag.BAL.TraverseByDueDate())
     {
         if(item.DueDate < DateTime.Today && Overdue == false)
                         {
@@ -73,7 +73,7 @@
         <tr>
             
             <td>
-                @Html.ActionLink((item.Title), "Details", new { id = item.ID })
+                <a href='@Url.Action("Details", "Project", new { id = item.ID })'>@item.Title</a>
             </td>
             
         </tr>

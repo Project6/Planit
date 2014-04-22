@@ -14,11 +14,12 @@ namespace Planit.Controllers
     {
         //private ProjectDBContext db = new ProjectDBContext();
         ProjectBusinessLayer BAL = new ProjectBusinessLayer(new ProjectDataLayer());
+       
         // GET: /Project/
 
         public ActionResult Outline()
         {
-
+            ViewBag.BAL = BAL;
             IEnumerable<Project> projects = BAL.DFS();
             return View(projects);
         }
@@ -33,6 +34,7 @@ namespace Planit.Controllers
         // GET: /Project/
         public ActionResult Task(string sortOrder)
         {
+            ViewBag.BAL = BAL;
             IEnumerable<Project> projects = BAL.TraverseByStartDate();
             ViewBag.DueDateSortParm = String.IsNullOrEmpty(sortOrder) ? "DueDate_desc" : "DueDate";
             ViewBag.DueDateSortParm = sortOrder == "DueDate" ? "DueDate_desc" : "DueDate";

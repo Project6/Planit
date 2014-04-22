@@ -55,7 +55,7 @@
                         <th></th>
                     </tr>
 
-                    @foreach (var item in Model)
+                    @foreach (var item in ViewBag.BAL.DFS())
                     {
                         <tr>
                             <td>
@@ -65,7 +65,8 @@
                                     <p style="display:inline;">-</p>
                                 }
 
-                                @Html.ActionLink((item.Title), "Details", new { id = item.ID })
+                                <a href='@Url.Action("Details", "Project", new { id = item.ID })'>@item.Title</a>
+
 
                                 &nbsp;|&nbsp;
                                 <a href='@Url.Action("Create", "Project", new { id = item.ID })'><span class="glyphicon glyphicon-plus" /></a>
