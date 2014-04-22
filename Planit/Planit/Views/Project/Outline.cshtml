@@ -33,23 +33,12 @@
     </div>
 </div>
 
+<div class="container">
 <div class="row">
-    <div class="col-md-3">
-    <div class=" well">
 
-        <div>
-            <!--*************1/3 Task view goes here******************-->
-            <!--Task Outline Toggle is redundent with the Navbar-->
-            <h2 style="color: #6e6e6e"">Tasks</h2>
+    
 
-            <div style=" overflow-x: hidden; overflow-y: auto; height: 532px; color: #6e6e6e"">
-                @Html.Partial("_Task", Model)
-            </div>
-        </div>
-    </div>
-</div>
-
-    <div class="col-md-9">
+    <div class="col-md-9 col-md-push-3">
         <div class="well">
             <!--it might be self evident that we are in the Outline View-->
             <h2 style="color: #6e6e6e">Outline</h2>
@@ -95,5 +84,21 @@
             </div>
         </div>
     </div>
+
+    <div class="col-md-3 col-md-pull-9">
+        <div class=" well">
+
+            <div>
+                <!--*************1/3 Task view goes here******************-->
+                <!--Task Outline Toggle is redundent with the Navbar-->
+                <h2 style="color: #6e6e6e" ">Tasks</h2>
+
+                <div style=" overflow-x: hidden; overflow-y: auto; height: 532px; color: #6e6e6e" ">
+                    @Html.Partial("_Task", Model)
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+    </div>
 

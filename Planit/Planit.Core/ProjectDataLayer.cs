@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace Planit.Core
@@ -36,8 +37,15 @@ namespace Planit.Core
 
         public void Update(Project project)
         {
-            Project projectOld = Find(project.ID);
-            db.Entry(projectOld).CurrentValues.SetValues(project);
+            //Project projectOld = Find(project.ID);
+            //db.Entry(projectOld).CurrentValues.SetValues(project);
+
+            db.Entry(project).State = EntityState.Modified;
+            db.Entry(project).Property(proj => proj.ChildrenStr).IsModified = false;
+            db.Entry(project).Property(proj => proj.Depth).IsModified = false;
+            db.Entry(project).Property(proj => proj.ParentID).IsModified = false;
+            db.Entry(project).Property(proj => proj.ParentTitle).IsModified = false;
+
             db.SaveChanges();
         }
 

@@ -24,8 +24,15 @@ namespace Planit.Core
             [Required]
             public string Title { get; set; }
             public string Note { get; set; }
+
+            [DataType(DataType.Date)]
+            [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+            [Display(Name = "Due Date")]
             public DateTime DueDate { get; set; }
 
+            [DataType(DataType.Date)]
+            [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+            [Display(Name = "Start Date")]
             public DateTime StartDate { get; set; }
 
             public int Status { get; set; }
