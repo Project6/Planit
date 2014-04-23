@@ -20,21 +20,23 @@ namespace Planit.Core
             public int Depth { get; set; }
 
             public int ParentID { get; set; }
+
+        [Display(Name = "Parent Title")]
             public string ParentTitle { get; set; } // commenting out until we need it
             [Required]
             public string Title { get; set; }
             public string Note { get; set; }
 
             [DataType(DataType.Date)]
-            [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+            [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = false)]
             [Display(Name = "Due Date")]
             public DateTime DueDate { get; set; }
 
             [DataType(DataType.Date)]
-            [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+           // [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = false)]
             [Display(Name = "Start Date")]
             public DateTime StartDate { get; set; }
-
+             [Range(0,100)]
             public int Status { get; set; }
 
             public String ChildrenStr { get; private set; }
@@ -79,13 +81,15 @@ namespace Planit.Core
             {
                 if (ChildrenStr.CompareTo("")==0)
                 {
-                ChildrenStr = child.ID.ToString();
+                    ChildrenStr = child.ID.ToString();
                 }
                 else
                 {
-                ChildrenStr = ChildrenStr + "," + child.ID;
+                    ChildrenStr = ChildrenStr + "," + child.ID;
                 }
+                child.UserID = this.UserID;
                 child.ParentID = this.ID;
+                child.ParentTitle = this.ParentTitle;
                 child.Depth = this.Depth + 1;
                 return child;
             }

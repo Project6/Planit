@@ -7,14 +7,21 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Planit.Core;
+using Microsoft.AspNet.Identity;
 
 namespace Planit.Controllers
 {
+    [Authorize]
     public class ProjectController : Controller
     {
-        //private ProjectDBContext db = new ProjectDBContext();
-        ProjectBusinessLayer BAL = new ProjectBusinessLayer(new ProjectDataLayer());
-       
+        ProjectBusinessLayer BAL;
+        public ProjectController()
+        {
+           string User = System.Web.HttpContext.Current.User.Identity.GetUserId();
+           string UserName = System.Web.HttpContext.Current.User.Identity.GetUserName();
+           BAL = new ProjectBusinessLayer(new ProjectDataLayer(User, UserName), User);
+        }
+
         // GET: /Project/
 
         public ActionResult Outline()
@@ -170,7 +177,7 @@ namespace Planit.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    BAL.Update(project);
+                    BAL.Edit(project);
                     return Redirect(returnUrl);
                 }
             }

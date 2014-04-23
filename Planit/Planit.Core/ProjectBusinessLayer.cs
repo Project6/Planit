@@ -3,35 +3,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
 
 namespace Planit.Core
 {
     public class ProjectBusinessLayer
     {
         #region Fields & Properties
-
+            string _UserId;
             public ProjectDataLayer _DAL {get; private set;}
-            public IEnumerable<Project> _Tree { get; private set; }
-          //  public List<Project> _List { get; private set; }
-        
+             
         #endregion
 
         #region Constructors
             
-            public ProjectBusinessLayer(ProjectDataLayer DAL)
+            public ProjectBusinessLayer(ProjectDataLayer DAL,string Userid)
             {
                 _DAL = DAL;
-                _Tree = DFS();
-               // _List = DAL.db.Projects.ToList<Project>();
+                _UserId = Userid;
             }
 
         #endregion 
 
         #region Methods
         
+            private IQueryable<Project> GetUserProjects()
+            {
+                var projects = from m in _DAL.GetProjects()
+                               where m.UserID == _UserId
+                               select m;
+                return projects;
+            }
+            
             public IEnumerable<Project> DFS()
             {
-                DFS(_DAL.Root);
                 return DFS(_DAL.Root);
             }
 
@@ -41,7 +46,6 @@ namespace Planit.Core
 
                 foreach (var child in getChildren(parent))
                 {
-                    //yield return child;
                     foreach (var grandchild in DFS(child))
                     {
                         yield return grandchild;
@@ -50,7 +54,7 @@ namespace Planit.Core
             }
             public IQueryable<Project> TraverseByDueDate()
             {
-                var projects = from m in _DAL.db.Projects
+                var projects = from m in GetUserProjects()
                                orderby m.DueDate
                                select m;
                 return projects;
@@ -62,11 +66,8 @@ namespace Planit.Core
                                select m;
                 return projects;
             }
-
-            // Adds Child to the DB and updates relationship
             public Project AddChild(Project child, Project parent)
             {
-                child.ParentTitle = parent.Title;
                 child = _DAL.Add(child); // Generates DB ID for child
                 child = parent.addChild(child); // adds id to parent.Children AND assigns child.ParentID to parent.ID
                 _DAL.Update(child); // updates child db reference with new ParentID
@@ -101,6 +102,11 @@ namespace Planit.Core
                 _DAL.Update(project);
             }
 
+            public void Edit(Project project)
+            {
+                _DAL.Edit(project);
+            }
+
             public Project Remove(Project project)
             {
                 Project parent = Find(project.ParentID);
@@ -120,17 +126,6 @@ namespace Planit.Core
 
                 return project;
             }
-
-           
-            //public List<Project> GetProjects()
-            //{
-            //    return _repository.GetProjects();
-            //}
-            //
-            //public void Remove(Project project)
-            //{ 
-            //    // remove
-            //} 
         
         #endregion
     }

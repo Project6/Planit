@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Data;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+
 
 namespace Planit.Core
 {
@@ -9,24 +15,36 @@ namespace Planit.Core
     {
         public Project Root { get; private set; }
         public ProjectDbContext db = new ProjectDbContext("ProjectDB");
-        public ProjectDataLayer()
+       
+        public ProjectDataLayer(string Userid, string UserName)
         {
             try
             {
                 Root = db.Projects
-                                    .Where(p => p.Title == "Your Tasks")
+                                    .Where(p => p.Depth == 0)
+                                    .Where(u=> u.UserID == Userid)
                                     .Select(p => p)
                                     .First<Project>();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Root = new Project() { Title = "Your Tasks", Depth = 0, DueDate = new DateTime(2014, 4, 15), StartDate = new DateTime(2014, 4, 15), Status = 0, ParentID = 0 };
+                Root = new Project() {  Title = UserName + "\'s Tasks", 
+                                        Depth = 0, 
+                                        DueDate = new DateTime(2014, 4, 15), 
+                                        StartDate = new DateTime(2014, 4, 15), 
+                                        Status = 0, 
+                                        ParentID = 0 , 
+                                        UserID = Userid};
                 Root = Add(Root);
             }
-            //SeedRoot();
-            //Seed();
         }
 
+        public IQueryable<Project> GetProjects()
+        {
+            var projects = from m in db.Projects
+                            select m;
+            return projects;
+        }
         
         public Project Add(Project project)
         {
@@ -35,12 +53,13 @@ namespace Planit.Core
             return returnedProject;
         }
 
-        public void Update(Project project)
+        public void Edit(Project project)
         {
             //Project projectOld = Find(project.ID);
             //db.Entry(projectOld).CurrentValues.SetValues(project);
 
             db.Entry(project).State = EntityState.Modified;
+            db.Entry(project).Property(proj => proj.UserID).IsModified = false;
             db.Entry(project).Property(proj => proj.ChildrenStr).IsModified = false;
             db.Entry(project).Property(proj => proj.Depth).IsModified = false;
             db.Entry(project).Property(proj => proj.ParentID).IsModified = false;
@@ -49,11 +68,19 @@ namespace Planit.Core
             db.SaveChanges();
         }
 
+        public void Update(Project project)
+        {
+            Project projectOld = Find(project.ID);
+            db.Entry(projectOld).CurrentValues.SetValues(project);
+            db.SaveChanges();
+        }
+
         public Project Find(int? id)
         {
             return db.Projects.Find(id);
         }
-        public Project Remove(Project project) //WHY?
+        
+        public Project Remove(Project project)
         {
             Project removed = db.Projects.Remove(project);
             db.SaveChanges();
@@ -235,38 +262,6 @@ namespace Planit.Core
         {
             Root = new Project() { Title = "Devin's Task's", Depth = 0, DueDate = new DateTime(2020, 01, 01), StartDate = new DateTime(2014, 3, 31) };
         }
-
-        //public List<Project> GetProjects()
-        //{
-        //    List<Project> projectList = new List<Project>();
-
-
-
-        //    return projectList;
-
-        //}
-
-        //projectList.Add(new Project(001, "9999", 1, "Chores", new DateTime(),new DateTime(2014, 12, 31)));
-        //projectList.Add(new Project(002, "9999", 1, "School", new DateTime(),new DateTime(2014, 5, 10)));
-        //projectList.Add(new Project(003, "9999", 1, "Work", new DateTime(),new DateTime(2014, 12, 31)));
-
-        ////Chores >...
-        //projectList.Add(new Project(004, "9999", 2, "Gardening", new DateTime(2014,04,01),new DateTime(2014, 5, 28)));
-        //projectList.Add(new Project(005, "9999", 2, "Bills", new DateTime(),new DateTime(2014, 12, 30)));
-
-        ////Gardening > ...
-        //projectList.Add(new Project(006, "9999", 3, "Gather Supplies", new DateTime(2014, 04,01),new DateTime(2014, 4, 10)));
-        //projectList.Add(new Project(007, "9999", 3, "Prep", new DateTime(2014, 04, 11),new DateTime(2014, 04, 20)));
-        //projectList.Add(new Project(008, "9999", 3, "Plant", new DateTime(2014, 04, 21),new DateTime(2014, 5, 01)));
-
-        //// School > ..
-        //projectList.Add(new Project(009, "9999", 2, "CSC201j", new DateTime(),new DateTime(2014, 5, 10)));
-        //projectList.Add(new Project(010, "9999", 2, "CSC202j", new DateTime(),new DateTime(2014, 5, 10)));
-
-        //// CSC201j > ..
-        //projectList.Add(new Project(011, "9999", 2, "Reading", new DateTime(),new DateTime(2014, 5, 10)));
-        //projectList.Add(new Project(012, "9999", 2, "Labs", new DateTime(),new DateTime(2014, 5, 10
-
         
     }
 }
