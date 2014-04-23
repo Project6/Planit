@@ -253,6 +253,7 @@
     <Content Include="Views\Shared\_Task.cshtml" />
     <Content Include="Views\Project\Analytics.cshtml" />
     <Content Include="Views\Project\Notifications.cshtml" />
+    <Content Include="Views\Project\Complete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
