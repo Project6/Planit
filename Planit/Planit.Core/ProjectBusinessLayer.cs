@@ -10,11 +10,9 @@ namespace Planit.Core
     public class ProjectBusinessLayer
     {
         #region Fields & Properties
-        string _User;
+            string _UserId;
             public ProjectDataLayer _DAL {get; private set;}
-            public IEnumerable<Project> _Tree { get; private set; }
-          //  public List<Project> _List { get; private set; }
-        
+             
         #endregion
 
         #region Constructors
@@ -22,9 +20,7 @@ namespace Planit.Core
             public ProjectBusinessLayer(ProjectDataLayer DAL,string Userid)
             {
                 _DAL = DAL;
-                _User = Userid;
-                _Tree = DFS();
-               // _List = DAL.db.Projects.ToList<Project>();
+                _UserId = Userid;
             }
 
         #endregion 
@@ -34,7 +30,7 @@ namespace Planit.Core
             private IQueryable<Project> GetUserProjects()
             {
                 var projects = from m in _DAL.GetProjects()
-                               where m.UserID == _User
+                               where m.UserID == _UserId
                                select m;
                 return projects;
             }
@@ -69,7 +65,7 @@ namespace Planit.Core
             public IQueryable<Project> TraverseByStartDate()
             {
                 var projects = from m in _DAL.db.Projects
-                               where m.UserID == _User
+                               where m.UserID == _UserId
                                orderby m.StartDate
                                select m;
                 return projects;
