@@ -1,0 +1,87 @@
+﻿@model Planit.Core.Project
+
+@{
+    ViewBag.Title = "Complete";
+}
+<div>
+    <div class="container">
+        <div class="navbar-header navbar-fixed-top">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!--Disabled
+            @Html.ActionLink("Tree", "Outline", "Task", null, new { @class = "navbar-brand" })
+                -->
+        </div>
+        <!--Not sure how to make the inner nav bar like the outer nav bar that goes across the outer nav bar length-->
+        <div>
+            <!--pagination makes the -->
+            <ul class="navbar nav pagination ">
+                <li>@Html.ActionLink("Dashboard", "Dashboard", "Project")</li>
+                <li>@Html.ActionLink("Tree", "Tree", "Project")</li>
+                <li>@Html.ActionLink("Outline", "Outline", "Project")</li>
+                <li>@Html.ActionLink("Task", "Task", "Project")</li>
+                <!--Added these links to the nav bar-->
+                <li>@Html.ActionLink("Schedule", "Schedule", "Project")</li>
+
+                <li>@Html.ActionLink("Analytics", "Analytics", "Project")</li>
+                <li>@Html.ActionLink("Notifications", "Notifications", "Project")</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<h2 style="color: #e6e6e6">Complete</h2>
+
+<h3 style="color: #Ec6A35">Are you sure you want to complete this?</h3>
+<div>
+    <h4 style="color: #e6e6e6">Project</h4>
+    <hr />
+    <dl class="dl-horizontal" style="color: #e6e6e6">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DueDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DueDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        //where is default for the delete button, so that that it goes back from which view we came from.  But we don't where that is.
+        //true also for the other edit buttons.
+        <div class="form-actions no-color">
+            <input type="submit" value="Complete" class="btn btn-default" /> |
+            <a href="javascript:void(0);" onclick="history.go(-1);">Back to List</a>
+        </div>
+        <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+
+    }
+</div>
