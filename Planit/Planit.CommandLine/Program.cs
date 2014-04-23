@@ -5,16 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using Planit.Core;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity;
+
 
 namespace Planit.CommandLine
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
-            ProjectBusinessLayer BAL = new ProjectBusinessLayer(new ProjectDataLayer());
-
-            //Console.WriteLine( BAL.Find(11).Description );
+            string User = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            ProjectBusinessLayer BAL = new ProjectBusinessLayer(new ProjectDataLayer(User),User);
+           //Console.WriteLine( BAL.Find(11).Description );
             foreach( Project p in BAL.DFS())
                 Console.WriteLine(p.Title);
 
