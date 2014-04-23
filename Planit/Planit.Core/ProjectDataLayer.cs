@@ -41,6 +41,12 @@ namespace Planit.Core
             //Seed();
         }
 
+            public IQueryable<Project> GetProjects()
+            {
+                var projects = from m in db.Projects
+                               select m;
+                return projects;
+            }
         
         public Project Add(Project project)
         {

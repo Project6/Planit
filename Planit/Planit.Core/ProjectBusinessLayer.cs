@@ -31,6 +31,14 @@ namespace Planit.Core
 
         #region Methods
         
+            private IQueryable<Project> GetUserProjects()
+            {
+                var projects = from m in _DAL.GetProjects()
+                               where m.UserID == _User
+                               select m;
+                return projects;
+            }
+            
             public IEnumerable<Project> DFS()
             {
                
@@ -53,7 +61,7 @@ namespace Planit.Core
             }
             public IQueryable<Project> TraverseByDueDate()
             {
-                var projects = from m in _DAL.db.Projects
+                var projects = from m in GetUserProjects()
                                where m.UserID == _User
                                orderby m.DueDate
                                select m;
