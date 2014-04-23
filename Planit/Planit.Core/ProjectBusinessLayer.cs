@@ -65,7 +65,6 @@ namespace Planit.Core
             public IQueryable<Project> TraverseByStartDate()
             {
                 var projects = from m in _DAL.db.Projects
-                               where m.UserID == _UserId
                                orderby m.StartDate
                                select m;
                 return projects;
