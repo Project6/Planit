@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Data;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+
 
 namespace Planit.Core
 {
@@ -9,18 +15,20 @@ namespace Planit.Core
     {
         public Project Root { get; private set; }
         public ProjectDbContext db = new ProjectDbContext("ProjectDB");
-        public ProjectDataLayer()
+       
+            public ProjectDataLayer(string Userid, string UserName)
         {
-            try
+           try
             {
                 Root = db.Projects
-                                    .Where(p => p.Title == "Your Tasks")
+                                    .Where(p => p.Depth == 0)
+                                    .Where(u=> u.UserID == Userid)
                                     .Select(p => p)
                                     .First<Project>();
             }
             catch (Exception e)
             {
-                Root = new Project() { Title = "Your Tasks", Depth = 0, DueDate = new DateTime(2014, 4, 15), StartDate = new DateTime(2014, 4, 15), Status = 0, ParentID = 0 };
+                Root = new Project() { Title = UserName + "\'s Tasks", Depth = 0, DueDate = new DateTime(2014, 4, 15), StartDate = new DateTime(2014, 4, 15), Status = 0, ParentID = 0 , UserID = Userid};
                 Root = Add(Root);
             }
             //SeedRoot();
@@ -35,12 +43,13 @@ namespace Planit.Core
             return returnedProject;
         }
 
-        public void Update(Project project)
+        public void Edit(Project project)
         {
             //Project projectOld = Find(project.ID);
             //db.Entry(projectOld).CurrentValues.SetValues(project);
 
             db.Entry(project).State = EntityState.Modified;
+            db.Entry(project).Property(proj => proj.UserID).IsModified = false;
             db.Entry(project).Property(proj => proj.ChildrenStr).IsModified = false;
             db.Entry(project).Property(proj => proj.Depth).IsModified = false;
             db.Entry(project).Property(proj => proj.ParentID).IsModified = false;
@@ -49,6 +58,13 @@ namespace Planit.Core
             db.SaveChanges();
         }
 
+
+        public void Update(Project project)
+        {
+            Project projectOld = Find(project.ID);
+            db.Entry(projectOld).CurrentValues.SetValues(project);
+            db.SaveChanges();
+        }
         public Project Find(int? id)
         {
             return db.Projects.Find(id);

@@ -11,15 +11,23 @@ using Microsoft.AspNet.Identity;
 
 namespace Planit.Controllers
 {
+    [Authorize]
     public class ProjectController : Controller
     {
+        ProjectBusinessLayer BAL;
+        public ProjectController()
+        {
+           string User = System.Web.HttpContext.Current.User.Identity.GetUserId();
+           string UserName = System.Web.HttpContext.Current.User.Identity.GetUserName();
+           BAL = new ProjectBusinessLayer(new ProjectDataLayer(User, UserName), User);
+        }
+
         //private ProjectDBContext db = new ProjectDBContext();
-        ProjectBusinessLayer BAL = new ProjectBusinessLayer(new ProjectDataLayer());
+        //ProjectBusinessLayer BAL = new ProjectBusinessLayer(new ProjectDataLayer(user),user);
         // GET: /Project/
 
         public ActionResult Outline()
         {
-            string blah = User.Identity.GetUserId();
             IEnumerable<Project> projects = BAL.DFS();
             return View(projects);
         }
@@ -169,7 +177,7 @@ namespace Planit.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    BAL.Update(project);
+                    BAL.Edit(project);
                     return Redirect(returnUrl);
                 }
             }

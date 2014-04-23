@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
 
 namespace Planit.Core
 {
     public class ProjectBusinessLayer
     {
         #region Fields & Properties
-
+        string _User;
             public ProjectDataLayer _DAL {get; private set;}
             public IEnumerable<Project> _Tree { get; private set; }
           //  public List<Project> _List { get; private set; }
@@ -18,9 +19,10 @@ namespace Planit.Core
 
         #region Constructors
             
-            public ProjectBusinessLayer(ProjectDataLayer DAL)
+            public ProjectBusinessLayer(ProjectDataLayer DAL,string Userid)
             {
                 _DAL = DAL;
+                _User = Userid;
                 _Tree = DFS();
                // _List = DAL.db.Projects.ToList<Project>();
             }
@@ -31,6 +33,7 @@ namespace Planit.Core
         
             public IEnumerable<Project> DFS()
             {
+               
                 DFS(_DAL.Root);
                 return DFS(_DAL.Root);
             }
@@ -51,6 +54,7 @@ namespace Planit.Core
             public IQueryable<Project> TraverseByDueDate()
             {
                 var projects = from m in _DAL.db.Projects
+                               where m.UserID == _User
                                orderby m.DueDate
                                select m;
                 return projects;
@@ -58,6 +62,7 @@ namespace Planit.Core
             public IQueryable<Project> TraverseByStartDate()
             {
                 var projects = from m in _DAL.db.Projects
+                               where m.UserID == _User
                                orderby m.StartDate
                                select m;
                 return projects;
@@ -67,6 +72,7 @@ namespace Planit.Core
             public Project AddChild(Project child, Project parent)
             {
                 child.ParentTitle = parent.Title;
+                child.UserID = _User;
                 child = _DAL.Add(child); // Generates DB ID for child
                 child = parent.addChild(child); // adds id to parent.Children AND assigns child.ParentID to parent.ID
                 _DAL.Update(child); // updates child db reference with new ParentID
@@ -99,6 +105,11 @@ namespace Planit.Core
             public void Update(Project project)
             {
                 _DAL.Update(project);
+            }
+
+            public void Edit(Project project)
+            {
+                _DAL.Edit(project);
             }
 
             public Project Remove(Project project)
