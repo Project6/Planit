@@ -49,7 +49,8 @@ namespace Planit.Controllers
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Tree", "Project");
+
                 }
                 else
                 {

@@ -105,6 +105,10 @@ namespace Planit.Core
 
             public Project Remove(Project project)
             {
+                // if root node
+                if (project == _DAL.Root)
+                    return _DAL.Remove(project);
+
                 Project parent = Find(project.ParentID);
                 parent.removeChildRef(project, parent);
                 _DAL.Update(parent);
