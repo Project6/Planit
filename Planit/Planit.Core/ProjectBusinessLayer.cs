@@ -37,8 +37,6 @@ namespace Planit.Core
             
             public IEnumerable<Project> DFS()
             {
-               
-                DFS(_DAL.Root);
                 return DFS(_DAL.Root);
             }
 
