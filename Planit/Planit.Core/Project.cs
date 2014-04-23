@@ -81,13 +81,15 @@ namespace Planit.Core
             {
                 if (ChildrenStr.CompareTo("")==0)
                 {
-                ChildrenStr = child.ID.ToString();
+                    ChildrenStr = child.ID.ToString();
                 }
                 else
                 {
-                ChildrenStr = ChildrenStr + "," + child.ID;
+                    ChildrenStr = ChildrenStr + "," + child.ID;
                 }
+                child.UserID = this.UserID;
                 child.ParentID = this.ID;
+                child.ParentTitle = this.ParentTitle;
                 child.Depth = this.Depth + 1;
                 return child;
             }
