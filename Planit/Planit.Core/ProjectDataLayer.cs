@@ -26,9 +26,15 @@ namespace Planit.Core
                                     .Select(p => p)
                                     .First<Project>();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Root = new Project() { Title = UserName + "\'s Tasks", Depth = 0, DueDate = new DateTime(2014, 4, 15), StartDate = new DateTime(2014, 4, 15), Status = 0, ParentID = 0 , UserID = Userid};
+                Root = new Project() {  Title = UserName + "\'s Tasks", 
+                                        Depth = 0, 
+                                        DueDate = new DateTime(2014, 4, 15), 
+                                        StartDate = new DateTime(2014, 4, 15), 
+                                        Status = 0, 
+                                        ParentID = 0 , 
+                                        UserID = Userid};
                 Root = Add(Root);
             }
             //SeedRoot();
