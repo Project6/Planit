@@ -62,7 +62,6 @@ namespace Planit.Core
             public IQueryable<Project> TraverseByDueDate()
             {
                 var projects = from m in GetUserProjects()
-                               where m.UserID == _User
                                orderby m.DueDate
                                select m;
                 return projects;
