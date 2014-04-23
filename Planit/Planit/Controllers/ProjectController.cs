@@ -116,6 +116,7 @@ namespace Planit.Controllers
             }
             return View(project);
         }
+        
 
         // GET: /Project/Create
         public ActionResult Create()
@@ -150,6 +151,7 @@ namespace Planit.Controllers
             return View(child);
         }
 
+        
         // GET: /Project/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -187,6 +189,34 @@ namespace Planit.Controllers
             }
             return View(project);
         }
+
+        // GET: /Project/Complete/
+        public ActionResult Complete(int? id)
+        {
+            ViewBag.returnUrl = Request.UrlReferrer;
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Project project = BAL.Find(id);
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+            return View(project);
+        }
+
+        //POST: /Project/Complete/
+        [HttpPost, ActionName("Complete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult CompleteConfirmed(int id, string returnUrl)
+        {
+            BAL.Complete(BAL.Find(id));
+            return Redirect(returnUrl);
+        }
+
+
 
         // GET: /Project/Delete/5
         public ActionResult Delete(int? id)
