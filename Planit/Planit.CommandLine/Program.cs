@@ -15,11 +15,11 @@ namespace Planit.CommandLine
         
         static void Main(string[] args)
         {
-            string User = System.Web.HttpContext.Current.User.Identity.GetUserId();
-            ProjectBusinessLayer BAL = new ProjectBusinessLayer(new ProjectDataLayer(User),User);
+            //string User = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            //ProjectBusinessLayer BAL = new ProjectBusinessLayer(new ProjectDataLayer(User),User);
            //Console.WriteLine( BAL.Find(11).Description );
-            foreach( Project p in BAL.DFS())
-                Console.WriteLine(p.Title);
+            //foreach( Project p in BAL.DFS())
+            //    Console.WriteLine(p.Title);
 
 
             //using (ProjectDbContext db = new ProjectDbContext())
