@@ -46,7 +46,6 @@ namespace Planit.Core
 
                 foreach (var child in getChildren(parent))
                 {
-                    //yield return child;
                     foreach (var grandchild in DFS(child))
                     {
                         yield return grandchild;
@@ -67,8 +66,6 @@ namespace Planit.Core
                                select m;
                 return projects;
             }
-
-            // Adds Child to the DB and updates relationship
             public Project AddChild(Project child, Project parent)
             {
                 child = _DAL.Add(child); // Generates DB ID for child
@@ -129,17 +126,6 @@ namespace Planit.Core
 
                 return project;
             }
-
-           
-            //public List<Project> GetProjects()
-            //{
-            //    return _repository.GetProjects();
-            //}
-            //
-            //public void Remove(Project project)
-            //{ 
-            //    // remove
-            //} 
         
         #endregion
     }
