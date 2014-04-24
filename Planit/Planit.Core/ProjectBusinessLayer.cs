@@ -27,6 +27,8 @@ namespace Planit.Core
             {
                 var projects = from m in _DAL.GetProjects()
                                where m.UserID == _UserId
+                                    &&
+                                    m.Status < 100
                                select m;
                 return projects;
             }
@@ -38,13 +40,15 @@ namespace Planit.Core
 
             public IEnumerable<Project> DFS(Project parent)
             {
-                yield return parent;
+                if(parent.Status < 100)
+                    yield return parent;
 
                 foreach (var child in getChildren(parent))
                 {
                     foreach (var grandchild in DFS(child))
                     {
-                        yield return grandchild;
+                        if(grandchild.Status < 100)
+                            yield return grandchild;
                     }
                 }
             }
@@ -105,6 +109,10 @@ namespace Planit.Core
 
             public Project Remove(Project project)
             {
+                // if root node
+                if (project == _DAL.Root)
+                    return _DAL.Remove(project);
+
                 Project parent = Find(project.ParentID);
                 parent.removeChildRef(project, parent);
                 _DAL.Update(parent);
@@ -122,8 +130,27 @@ namespace Planit.Core
 
                 return project;
             }
+
+            public Project Complete(Project project)
+            {
+                List<Project> list = new List<Project>();
+
+                foreach (Project p in DFS(project))
+                {
+                    list.Add(p);
+                }
+
+                foreach (Project p in list)
+                {
+                    p.Status = 100;
+                    _DAL.Edit(p);
+                }
+                return project;
+            }
         
         #endregion
+
+
     }
 
 }

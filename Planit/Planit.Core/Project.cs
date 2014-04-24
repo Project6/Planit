@@ -89,7 +89,7 @@ namespace Planit.Core
                 }
                 child.UserID = this.UserID;
                 child.ParentID = this.ID;
-                child.ParentTitle = this.ParentTitle;
+                child.ParentTitle = this.Title;
                 child.Depth = this.Depth + 1;
                 return child;
             }
