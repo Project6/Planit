@@ -22,12 +22,14 @@ namespace Planit.Core
             }
             catch (Exception)
             {
-                Root = new Project() {  Title = UserName + "\'s Tasks", 
+                String UserStr = UserName + "s Tasks";
+                Root = new Project() {  Title = UserStr, 
                                         Depth = 0, 
                                         DueDate = new DateTime(2014, 4, 15), 
                                         StartDate = new DateTime(2014, 4, 15), 
                                         Status = 0, 
                                         ParentID = 0 , 
+                                        Note = "Click on the box then select + to create a project",
                                         UserID = Userid};
                 Root = Add(Root);
             }
