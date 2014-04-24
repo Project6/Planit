@@ -86,9 +86,10 @@
     </dl>
 </div><input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
 <p>
+    @*possible future feature to add buttons to details view
     @Html.ActionLink("Add Child", "Create", new { id = Model.ID }) |
     @Html.ActionLink("Delete", "Delete", new { id = Model.ID }) |
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |*@
     <a href="javascript:void(0);" onclick="history.go(-1);">Back to List</a>
  
 </p>
