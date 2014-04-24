@@ -23,7 +23,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Your Projects", "Tree", "Project", null, new { @class = "navbar-brand" })
+                <!--Backlog item: make Your Projects on top navbar stand out, not functioning correctly ATM-->
+                <!--<a class="navbar-brand" style="color: #fc6b35" href="@Url.Action("Tree", "Project", "Project")"><h3>Your Projects</h3></a> -->
+
+                @Html.ActionLink("Your Projects", "Tree", "Project", null, new { @style="color: #fc6b35", @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
