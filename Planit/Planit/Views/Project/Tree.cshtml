@@ -23,6 +23,7 @@
         var maximumId = 500;
         var options = new primitives.orgdiagram.Config();
         var items;
+        var noteflag = 0;
         var newItem ;
         var items = [ ];
         @foreach(var item in Model)
@@ -31,7 +32,7 @@
                  @:if('@item.ParentID' == '0') //needed to make javascript implementation compatible with Project Model
                  @: {                           //specifically, project model has int for parentid and sets root to zero
                  @: var headparent =  0 ;
-                 @: newItem.parent =  null ;
+                 @: newItem.parent = null;
                  @: } 
               @:items.push(newItem);
              }
@@ -102,14 +103,10 @@
                     break;
             }
         };
-
         jQuery("#basicdiagram2").orgDiagram(options);
 
-        $(window).resize(function () {
-            onWindowResize();
-        });
+       });
 
-    });
 
     function getSubItemsForParent(items, parentItem) {
         var children = {},

@@ -175,6 +175,7 @@ namespace Planit.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,UserID,Depth,ParentID,ParentTitle,Title,Note,DueDate,StartDate,Status,ChildrenStr")] Project project, string returnUrl)
         {
+            project = BAL.Find(project.ID);
             try
             {
                 if (ModelState.IsValid)
