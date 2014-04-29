@@ -55,7 +55,7 @@ namespace Planit.Core
             public IQueryable<Project> TraverseByDueDate()
             {
                 var projects = from m in GetUserProjects()
-                               orderby m.DueDate
+                               orderby m.DueDate descending
                                select m;
                 return projects;
             }

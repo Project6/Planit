@@ -31,51 +31,45 @@ namespace Planit.Controllers
             return View(projects);
         }
 
-        public ActionResult _Outline()
-        {
-
-            IEnumerable<Project> projects = BAL.TraverseByDueDate();
-            return View(projects);
-        }
-
+       
         // GET: /Project/
         public ActionResult Task(string sortOrder)
         {
             ViewBag.BAL = BAL;
-            IEnumerable<Project> projects = BAL.TraverseByStartDate();
-            ViewBag.DueDateSortParm = String.IsNullOrEmpty(sortOrder) ? "DueDate_desc" : "DueDate";
-            ViewBag.DueDateSortParm = sortOrder == "DueDate" ? "DueDate_desc" : "DueDate";
-            ViewBag.StartDateSortParm = sortOrder == "StartDate" ? "StartDate_desc" : "StartDate";
-            ViewBag.StatusSortParm = sortOrder == "Status" ? "Status_desc" : "Status";
-            ViewBag.TitleSortParm = sortOrder == "Title" ? "Title_desc" : "Title";
+            IEnumerable<Project> projects = BAL.TraverseByDueDate();
+            //ViewBag.DueDateSortParm = String.IsNullOrEmpty(sortOrder) ? "DueDate_desc" : "DueDate";
+            //ViewBag.DueDateSortParm = sortOrder == "DueDate" ? "DueDate_desc" : "DueDate";
+            //ViewBag.StartDateSortParm = sortOrder == "StartDate" ? "StartDate_desc" : "StartDate";
+            //ViewBag.StatusSortParm = sortOrder == "Status" ? "Status_desc" : "Status";
+            //ViewBag.TitleSortParm = sortOrder == "Title" ? "Title_desc" : "Title";
 
-            switch (sortOrder)
-            {
-                case "DueDate_desc":
-                    projects = projects.OrderByDescending(p => p.DueDate);
-                    break;
-                case "DueDate":
-                    projects = projects.OrderBy(p => p.DueDate);
-                    break;
-                case "StartDate":
-                    projects = projects.OrderBy(p => p.StartDate);
-                    break;
-                case "Status_desc":
-                    projects = projects.OrderByDescending(p => p.Status);
-                    break;
-                case "Status":
-                    projects = projects.OrderBy(p => p.Status);
-                    break;
-                case "Title_desc":
-                    projects = projects.OrderByDescending(p => p.Title);
-                    break;
-                case "Title":
-                    projects = projects.OrderBy(p => p.Title);
-                    break;
-                default:
-                    projects = projects.OrderBy(p => p.DueDate);
-                    break;
-            }
+            //switch (sortOrder)
+            //{
+            //    case "DueDate_desc":
+            //        projects = projects.OrderByDescending(p => p.DueDate);
+            //        break;
+            //    case "DueDate":
+            //        projects = projects.OrderBy(p => p.DueDate);
+            //        break;
+            //    case "StartDate":
+            //        projects = projects.OrderBy(p => p.StartDate);
+            //        break;
+            //    case "Status_desc":
+            //        projects = projects.OrderByDescending(p => p.Status);
+            //        break;
+            //    case "Status":
+            //        projects = projects.OrderBy(p => p.Status);
+            //        break;
+            //    case "Title_desc":
+            //        projects = projects.OrderByDescending(p => p.Title);
+            //        break;
+            //    case "Title":
+            //        projects = projects.OrderBy(p => p.Title);
+            //        break;
+            //    default:
+            //        projects = projects.OrderBy(p => p.DueDate);
+            //        break;
+            //}
             return View(projects.ToList());
 
         }
