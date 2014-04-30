@@ -33,7 +33,7 @@ namespace Planit.Controllers
 
        
         // GET: /Project/
-        public ActionResult Task(string sortOrder)
+        public ActionResult Task()
         {
             ViewBag.BAL = BAL;
             IEnumerable<Project> projects = BAL.TraverseByDueDate();
@@ -169,7 +169,7 @@ namespace Planit.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,UserID,Depth,ParentID,ParentTitle,Title,Note,DueDate,StartDate,Status,ChildrenStr")] Project project, string returnUrl)
         {
-            project = BAL.Find(project.ID);
+           // project = BAL.Find(project.ID);
             try
             {
                 if (ModelState.IsValid)

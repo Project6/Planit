@@ -46,11 +46,12 @@ namespace Planit.Models
     public class RegisterViewModel
     {
         [Required]
+        [StringLength(20, ErrorMessage = "The {0} must be at least {2} and no more than 20 characters long.", MinimumLength = 3)]
         [Display(Name = "User name")]
         public string UserName { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(20, ErrorMessage = "The {0} must be at least {2}  and no more than 20 characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }

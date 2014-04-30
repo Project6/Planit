@@ -33,13 +33,13 @@ namespace Planit.Core
             public DateTime DueDate { get; set; }
 
             [DataType(DataType.Date)]
-           // [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = false)]
+        
             [Display(Name = "Start Date")]
             public DateTime StartDate { get; set; }
              [Range(0,100)]
             public int Status { get; set; }
 
-            public String ChildrenStr { get; private set; }
+            public String ChildrenStr { get; set; }
 
         #endregion 
 

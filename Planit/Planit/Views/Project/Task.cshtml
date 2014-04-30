@@ -48,8 +48,19 @@
             <div style=" overflow-x: hidden; overflow-y: auto; height: 532px;">
                 <table class="table" style="color: #6e6e6e">
                     <tr>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DueDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </th>
+
                         
-                        <th>  
+                        @*<th>  
                             @Html.ActionLink("Title", "Task", new { sortOrder = ViewBag.TitleSortParm })
                         </th>
                         <th>
@@ -57,7 +68,7 @@
                         </th>
                         <th>
                             @Html.ActionLink("Status", "Task", new { sortOrder = ViewBag.StatusSortParm })
-                        </th>
+                        </th>*@
                         <th></th>
                     </tr>
                     @{
