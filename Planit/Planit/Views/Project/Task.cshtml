@@ -116,7 +116,7 @@
                             </tr>
                         }
 
-                        if (item.DueDate == DateTime.Today.AddDays(2) && ThisWeek == false)
+                        if (item.DueDate >= DateTime.Today.AddDays(2) && item.DueDate <= DateTime.Today.AddDays(7) && ThisWeek == false)
                         {
                             ThisWeek = true;
                             <tr style="background-color:lightgray">
@@ -127,7 +127,7 @@
                             </tr>
                         }
 
-                        if (item.DueDate == DateTime.Today.AddDays(7) && NextWeek == false)
+                        if (item.DueDate > DateTime.Today.AddDays(7) && item.DueDate <= DateTime.Today.AddDays(14) && NextWeek == false)
                         {
                             NextWeek = true;
                             <tr style="background-color:lightgray">
@@ -138,7 +138,7 @@
                             </tr>
                         }
 
-                         if (item.DueDate > DateTime.Today.AddDays(7) && LaterOn == false)
+                         if (item.DueDate > DateTime.Today.AddDays(14) && LaterOn == false)
                         {
                             LaterOn = true;
                             <tr style="background-color:lightgray">
