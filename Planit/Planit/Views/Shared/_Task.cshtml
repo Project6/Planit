@@ -22,19 +22,25 @@
 
     @foreach (var item in ViewBag.BAL.TraverseByDueDate())
     {
-        if(item.DueDate < DateTime.Today && Overdue == false)
+                  if (item.DueDate < DateTime.Today && Overdue == false)
                         {
                             Overdue = true;
                             <tr style="background-color:lightgray">
-                                <th style="width: inherit; font-size: smaller;">Overdue</th>
+                                <th style="width:inherit;font-size:smaller;">Overdue</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         }
-                        
-                        if(item.DueDate == DateTime.Today && Today == false)
+
+                        if (item.DueDate == DateTime.Today && Today == false)
                         {
                             Today = true;
                             <tr style="background-color:lightgray">
                                 <th style="width: inherit; font-size: smaller;">Today</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         }
 
@@ -43,30 +49,42 @@
                             Tomorrow = true;
                             <tr style="background-color:lightgray">
                                 <th style="width: inherit; font-size: smaller;">Tomorrow</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         }
-                        
-                        if (item.DueDate == DateTime.Today.AddDays(2) && ThisWeek == false)
+
+                        if (item.DueDate >= DateTime.Today.AddDays(2) && item.DueDate <= DateTime.Today.AddDays(7) && ThisWeek == false)
                         {
                             ThisWeek = true;
                             <tr style="background-color:lightgray">
                                 <th style="width: inherit; font-size: smaller;">This Week</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         }
-                        
-                        if (item.DueDate == DateTime.Today.AddDays(7) && NextWeek == false)
+
+                        if (item.DueDate > DateTime.Today.AddDays(7) && item.DueDate <= DateTime.Today.AddDays(14) && NextWeek == false)
                         {
                             NextWeek = true;
                             <tr style="background-color:lightgray">
                                 <th style="width: inherit; font-size: smaller;">Next Week</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         }
-                        
-                        if (item.DueDate > DateTime.Today.AddDays(7) && LaterOn == false)
+
+                         if (item.DueDate > DateTime.Today.AddDays(14) && LaterOn == false)
                         {
                             LaterOn = true;
                             <tr style="background-color:lightgray">
                                 <th style="width: inherit; font-size: smaller;">Later on</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         }
         
