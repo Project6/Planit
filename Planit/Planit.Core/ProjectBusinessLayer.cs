@@ -23,6 +23,12 @@ namespace Planit.Core
 
         #region Methods
         
+            /// <summary>
+            ///     Returns an <see cref="IQueryable"/> of <see cref="Project"/>s for the current user.
+            /// </summary>
+            /// <returns>
+            ///     Returns an <see cref="IQueryable"/> collection of <see cref="Project"/>'s.
+            /// </returns>
             private IQueryable<Project> GetUserProjects()
             {
                 var projects = from m in _DAL.GetProjects()
@@ -33,11 +39,24 @@ namespace Planit.Core
                 return projects;
             }
             
+            /// <summary>
+        ///     Performs a depth first search of the Root Node.   
+        /// </summary>
+        /// <returns>
+        ///     An <see cref="IEnumerable"/> as a results of a depth first search of the Root Node.
+        /// </returns>
             public IEnumerable<Project> DFS()
             {
                 return DFS(_DAL.Root);
             }
 
+            /// <summary>
+            ///     Performs a depth first search of <paramref name="parent"/>
+            /// </summary>
+            /// <param name="parent">parent</param>
+            /// <returns>
+            ///     An <see cref="IEnumerable"/> as a results of a depth first search of <paramref name="parent"/>.
+            /// </returns>
             public IEnumerable<Project> DFS(Project parent)
             {
                 if(parent.Status < 100)
@@ -52,6 +71,13 @@ namespace Planit.Core
                     }
                 }
             }
+            
+            /// <summary>
+            ///     Performs a traversal by the <see cref="Project"/>'s <c>DueDate</c> field.
+            /// </summary>
+            /// <returns>
+            ///     An <see cref="IQueryable"/> as a results of a <c>DueDate</c> traversal.
+            /// </returns>
             public IQueryable<Project> TraverseByDueDate()
             {
                 var projects = from m in GetUserProjects()
