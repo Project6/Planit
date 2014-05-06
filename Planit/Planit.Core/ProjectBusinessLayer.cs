@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Planit.Core
 {
@@ -35,6 +36,14 @@ namespace Planit.Core
                                where m.UserID == _UserId
                                     &&
                                     m.Status < 100
+                               select m;
+                return projects;
+            }
+
+            private IQueryable<Project> GetLeafNodeProjects()
+            {
+                var projects = from m in GetUserProjects()
+                               where Regex.IsMatch(m.ChildrenStr, @"\d")
                                select m;
                 return projects;
             }
