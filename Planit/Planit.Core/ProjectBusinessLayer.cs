@@ -40,11 +40,9 @@ namespace Planit.Core
                 return projects;
             }
 
-            private IQueryable<Project> GetLeafNodeProjects()
+            private IEnumerable<Project> GetLeafNodeProjects()
             {
-                var projects = from m in GetUserProjects()
-                               where Regex.IsMatch(m.ChildrenStr, @"\d")
-                               select m;
+                var projects = GetUserProjects().ToList().Where(m => !Regex.IsMatch(m.ChildrenStr, @"\d"));
                 return projects;
             }
             
@@ -87,9 +85,9 @@ namespace Planit.Core
             /// <returns>
             ///     An <see cref="IQueryable"/> as a results of a <c>DueDate</c> traversal.
             /// </returns>
-            public IQueryable<Project> TraverseByDueDate()
+            public IEnumerable<Project> TraverseByDueDate()
             {
-                var projects = from m in GetUserProjects()
+                var projects = from m in GetLeafNodeProjects()
                                orderby m.DueDate 
                                select m;
                 return projects;
